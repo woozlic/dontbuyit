@@ -1,0 +1,14 @@
+.img-fluid {
+    width: 900px;
+    height: 350px;
+}
+.bg-dark {
+    background: #a882dd;
+}
+body {
+    background: #fbf5f3;
+}
+.card-img-top {
+    width: 250px;
+    height: 150px;
+}

@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block content %}
+    {% if error %}
+        {{ error }}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <br>{{ form.title }}<br>
+        {{ form.image }}<br>
+        {{ form.intro }}<br>
+        {{ form.text }}<br>
+        {{ form.cost }}<br>
+        <button type = "submit" class = "btn btn-success">Добавить товар</button>
+        <br>
+    </form>
+{% endblock %}
