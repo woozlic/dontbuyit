@@ -5,7 +5,7 @@ import datetime
 
 class Items(models.Model):
     title = models.CharField("Название товара", max_length=80)
-    image = models.ImageField(upload_to="items/%Y/%m/%d", blank=True)
+    image = models.ImageField(upload_to="items/%Y/%m/%d")
     cost = models.FloatField("Цена")
     intro = models.CharField("Краткое описание", max_length=250)
     text = models.TextField("Полное описание")

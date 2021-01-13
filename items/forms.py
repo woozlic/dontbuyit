@@ -1,5 +1,5 @@
 from .models import Items
-from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField
+from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form
 
 class ItemsForm(ModelForm):
     class Meta:
