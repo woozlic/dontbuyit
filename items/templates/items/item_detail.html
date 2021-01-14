@@ -7,10 +7,19 @@
     <div class="col-lg-9">
         <div class = "container">
             <h3 class = "my-4">{{ item.title }}</h3><br>
-            <p class = "lead">{{ item.text }}</p><br>
-            <p class = "lead">{{ item.cost }} р.</p><br>
-            <p class = "lead">{{ item.date }}</p><br>
-            <p class = "lead">{{ item.rating }}</p><br>
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid">
+            {% endif %}
+            <p class = "shadow-lg p-3 bg-white rounded">{{ item.text }}</p><br>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class = "bg-success">{{ item.cost }} р.</th>
+                        <th class = "bg-primary">{{ item.rating }}</th>
+                        <th class = "bg-secondary">{{ item.date }}</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
         <!-- /.row -->
     </div>

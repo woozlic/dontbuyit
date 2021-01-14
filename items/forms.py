@@ -1,15 +1,21 @@
 from .models import Items
-from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form
+from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form, Select
 
 class ItemsForm(ModelForm):
     class Meta:
+        categories = [('Электроника', 'Электроника'), ('Инструменты', 'Инструменты'),
+                      ('Средства передвижения', 'Средства передвижения'), ('Одежда, обувь', 'Одежда, обувь'),
+                      ('Детские товары', 'Детские товары'), ('Прочее', 'Прочее')]
         model = Items
-        fields = ['title', 'cost', 'intro', 'text', 'image']
+        fields = ['title', 'cost', 'category', 'intro', 'text', 'image']
 
         widgets = {
             'title': TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Название товара'
+            }),
+            'category': Select(choices=categories, attrs={
+                'class': 'form-control'
             }),
             'intro': TextInput(attrs={
                 'class': 'form-control',
