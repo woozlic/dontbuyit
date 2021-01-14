@@ -11,8 +11,15 @@ class ItemDetailView(DetailView):
     context_object_name = 'item'
     extra_context = {'aside': True}
 
-def show_page(request, page_num=1):
+def show_page(request, page_num=1, category=None):
     items = Items.objects.all().order_by('-date')
+    # if category == "electronic":
+    #     items = [item for item in items if item.category == "electronic"]
+    if category != None:
+        try:
+            items = [item for item in items if item.category == category]
+        except:
+            items = [item for item in items if item.category == "other"]
     paginator = Paginator(items, 6)
     try:
         items = paginator.page(page_num)

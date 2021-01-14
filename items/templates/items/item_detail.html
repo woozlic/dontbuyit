@@ -6,11 +6,11 @@
 {% block content %}
     <div class="col-lg-9">
         <div class = "container">
-            <h3 class = "my-4">{{ item.title }}</h3><br>
+            <h3 class = "my-4 shadow-lg p-3 bg-info">{{ item.title }}</h3>
             {% if item.image %}
                 <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid">
             {% endif %}
-            <p class = "shadow-lg p-3 bg-white rounded">{{ item.text }}</p><br>
+            <p class = "shadow-lg p-3 text-dark">{{ item.text }}</p><br>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>

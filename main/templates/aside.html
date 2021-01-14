@@ -2,11 +2,11 @@
         <h1 class="my-4"><a href ="{% url 'catalog' %}">Категории</a></h1>
         <div class="list-group">
           <a href="{% url 'all' %}" class="list-group-item"><i class="fas fa-globe-americas"></i>  ВСЕ ТОВАРЫ</a>
-          <a href="#" class="list-group-item"><i class="fas fa-atom"></i>  Электронные устройства</a>
-          <a href="#" class="list-group-item"><i class="fas fa-car"></i>  Средства передвижения</a>
-          <a href="#" class="list-group-item"><i class="fas fa-tools"></i>  Инструменты</a>
-          <a href="#" class="list-group-item"><i class="fas fa-tools"></i>  Одежда, обувь</a>
-          <a href="#" class="list-group-item"><i class="fas fa-tools"></i>  Детские товары</a>
-          <a href="#" class="list-group-item"><i class="fas fa-tools"></i>  Разное</a>
+          <a href="{% url 'category' 'electronic' %}" class="list-group-item"><i class="fas fa-atom"></i>  Электронные устройства</a>
+          <a href="{% url 'category' 'transport' %}" class="list-group-item"><i class="fas fa-car"></i>  Средства передвижения</a>
+          <a href="{% url 'category' 'instruments' %}" class="list-group-item"><i class="fas fa-tools"></i>  Инструменты</a>
+          <a href="{% url 'category' 'wear' %}" class="list-group-item"><i class="fas fa-tshirt"></i> Одежда, обувь</a>
+          <a href="{% url 'category' 'kids' %}" class="list-group-item"><i class="fas fa-baby"></i>  Детские товары</a>
+          <a href="{% url 'category' 'other' %}" class="list-group-item"><i class="fas fa-align-justify"></i>  Разное</a>
         </div>
 </div>
