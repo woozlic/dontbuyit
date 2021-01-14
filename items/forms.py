@@ -3,9 +3,9 @@ from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField
 
 class ItemsForm(ModelForm):
     class Meta:
-        categories = [('Электроника', 'Электроника'), ('Инструменты', 'Инструменты'),
-                      ('Средства передвижения', 'Средства передвижения'), ('Одежда, обувь', 'Одежда, обувь'),
-                      ('Детские товары', 'Детские товары'), ('Прочее', 'Прочее')]
+        categories = [('electronic', 'Электроника'), ('instruments', 'Инструменты'),
+                      ('transport', 'Средства передвижения'), ('wear', 'Одежда, обувь'),
+                      ('kids', 'Детские товары'), ('other', 'Прочее')]
         model = Items
         fields = ['title', 'cost', 'category', 'intro', 'text', 'image']
 
