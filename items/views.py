@@ -11,6 +11,16 @@ class ItemDetailView(DetailView):
     context_object_name = 'item'
     extra_context = {'aside': True}
 
+def show_page(request, page_num=1):
+    items = Items.objects.all().order_by('-date')
+    paginator = Paginator(items, 6)
+    try:
+        items = paginator.page(page_num)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)
+    context = {'items': items, 'aside': True}
+    return render(request, 'items/all.html', context)
+
 def show_all(request):
     items = Items.objects.all().order_by('-date')
     # paginator = Paginator(items, 6)

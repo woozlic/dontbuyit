@@ -14,7 +14,7 @@
               <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
                   {% if item.image %}
-                    <a href="{% url 'item_detail' item.category item.id %}"><img class="card-img-top" src="..{{ MEDIA_ROOT }}{{ item.image.url }}" alt=""></a> <!-- 700x400 -->
+                    <a href="{% url 'item_detail' item.category item.id %}"><img class="card-img-top" src="{{ item.image.url }}" alt=""></a> <!-- 700x400 -->
                   {% endif %}
                   <div class="card-body">
                     <h4 class="card-title">
@@ -36,6 +36,7 @@
 
         </div>
         <!-- /.row -->
-
+        {% include 'items/pagination.html' with page=items %}
       </div>
+
 {% endblock %}

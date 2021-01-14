@@ -1,0 +1,20 @@
+<ul class = "pagination">
+    <li class = "page-item">
+        {% if page.has_previous %}
+            <a href = "{% url 'show_page' page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>
+        {% endif %}
+    </li>
+    <li class = "page-item active">
+        <a href = "{% url 'show_page' page.number %}" class="page-link">{{ page.number }}</a>
+    </li>
+    <li class = "page-item">
+        {% if page.has_next %}
+            <a href = "{% url 'show_page' page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>
+        {% endif %}
+    </li>
+    <li class = "page-item">
+        {% if page.number != page.paginator.num_pages %}
+            <a href = "{% url 'show_page' page.paginator.num_pages %}" class="page-link">>></a>
+        {% endif %}
+    </li>
+</ul>
