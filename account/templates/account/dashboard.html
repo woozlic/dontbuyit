@@ -5,6 +5,7 @@
 {% block content %}
     <div class="col-lg-9">
         <p class="my-4">Ваш личный кабинет</p>
+        <a href = "{% url 'account:password_change' %}">Изменить пароль</a><br>
         <a href = "{% url 'account:logout' %}">Выйти из аккаунта</a><br>
     </div>
 {% endblock %}
