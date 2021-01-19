@@ -1,20 +1,36 @@
 <ul class = "pagination">
     <li class = "page-item">
         {% if page.has_previous %}
-            <a href = "{% url 'show_page' page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>
-        {% endif %}
+            {% if category == None %}
+                <a href = "{% url 'items:all_page' page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>
+            {% else %}
+                <a href = "{% url 'items:category_page' category page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>
+            {% endif %}
+         {% endif %}
     </li>
     <li class = "page-item active">
-        <a href = "{% url 'show_page' page.number %}" class="page-link">{{ page.number }}</a>
+        {% if category == None %}
+            <a href = "{% url 'items:all_page' page.number %}" class="page-link">{{ page.number }}</a>
+        {% else %}
+            <a href = "{% url 'items:category_page' category page.number %}" class="page-link">{{ page.number }}</a>
+        {% endif %}
     </li>
     <li class = "page-item">
         {% if page.has_next %}
-            <a href = "{% url 'show_page' page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>
+            {% if category == None %}
+                <a href = "{% url 'items:all_page' page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>
+            {% else %}
+                <a href = "{% url 'items:category_page' category page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>
+            {% endif %}
         {% endif %}
     </li>
     <li class = "page-item">
         {% if page.number != page.paginator.num_pages %}
-            <a href = "{% url 'show_page' page.paginator.num_pages %}" class="page-link">>></a>
+            {% if category == None %}
+                <a href = "{% url 'items:all_page' page.paginator.num_pages %}" class="page-link">>></a>
+            {% else %}
+                <a href = "{% url 'items:category_page' category page.paginator.num_pages %}" class="page-link">>></a>
+            {% endif %}
         {% endif %}
     </li>
 </ul>

@@ -2,6 +2,7 @@ from .models import Items
 from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form, Select
 
 class ItemsForm(ModelForm):
+
     class Meta:
         categories = [('electronic', 'Электроника'), ('instruments', 'Инструменты'),
                       ('transport', 'Средства передвижения'), ('wear', 'Одежда, обувь'),

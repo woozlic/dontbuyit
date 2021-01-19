@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Вход в личный кабинет{% endblock %}
+
+{% block content %}
+    <div class="col-lg-9">
+        <h1 class="my-4">Вход в личный кабинет</h1>
+        {% if request.user.is_authenticated %}
+            <p class = "alert-info my-4">Вы уже вошли в аккаунт</p>
+        {% else %}
+            {% if form.errors %}
+                <p class="alert alert-danger">Неправильный логин и/или пароль</p>
+            {% else %}
+                <p>Вход в личный кабинет</p>
+            {% endif %}
+
+            <div class="form-group row">
+                <form action="{% url 'account:login' %}" method="post">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <p><input type="submit" class = "form-control" value="Войти"></p>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

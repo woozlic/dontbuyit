@@ -1,0 +1,10 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+    <div class="col-lg-9">
+        <p class="my-4">Ваш личный кабинет</p>
+        <a href = "{% url 'account:logout' %}">Выйти из аккаунта</a><br>
+    </div>
+{% endblock %}

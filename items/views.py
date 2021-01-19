@@ -12,20 +12,16 @@ class ItemDetailView(DetailView):
     extra_context = {'aside': True}
 
 def show_page(request, page_num=1, category=None):
+    # print(category, page_num)
     items = Items.objects.all().order_by('-date')
-    # if category == "electronic":
-    #     items = [item for item in items if item.category == "electronic"]
-    if category != None:
-        try:
-            items = [item for item in items if item.category == category]
-        except:
-            items = [item for item in items if item.category == "other"]
+    if category != None:  # любая категория кроме все товары
+        items = [item for item in items if item.category == category]  # берем вещи из категорий
     paginator = Paginator(items, 6)
     try:
         items = paginator.page(page_num)
     except EmptyPage:
-        items = paginator.page(paginator.num_pages)
-    context = {'items': items, 'aside': True}
+        return redirect('main:index')  # здесь нужно будет возвращать 404
+    context = {'items': items, 'aside': True, 'category': category, 'page_num': page_num}
     return render(request, 'items/all.html', context)
 
 def show_all(request):
@@ -41,7 +37,7 @@ def add_item(request):
         form = ItemsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('main:index')
         else:
             error = f"Вы не правильно заполнили форму"
             print(form.errors)
