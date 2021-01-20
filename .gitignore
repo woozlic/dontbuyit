@@ -7,3 +7,4 @@ db.sqlite3
 список задач.txt
 заметОЧКИ.txt
 /media
+.env

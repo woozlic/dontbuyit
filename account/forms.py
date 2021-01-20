@@ -1,6 +1,6 @@
-from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, Form, CharField, ValidationError
-from .models import Account
+from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, Form, CharField, ValidationError, Select
 from django.contrib.auth.models import User
+from .models import Profile
 
 class UserRegistrationForm(ModelForm):
 
@@ -47,6 +47,31 @@ class UserRegistrationForm(ModelForm):
             raise ValidationError('Пароли не совпадают!')
         return cd['password_repeat']
 
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'email')
+
+        widgets = {
+            'first_name': TextInput(attrs={
+                'class': 'form-control',
+            }),
+
+            'email': EmailInput(attrs={
+                'class': 'form-control',
+            }),
+        }
+
+class ProfileForm(ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ('gender',)
+        genders = [('мужской', 'мужской'), ('женский', 'женский')]
+
+        widgets = {
+            'gender': Select(choices=genders, attrs={'class': 'form-control'})
+        }
 class LoginForm(Form):
     # email = CharField(max_length=50, widget=EmailInput(attrs={'class': 'form-control',
     #                                                           'placeholder': 'Адрес электронной почты'}))

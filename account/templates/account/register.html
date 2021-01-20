@@ -8,6 +8,9 @@
             <p class = "alert-info my-4">Вы уже вошли</p>
             <a href="{% url 'account:logout' %}" class="btn-link">Выйти из аккаунта</a>
         {% else %}
+            {% if user_form.errors %}
+                <p class="alert alert-danger">{{ user_form.errors }}</p>
+            {% endif %}
             <h1 class="my-4">Регистрация нового пользователя</h1>
             <form action="{% url 'account:register' %}" method="post">
                 <div class="form-group">

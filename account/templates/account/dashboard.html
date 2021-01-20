@@ -5,7 +5,15 @@
 {% block content %}
     <div class="col-lg-9">
         <p class="my-4">Ваш личный кабинет</p>
+        <ul class = "list-group">
+            <li class="list-group-item">Логин: {{ request.user.username }}</li>
+            <li class="list-group-item">Электронная почта: {{ request.user.email }}</li>
+            <li class="list-group-item">Имя: {{ request.user.first_name }}</li>
+            <li class="list-group-item">Пол: {{ request.user.profile.gender }}</li>
+        </ul>
+        <br>
         <a href = "{% url 'account:password_change' %}">Изменить пароль</a><br>
+        <a href = "{% url 'account:edit_profile' %}">Изменить данные профиля</a><br>
         <a href = "{% url 'account:logout' %}">Выйти из аккаунта</a><br>
     </div>
 {% endblock %}

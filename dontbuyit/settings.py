@@ -19,6 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+# DEBUG = os.environ.get('DEBUG')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's&m=#@)l#png68sawe(c(16g6d5uu92j)(b9g6ik-&qrb*h)de'
 
@@ -32,6 +35,10 @@ LOGIN_URL = 'account:login'
 LOGOUT_URL = 'account:logout'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTH_USER_MODEL = 'auth.User'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # Application definition
 
