@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <div class="col-lg-9">
+        {% if request.user.is_authenticated %}
+            <p class = "alert-info my-4">Вы уже вошли</p>
+            <a href="{% url 'account:logout' %}" class="btn-link">Выйти из аккаунта</a>
+        {% else %}
+            <h1 class="my-4">Регистрация нового пользователя</h1>
+            <form action="{% url 'account:register' %}" method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <label for="formGroupEmailInput">Введите адрес электронной почты:</label>
+                    {{ user_form.email }}
+                    <label for="formGroupUsernameInput">Введите ваш логин:</label>
+                    {{ user_form.username }}
+                    <label for="formGroupPasswordInput">Введите ваш пароль:</label>
+                    {{ user_form.password }}
+                    <label for="formGroupPasswordRepeatInput">Повторите ваш пароль:</label>
+                    {{ user_form.password_repeat }}
+                    <br>
+                    <input type="submit" class="btn btn-success" value="Зарегистрироваться">
+                </div>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

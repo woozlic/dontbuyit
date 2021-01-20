@@ -5,6 +5,8 @@
 {% block content %}
     <div class="col-lg-9">
         <h1 class="my-4">Вход в личный кабинет</h1>
+        <strong>У вас нет аккаунта?</strong>
+        <a href="{% url 'account:register' %}" class="btn-link">Зарегистрироваться</a>
         {% if request.user.is_authenticated %}
             <p class = "alert-info my-4">Вы уже вошли в аккаунт</p>
         {% else %}
