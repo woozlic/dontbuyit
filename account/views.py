@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, UserForm, ProfileForm
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 from .models import Profile
 from .forms import UserRegistrationForm
 
@@ -12,17 +14,21 @@ from .forms import UserRegistrationForm
 def auth_register(request):
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            # создаем пользовательский обьект, но пока не сохраняем
-            new_user = user_form.save(commit=False)
-            # устанавливаем пароль пользователю
-            new_user.set_password(user_form.cleaned_data['password'])
-            new_user.save()
-            # Profile.objects.create(user=new_user)
-            print("аккаунт создан")
-            return render(request, 'account/registration_done.html', {'new_user': new_user})
+        if user_form.is_valid(): # проверка на правильность формы
+            if User.objects.filter(email=user_form.cleaned_data['email']).exists():
+                messages.error(request, 'Данный email адрес уже зарегистрирован.')
+            else:
+                # создаем пользовательский обьект, но пока не сохраняем
+                new_user = user_form.save(commit=False)
+                # устанавливаем пароль пользователю
+                new_user.set_password(user_form.cleaned_data['password'])
+                new_user.save()
+                # Profile.objects.create(user=new_user)
+                # print("аккаунт создан")
+                return render(request, 'account/registration_done.html', {'new_user': new_user})
         else:
-            print("ошибка заполнения формы")
+            pass
+            # print("ошибка заполнения формы")
     else:
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html', {'user_form': user_form})
@@ -35,9 +41,10 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('account:dashboard')
+            messages.success(request, 'Данные профиля были обновлены!')
+            # return redirect('account:dashboard')
         else:
-            print("ошибка")
+            messages.error(request, 'Не удалось сохранить данные профиля.')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)

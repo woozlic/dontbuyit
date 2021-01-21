@@ -81,11 +81,8 @@ class LoginForm(Form):
                                                                     'placeholder': 'Пароль'}))
     # следующее для ModelForm
     # class Meta:
-    #     fields = ['mail', 'login', 'password']
+    #     fields = ['login', 'password']
     #     widgets = {
-    #         'mail': EmailInput(attrs={
-    #             'class': 'form-control',
-    #         }),
     #         'login': TextInput(attrs={
     #             'class': 'form-control',
     #         }),

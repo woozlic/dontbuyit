@@ -4,6 +4,6 @@
 
 {% block content %}
     <div class="col-lg-9">
-            <p class="my-4">Вы успешно зарегистрировались, {{ new_user.first_name }} теперь вы можете </p><a href="{% url 'account:login' %}">войти</a>
+        <p class="my-4">Вы успешно зарегистрировались, {{ new_user.first_name }} теперь вы можете <a href="{% url 'account:login' %}">войти</a></p>
     </div>
 {% endblock %}

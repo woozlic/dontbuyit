@@ -16,12 +16,12 @@
                 <p>Вход в личный кабинет</p>
             {% endif %}
 
-            <div class="form-group row">
+            <div class="form-group">
                 <form action="{% url 'account:login' %}" method="post">
-                    {{ form.as_p }}
+                    <table>{{ form.as_table }}</table>
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ next }}">
-                    <p><input type="submit" class = "form-control" value="Войти"></p>
+                    <p><input type="submit" class = "btn btn-success" value="Войти"></p>
                 </form>
             </div>
         {% endif %}
