@@ -1,12 +1,97 @@
 <div class="col-lg-3">
-        <h1 class="my-4"><a href ="{% url 'main:catalog' %}">Категории</a></h1>
-        <div class="list-group">
-          <a href="{% url 'items:all' %}" class="list-group-item"><i class="fas fa-globe-americas"></i>  ВСЕ ТОВАРЫ</a>
-          <a href="{% url 'items:category' 'electronic' %}" class="list-group-item"><i class="fas fa-atom"></i>  Электронные устройства</a>
-          <a href="{% url 'items:category' 'transport' %}" class="list-group-item"><i class="fas fa-car"></i>  Средства передвижения</a>
-          <a href="{% url 'items:category' 'instruments' %}" class="list-group-item"><i class="fas fa-tools"></i>  Инструменты</a>
-          <a href="{% url 'items:category' 'wear' %}" class="list-group-item"><i class="fas fa-tshirt"></i> Одежда, обувь</a>
-          <a href="{% url 'items:category' 'kids' %}" class="list-group-item"><i class="fas fa-baby"></i>  Детские товары</a>
-          <a href="{% url 'items:category' 'other' %}" class="list-group-item"><i class="fas fa-align-justify"></i>  Разное</a>
+    <h1 class="my-4"><a href ="{% url 'main:catalog' %}">Категории</a></h1>
+    <div class="list-group">
+        <a href="{% url 'items:all' %}" class="list-group-item"><i class="fas fa-globe-americas"></i>  ВСЕ ТОВАРЫ</a>
+        <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-electronic')">
+            <i class="fas fa-atom"></i>
+            Электронные устройства
+        </a>
+        <div class="dropdown-shift" id="dropdown-electronic">
+            <a class="list-group-item" href="#"><strong>Вся электроника</strong></a>
+            <a class="list-group-item" href="#"><strong>Аудио, видео</strong></a>
+            <a class="list-group-item" href="#"><strong>Игры, приставки, программы</strong></a>
+            <a class="list-group-item" href="#"><strong>Кухонная техника</strong></a>
+            <a class="list-group-item" href="#"><strong>Компьютерная техника</strong></a>
+            <a class="list-group-item" href="#"><strong>Другая электроника</strong></a>
+            <a class="list-group-item" href="#"><strong>Другое</strong></a>
         </div>
+
+         <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-house')">
+            <i class="fas fa-home"></i>
+            Недвижимость
+        </a>
+        <div class="dropdown-shift" id="dropdown-house">
+            <a class="list-group-item" href="#"><strong>Квартиры</strong></a>
+            <a class="list-group-item" href="#"><strong>Дома</strong></a>
+            <a class="list-group-item" href="#"><strong>Гаражи</strong></a>
+            <a class="list-group-item" href="#"><strong>Коммерческая недвижимость</strong></a>
+            <a class="list-group-item" href="#"><strong>Другая недвижимость</strong></a>
+        </div>
+
+        <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-transport')">
+            <i class="fas fa-car"></i>
+            Средства передвижения
+        </a>
+        <div class="dropdown-shift" id="dropdown-transport">
+            <a class="list-group-item" href="#"><strong>Электросамокаты</strong></a>
+            <a class="list-group-item" href="#"><strong>Мототехника</strong></a>
+            <a class="list-group-item" href="#"><strong>Велосипеды</strong></a>
+            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+        </div>
+
+        <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-instruments')">
+            <i class="fas fa-tools"></i>
+            Инструменты
+        </a>
+        <div class="dropdown-shift" id="dropdown-instruments">
+            <a class="list-group-item" href="#"><strong>Инструменты для автомобилей</strong></a>
+            <a class="list-group-item" href="#"><strong>Электроинструменты</strong></a>
+            <a class="list-group-item" href="#"><strong>Ручные инструменты</strong></a>
+            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+        </div>
+
+        <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-wear')">
+            <i class="fas fa-tshirt"></i>
+            Одежда, обувь
+        </a>
+        <div class="dropdown-shift" id="dropdown-wear">
+            <a class="list-group-item" href="#"><strong>Женская одежда</strong></a>
+            <a class="list-group-item" href="#"><strong>Мужская одежда</strong></a>
+            <a class="list-group-item" href="#"><strong>Детская одежда</strong></a>
+            <a class="list-group-item" href="#"><strong>Костюмы</strong></a>
+            <a class="list-group-item" href="#"><strong>Обувь</strong></a>
+            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+        </div>
+
+        <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-furniture')">
+            <i class="fas fa-bed"></i>
+            Мебель
+        </a>
+        <div class="dropdown-shift" id="dropdown-furniture">
+            <a class="list-group-item" href="#"><strong>Столы</strong></a>
+            <a class="list-group-item" href="#"><strong>Стулья, табуреты и кресла</strong></a>
+            <a class="list-group-item" href="#"><strong>Гамаки</strong></a>
+            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+        </div>
+
+        <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-kids')">
+            <i class="fas fa-baby"></i>
+            Детские товары
+        </a>
+        <div class="dropdown-shift" id="dropdown-kids">
+            <a class="list-group-item" href="#"><strong>Автокресла</strong></a>
+            <a class="list-group-item" href="#"><strong>Коляски и переноски</strong></a>
+            <a class="list-group-item" href="#"><strong>Детская мебель</strong></a>
+            <a class="list-group-item" href="#"><strong>Игрушки</strong></a>
+            <a class="list-group-item" href="#"><strong>Детская одежда</strong></a>
+            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+        </div>
+
+        <a class="list-group-item" type="button">
+            <i class="fas fa-align-justify"></i>
+            Разное
+        </a>
+
+        <a href="{% url 'items:category' 'house' %}" class="list-group-item"><i class="fas fa-home"></i>  Для дома</a>
+    </div>
 </div>

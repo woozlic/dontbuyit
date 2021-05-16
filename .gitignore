@@ -8,3 +8,4 @@ db.sqlite3
 заметОЧКИ.txt
 /media
 .env
+configuration_settings.py

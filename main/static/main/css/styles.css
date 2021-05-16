@@ -7,6 +7,7 @@
 }
 body {
     background: #fbf5f3;
+    padding-top: 56px;
 }
 .card-img-top {
     width: 250px;
@@ -19,4 +20,49 @@ body {
 }
 
 .col-lg-9 {
+}
+.alert-danger{
+    list-style: none;
+}
+
+.content{
+    margin: auto;
+}
+
+.item-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.py-5{
+    margin-top: 26px;
+}
+
+.login-form {
+    margin: 0 auto;
+}
+
+.login-row {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.margin-auto {
+    margin: 0 auto;
+}
+
+.checked {
+    color: orange;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.popup-message {
+    background-color: orange;
+    width: 98.5%;
+    margin-bottom: 10px;
 }

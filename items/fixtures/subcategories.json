@@ -1,0 +1,282 @@
+[
+  {
+    "model": "items.subcategories",
+    "pk": 1,
+    "fields": {
+      "subcategory_name": "Аудио-видео техника",
+      "category": ["Электроника"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 2,
+    "fields": {
+      "subcategory_name": "Игры, приставки, программы",
+      "category": ["Электроника"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 3,
+    "fields": {
+      "subcategory_name": "Кухонная техника",
+      "category": ["Электроника"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 4,
+    "fields": {
+      "subcategory_name": "Компьютерная техника",
+      "category": ["Электроника"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 5,
+    "fields": {
+      "subcategory_name": "Другая электроника",
+      "category": ["Электроника"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 6,
+    "fields": {
+      "subcategory_name": "Другое",
+      "category": ["Электроника"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 7,
+    "fields": {
+      "subcategory_name": "Квартиры",
+      "category": ["Недвижимость"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 8,
+    "fields": {
+      "subcategory_name": "Дома",
+      "category": ["Недвижимость"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 9,
+    "fields": {
+      "subcategory_name": "Гаражи",
+      "category": ["Недвижимость"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 10,
+    "fields": {
+      "subcategory_name": "Коммерческая недвижимость",
+      "category": ["Недвижимость"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 11,
+    "fields": {
+      "subcategory_name": "Другая недвижимость",
+      "category": ["Недвижимость"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 12,
+    "fields": {
+      "subcategory_name": "Электросамокаты",
+      "category": ["Средства передвижения"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 13,
+    "fields": {
+      "subcategory_name": "Мототехника",
+      "category": ["Средства передвижения"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 14,
+    "fields": {
+      "subcategory_name": "Велосипеды",
+      "category": ["Средства передвижения"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 15,
+    "fields": {
+      "subcategory_name": "Другое",
+      "category": ["Средства передвижения"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 16,
+    "fields": {
+      "subcategory_name": "Инструменты для автомобилей",
+      "category": ["Инструменты"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 17,
+    "fields": {
+      "subcategory_name": "Электроинструменты",
+      "category": ["Инструменты"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 18,
+    "fields": {
+      "subcategory_name": "Ручные инструменты",
+      "category": ["Инструменты"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 19,
+    "fields": {
+      "subcategory_name": "Другое",
+      "category": ["Инструменты"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 20,
+    "fields": {
+      "subcategory_name": "Женская одежда",
+      "category": ["Одежда, обувь"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 21,
+    "fields": {
+      "subcategory_name": "Мужская одежда",
+      "category": ["Одежда, обувь"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 22,
+    "fields": {
+      "subcategory_name": "Детская одежда",
+      "category": ["Одежда, обувь"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 23,
+    "fields": {
+      "subcategory_name": "Костюмы",
+      "category": ["Одежда, обувь"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 24,
+    "fields": {
+      "subcategory_name": "Обувь",
+      "category": ["Одежда, обувь"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 25,
+    "fields": {
+      "subcategory_name": "Другое",
+      "category": ["Одежда, обувь"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 26,
+    "fields": {
+      "subcategory_name": "Столы",
+      "category": ["Мебель"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 27,
+    "fields": {
+      "subcategory_name": "Стулья, табуреты и кресла",
+      "category": ["Мебель"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 28,
+    "fields": {
+      "subcategory_name": "Гамаки",
+      "category": ["Мебель"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 29,
+    "fields": {
+      "subcategory_name": "Другое",
+      "category": ["Мебель"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 30,
+    "fields": {
+      "subcategory_name": "Автокресла",
+      "category": ["Детские товары"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 31,
+    "fields": {
+      "subcategory_name": "Коляски и переноски",
+      "category": ["Детские товары"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 32,
+    "fields": {
+      "subcategory_name": "Детская мебель",
+      "category": ["Детские товары"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 33,
+    "fields": {
+      "subcategory_name": "Игрушки",
+      "category": ["Детские товары"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 34,
+    "fields": {
+      "subcategory_name": "Детская одежда",
+      "category": ["Детские товары"]
+    }
+  },
+  {
+    "model": "items.subcategories",
+    "pk": 35,
+    "fields": {
+      "subcategory_name": "Другое",
+      "category": ["Детские товары"]
+    }
+  }
+]

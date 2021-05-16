@@ -3,13 +3,17 @@ from .models import Items
 from .forms import ItemsForm
 from django.views.generic import DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
+
 
 class ItemDetailView(DetailView):
     model = Items
     template_name = "items/item_detail.html"
     context_object_name = 'item'
     extra_context = {'aside': True}
+
 
 def show_page(request, page_num=1, category=None):
     # print(category, page_num)
@@ -24,6 +28,7 @@ def show_page(request, page_num=1, category=None):
     context = {'items': items, 'aside': True, 'category': category, 'page_num': page_num}
     return render(request, 'items/all.html', context)
 
+
 def show_all(request):
     items = Items.objects.all().order_by('-date')
     # paginator = Paginator(items, 6)
@@ -31,6 +36,9 @@ def show_all(request):
     #     items = paginator.page()
     context = {'items': items, 'aside': True}
     return render(request, "items/all.html", context)
+
+
+@login_required
 def add_item(request):
     error = ""
     if request.method == "POST":
@@ -38,9 +46,7 @@ def add_item(request):
         if form.is_valid():
             form.save()
             return redirect('main:index')
-        else:
-            error = f"Вы не правильно заполнили форму"
-            print(form.errors)
-    form = ItemsForm
-    context = {"aside": False, "form": form, 'error': error}
+    else:
+        form = ItemsForm
+    context = {"aside": False, "form": form}
     return render(request, "items/add.html", context)

@@ -1,0 +1,17 @@
+[
+  {
+    "model": "items.items",
+    "pk": 1,
+    "fields": {
+      "user": "1",
+      "title": "Аккумулятор Энерджайзер",
+      "image": "C:\\Users\\woozlic\\Desktop\\PYTHON HARD DEVELOPMENT\\dontbuyit\\test_items\\akkumulator energizer.jpg",
+      "category": ["Электроника"],
+      "category.subcategory": ["Другая электроника"],
+      "cost": 500,
+      "text": "Сдам в аренду. 3 дня - 500 р.",
+      "date": "2021-05-15",
+      "period": "3 дня"
+    }
+  }
+]

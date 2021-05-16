@@ -1,6 +1,8 @@
-from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, Form, CharField, ValidationError, Select
+from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, Form, CharField, ValidationError, \
+    Select, ImageField, FileInput
 from django.contrib.auth.models import User
 from .models import Profile
+
 
 class UserRegistrationForm(ModelForm):
 
@@ -47,6 +49,7 @@ class UserRegistrationForm(ModelForm):
             raise ValidationError('Пароли не совпадают!')
         return cd['password_repeat']
 
+
 class UserForm(ModelForm):
     class Meta:
         model = User
@@ -62,6 +65,7 @@ class UserForm(ModelForm):
             }),
         }
 
+
 class ProfileForm(ModelForm):
 
     class Meta:
@@ -72,21 +76,24 @@ class ProfileForm(ModelForm):
         widgets = {
             'gender': Select(choices=genders, attrs={'class': 'form-control'})
         }
+
+
 class LoginForm(Form):
-    # email = CharField(max_length=50, widget=EmailInput(attrs={'class': 'form-control',
-    #                                                           'placeholder': 'Адрес электронной почты'}))
-    nickname = CharField(max_length=50, widget=TextInput(attrs={'class': 'form-control',
-                                                                'placeholder': 'Введите ваш логин'}))
-    password = CharField(max_length=50, widget=PasswordInput(attrs={'class': 'form-control',
-                                                                    'placeholder': 'Пароль'}))
-    # следующее для ModelForm
-    # class Meta:
-    #     fields = ['login', 'password']
-    #     widgets = {
-    #         'login': TextInput(attrs={
-    #             'class': 'form-control',
-    #         }),
-    #         'password': PasswordInput(attrs={
-    #             'class': 'form-control',
-    #         }),
-    #     }
+
+    nickname = CharField(max_length=50, widget=TextInput(attrs={'class': 'fadeIn second',
+                                                                'placeholder': 'Ваш логин',
+                                                                'name': 'login',
+                                                                'id': 'login'}))
+    password = CharField(max_length=50, widget=PasswordInput(attrs={'class': 'fadeIn third',
+                                                                    'placeholder': 'Пароль',
+                                                                    'name': 'login',
+                                                                    'id': 'password'}))
+
+
+class DashboardForm(Form):
+
+    image = ImageField(widget=FileInput(attrs={
+        'style': 'display: none;',
+        'class': 'btn btn-dark',
+        'id': 'file',
+    }))

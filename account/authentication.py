@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 
+
 class EmailAuthBackend(object):
     """
     Аутентификация через эл. почту

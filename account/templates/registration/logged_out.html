@@ -3,12 +3,12 @@
 {% block title %}Выход из аккаунта{% endblock %}
 
 {% block content %}
-    <div class = "col-lg-9">
+    <div class = "col-lg-12">
         <br>
         <p class = "alert alert-dark" role="alert">Вы вышли из аккаунта</p>
         <ul class = "nav">
-            <li class="nav-item"><a class="nav-link" href = "{% url 'account:login' %}">Войти в аккаунт</a></li>
-            <li class="nav-item"><a class="nav-link" href = "{% url 'account:register' %}">Регистрация</a></li>
+            <li class="nav-item"><a class="nav-link" href = "{% url 'account:login' %}"><button class="btn btn-success">Войти в аккаунт</button></a></li>
+            <li class="nav-item"><a class="nav-link" href = "{% url 'account:register' %}"><button class="btn btn-info">Регистрация</button></a></li>
         </ul>
     </div>
 {% endblock %}

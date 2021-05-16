@@ -6,20 +6,28 @@
 {% block content %}
     <div class="col-lg-9">
         <div class = "container">
-            <h3 class = "my-4 shadow-lg p-3 bg-info">{{ item.title }}</h3>
+            <div class = 'item-title'>
+                <a href="{% url 'items:item_detail' item.category item.slug item.id %}">
+                    <h3 class = "my-4">{{ item.title }}</h3>
+                </a>
+                <h3 class = "my-4">{{ item.cost }} р. / {{ item.period }}</h3>
+            </div>
+            <div class="item-title">
+                <div>
+                    <p>Опубликовано: {{ item.date }}</p>
+                </div>
+                <div>
+                    {{ item.user.profile.rating }}<i class="fas fa-star checked"></i>
+                    <a href="{% url 'account:user_detail' item.user.username %}">{{ item.user.first_name }}</a>
+                </div>
+            </div>
+
             {% if item.image %}
                 <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid">
             {% endif %}
             <p class = "shadow-lg p-3 text-dark">{{ item.text }}</p><br>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th class = "bg-success">{{ item.cost }} р.</th>
-                        <th class = "bg-primary">{{ item.rating }}</th>
-                        <th class = "bg-secondary">{{ item.date }}</th>
-                    </tr>
-                </thead>
-            </table>
+            <button type="button" class="btn btn-primary btn-lg btn-block">Написать сообщение</button>
+            <button type="button" class="btn btn-success btn-lg btn-block">Узнать номер телефона</button>
         </div>
         <!-- /.row -->
     </div>

@@ -20,13 +20,22 @@
   <!-- Styles.css -->
   <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
 
+  <!-- Left side -->
+  <link rel="stylesheet" href="{% static 'main/css/aside.css' %}">
+
   <!-- icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+  {% block styles %}{% endblock %}
 
 </head>
-
+<style>
+body {
+    padding-top: 56px;
+}
+</style>
 <body>
-
+<br>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -67,13 +76,16 @@
 
   <!-- Page Content -->
   <div class="container">
-    {% include "account/notifications.html" %}
+
     <div class="row">
+
+
+
     {% if aside == True %}
         {% include "aside.html" %}
     {% endif %}
       <!-- /.col-lg-3 -->
-
+        {% include "account/notifications.html" %}
       {% block content %}
 
 
@@ -98,6 +110,7 @@
   <script src="{% static 'main/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
 
+  <script src="{% static 'main/js/aside.js' %}"></script>
 </body>
 
 </html>

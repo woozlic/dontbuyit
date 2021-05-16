@@ -1,22 +1,55 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
+{% block styles %}
+    <link href="{% static 'items/css/add.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block title %}{{ title }}{% endblock %}
 
 
 {% block content %}
-    {% if error %}
-        {{ error }}
-    {% endif %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <br>{{ form.title }}<br>
-        {{ form.image }}<br><br>
-        {{ form.category }}<br>
-        {{ form.intro }}<br>
-        {{ form.text }}<br>
-        {{ form.cost }}<br>
-        <button type = "submit" class = "btn btn-success">Добавить товар</button><br>
-        <br>
-    </form>
+    <div class = "col-lg-6 content">
+        {% if form.errors %}
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                {% csrf_token %}
+                <div>
+                    <label for="title">Название товара:</label>
+                    {{ form.title }}
+                </div>
+                <div>
+                    <label for="image" class="btn btn-success" id="label-image">Загрузить фотографию:</label><br>
+                    {{ form.image }}
+                </div>
+                <div>
+                    <label for="category">Категория:</label>
+                    {{ form.category }}
+                </div>
+                <div>
+                    <label for="text">Текст:</label>
+                    {{ form.text }}
+                </div>
+                <div>
+                    <label for="cost">Стоимость:</label>
+                    {{ form.cost }}
+                </div>
+                <div>
+                    <label for="period">На какой период вы сдаете товар за указанную стоимость:</label>
+                    {{ form.period }}
+                </div>
+                <button type = "submit" class = "btn btn-success" id="button-submit">Добавить товар</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

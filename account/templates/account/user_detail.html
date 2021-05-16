@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link href="{% static 'account/css/user_detail.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}Профиль {{ user.username }}{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="col-lg-12">
+            <h2>Профиль пользователя {{ user.first_name }}</h2>
+            <div class="profile">
+                <div class="avatar list-group-item">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar-img" />
+                </div>
+
+                <ul class = "list-group">
+                    <li class="list-group-item data">Никнейм: {{ user.username }}</li>
+                    <li class="list-group-item data">Имя: {{ user.first_name }}</li>
+                    <li class="list-group-item data">Отзывов: 5</li>
+                    <li class="list-group-item data">Пол: {{ user.profile.gender }}</li>
+                </ul>
+
+            </div>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="first-button">Написать сообщение</button>
+            <button type="button" class="btn btn-success btn-lg btn-block">Узнать номер телефона</button>
+        </div>
+    </div>
+{% endblock %}

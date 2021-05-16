@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from configuration_settings import keys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,16 +20,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# DEBUG = os.environ.get('DEBUG')
-# SECRET_KEY = os.environ.get('SECRET_KEY')
+
+DEBUG = keys['DEBUG']
+SECRET_KEY = keys['SECRET_KEY']
+
+# настройки для вконтакте
+VK_APP_ID = keys['VK_APP_ID']
+VKONTAKTE_APP_ID = VK_APP_ID
+SOCIAL_AUTH_VK_OAUTH2_KEY = VK_APP_ID
+
+VK_API_SECRET = keys['VK_API_SECRET']
+VKONTAKTE_APP_SECRET = VK_API_SECRET
+SOCIAL_AUTH_VK_OAUTH2_SECRET = VK_API_SECRET
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's&m=#@)l#png68sawe(c(16g6d5uu92j)(b9g6ik-&qrb*h)de'
+# SECRET_KEY = 's&m=#@)l#png68sawe(c(16g6d5uu92j)(b9g6ik-&qrb*h)de'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost']
 
 LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGIN_URL = 'account:login'
@@ -39,7 +51,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTH_USER_MODEL = 'auth.User'
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
-                           'account.authentication.EmailAuthBackend',]
+                           'account.authentication.EmailAuthBackend',
+                           'social_core.backends.vk.VKOAuth2',
+                           ]
 
 # Application definition
 
@@ -48,6 +62,7 @@ INSTALLED_APPS = [
     'items',
     'account',
     'taggit',
+    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,16 +100,16 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'dontbuyit.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dontbuyit',
+        'USER': 'postgres',
+        'PASSWORD': keys['DB_PASSWORD'],
     }
 }
 
@@ -141,7 +156,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     'main/static',
-    # os.path.join(BASE_DIR, 'main\\static'),
+    'account/static',
+    'items/static',
+    # os.path.join(BASE_DIR, 'account/static'),
 )
 
 MEDIA_URL = '/media/'

@@ -1,29 +1,48 @@
 {% extends 'main/layout.html' %}
 
+{% load static %}
+
+{% block styles %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="{% static 'account/css/login.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block title %}Вход в личный кабинет{% endblock %}
 
 {% block content %}
-    <div class="col-lg-9">
-        <h1 class="my-4">Вход в личный кабинет</h1>
-        <strong>У вас нет аккаунта?</strong>
-        <a href="{% url 'account:register' %}" class="btn-link">Зарегистрироваться</a>
-        {% if request.user.is_authenticated %}
-            <p class = "alert-info my-4">Вы уже вошли в аккаунт</p>
-        {% else %}
+    {% if request.user.is_authenticated %}
+        <div class="col-lg-12" style="margin-top: 35px">
+            <div class = "alert alert-warning" role="alert">Вы уже вошли в аккаунт</div>
+            <a href = "{% url 'account:logout' %}"><button class="btn btn-danger">Выйти</button></a>
+        </div>
+    {% else %}
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
             {% if form.errors %}
-                <p class="alert alert-danger">Неправильный логин и/или пароль</p>
-            {% else %}
-                <p>Вход в личный кабинет</p>
+                <p class="alert alert-danger login-row">Неправильный логин и/или пароль</p>
             {% endif %}
+            <!-- Login Form -->
+            <form action="{% url 'account:login' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ next }}">
+                {% for field in form %}
+                    <div style="margin-top: 10px">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+              <input type="submit" class="fadeIn fourth" value="Войти">
+            </form>
 
-            <div class="form-group">
-                <form action="{% url 'account:login' %}" method="post">
-                    <table>{{ form.as_table }}</table>
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ next }}">
-                    <p><input type="submit" class = "btn btn-success" value="Войти"></p>
-                </form>
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+              <a class="underlineHover" href="#">Забыли пароль?</a><br>
+              <a class="underlineHover" href="{% url 'account:register' %}">Зарегистрироваться</a>
             </div>
-        {% endif %}
-    </div>
+
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,17 @@
+.profile {
+    display: flex;
+}
+
+.avatar-img {
+    vertical-align: middle;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    display: flex;
+    flex-flow: column;
+}

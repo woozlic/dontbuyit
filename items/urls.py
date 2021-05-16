@@ -10,7 +10,7 @@ urlpatterns = [
     path('<int:page_num>/', views.show_page, name='all_page'),
     path('<slug:category>/', views.show_page, name='category'),
     path('<slug:category>/<int:page_num>/', views.show_page, name='category_page'),
-    path('<slug:category>/title_<int:pk>/', views.ItemDetailView.as_view(), name='item_detail'),
+    path('<slug:category>/<slug:slug>_<int:pk>/', views.ItemDetailView.as_view(), name='item_detail'),
 
 
 ]

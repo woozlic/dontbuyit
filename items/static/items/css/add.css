@@ -1,0 +1,16 @@
+.add-item-row {
+}
+
+.rows {
+
+}
+
+label {
+    display: inline-block;
+}
+#label-image {
+    margin-top: 10px;
+}
+#button-submit {
+    margin-top: 10px;
+}

@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('items/', include('items.urls')),
-    path('account/', include('account.urls'))
+    path('account/', include('account.urls')),
+    path('social-auth/', include('social_django.urls', namespace='social'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

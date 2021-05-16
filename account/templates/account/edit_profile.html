@@ -3,20 +3,20 @@
 {% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-    <div class="col-lg-9">
-        <p class="my-4">Ваш профиль</p>
-        <form method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                {% csrf_token %}
-                <label>Ваше имя:</label>
-                {{ user_form.first_name }}
-                <label>Ваш адрес электронной почты:</label>
-                {{ user_form.email }}
-                <label>Ваш пол</label>
-                {{ profile_form.gender }}
-                <br>
-                <input type="submit" class="btn btn-success" value="Сохранить изменения">
-            </div>
-        </form>
-    </div>
+        <div class="col-lg-12">
+            <h2>Ваш профиль</h2>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <label>Ваше имя:</label>
+                    {{ user_form.first_name }}
+                    <label>Ваш адрес электронной почты:</label>
+                    {{ user_form.email }}
+                    <label>Ваш пол</label>
+                    {{ profile_form.gender }}
+                    <br>
+                    <input type="submit" class="btn btn-success" value="Сохранить изменения">
+                </div>
+            </form>
+        </div>
 {% endblock %}

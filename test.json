@@ -1,0 +1,47 @@
+[
+{
+  "model": "items.items",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "slug": "televizor-ue65tu8500-samsung",
+    "title": "Телевизор UE65TU8500 Samsung",
+    "image": "items/2021/05/16/ы.png",
+    "category": 5,
+    "cost": 123.0,
+    "text": "123",
+    "date": "2021-05-16T08:00:55.253Z",
+    "period": "3 дня"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "slug": "televizor-ue65tu8500-samsung",
+    "title": "Телевизор UE65TU8500 Samsung",
+    "image": "items/2021/05/16/ы_B5S6fxH.png",
+    "category": null,
+    "cost": 125.0,
+    "text": "",
+    "date": "2021-05-16T08:45:35.904Z",
+    "period": "3 дня"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "slug": "televizor-ue65tu8500-samsung",
+    "title": "Телевизор UE65TU8500 Samsung",
+    "image": "items/2021/05/16/ы_zXCxVSJ.png",
+    "category": 1,
+    "cost": 123.0,
+    "text": "",
+    "date": "2021-05-16T10:13:23.616Z",
+    "period": "3 дня"
+  }
+}
+]

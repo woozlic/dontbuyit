@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .forms import LoginForm, UserForm, ProfileForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import LoginForm, UserForm, ProfileForm, DashboardForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -7,8 +7,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Profile
 from .forms import UserRegistrationForm
-
-# Create your views here.
+from django.contrib import messages
+import os
 
 
 def auth_register(request):
@@ -51,10 +51,28 @@ def edit_profile(request):
 
     return render(request, 'account/edit_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
+
 @login_required
 def dashboard(request):
-    context = {'section': 'dashboard'}
+    if request.method == 'POST':
+        form = DashboardForm(request.POST, request.FILES)
+        if form.is_valid():
+            print('form is valid')
+            user_profile = Profile.objects.get(pk=request.user.profile.pk)
+            old_image_path = user_profile.image.path
+            if os.path.exists(old_image_path):
+                os.remove(old_image_path)
+
+            new_image = request.FILES['image']
+            user_profile.image = new_image
+            user_profile.save()
+            messages.success(request, 'Вы успешно обновили фотографию в профиле')
+            return redirect('account:dashboard')
+    else:
+        form = DashboardForm
+    context = {'section': 'dashboard', 'form': form}
     return render(request, 'account/dashboard.html', context=context)
+
 
 def auth_login(request):
     if request.method == "POST":
@@ -75,3 +93,8 @@ def auth_login(request):
         form = LoginForm()
         context = {'form': form}
     return render(request, template_name='account/login.html', context=context)
+
+@login_required
+def user_detail(request, nickname):
+    user = get_object_or_404(User, username=nickname)
+    return render(request, 'account/user_detail.html', {'user': user})

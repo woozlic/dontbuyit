@@ -1,19 +1,41 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+
+{% block styles %}
+    <link href="{% static 'account/css/dashboard.css' %}" rel="stylesheet" type="text/css" />
+
+{% endblock %}
 
 {% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-    <div class="col-lg-9">
-        <p class="my-4">Ваш личный кабинет</p>
-        <ul class = "list-group">
-            <li class="list-group-item">Логин: {{ request.user.username }}</li>
-            <li class="list-group-item">Электронная почта: {{ request.user.email }}</li>
-            <li class="list-group-item">Имя: {{ request.user.first_name }}</li>
-            <li class="list-group-item">Пол: {{ request.user.profile.gender }}</li>
-        </ul>
+    <div class="col-lg-12">
+        <div class="profile">
+            <div class="col-lg-3 avatar list-group-item">
+                <img src="{{request.user.profile.image.url }}" class="avatar-img" />
+                <div class="content">
+                    <form method="post" enctype="multipart/form-data" id="form">
+                        {% csrf_token %}
+                        <label class="btn btn-dark">
+                            Загрузить новое фото
+                            {{ form.image }}
+                        </label>
+                    </form>
+                </div>
+            </div>
+            <div class="data col-lg-9">
+                <ul class = "list-group">
+                    <li class="list-group-item">Логин: {{ request.user.username }}</li>
+                    <li class="list-group-item">Электронная почта: {{ request.user.email }}</li>
+                    <li class="list-group-item">Имя: {{ request.user.first_name }}</li>
+                    <li class="list-group-item">Пол: {{ request.user.profile.gender }}</li>
+                </ul>
+            </div>
+        </div>
         <br>
         <a href = "{% url 'account:password_change' %}">Изменить пароль</a><br>
         <a href = "{% url 'account:edit_profile' %}">Изменить данные профиля</a><br>
         <a href = "{% url 'account:logout' %}">Выйти из аккаунта</a><br>
     </div>
+    <script src="{% static 'account/js/jq.js' %}"></script>
 {% endblock %}

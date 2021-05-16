@@ -1,0 +1,24 @@
+.profile {
+    display: flex;
+}
+
+.avatar-img {
+    vertical-align: middle;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.avatar {
+    display: flex;
+    flex-flow: column;
+}
+
+.list-group {
+    width: 100%;
+}
+
+#first-button {
+    margin-top: 10px;
+}
