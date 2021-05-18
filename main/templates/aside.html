@@ -1,3 +1,4 @@
+{% load russian_slugify %}
 <div class="col-lg-3">
     <h1 class="my-4"><a href ="{% url 'main:catalog' %}">Категории</a></h1>
     <div class="list-group">
@@ -7,13 +8,12 @@
             Электронные устройства
         </a>
         <div class="dropdown-shift" id="dropdown-electronic">
-            <a class="list-group-item" href="#"><strong>Вся электроника</strong></a>
-            <a class="list-group-item" href="#"><strong>Аудио, видео</strong></a>
-            <a class="list-group-item" href="#"><strong>Игры, приставки, программы</strong></a>
-            <a class="list-group-item" href="#"><strong>Кухонная техника</strong></a>
-            <a class="list-group-item" href="#"><strong>Компьютерная техника</strong></a>
-            <a class="list-group-item" href="#"><strong>Другая электроника</strong></a>
-            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+            <a class="list-group-item" href="{% url 'items:category' 'elektronika' %}"><strong>Вся электроника</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'audio-video-tehnika' %}"><strong>Аудио, видео</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'igryi-pristavki-programmyi' %}"><strong>Игры, приставки, программы</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'kuhonnaya-tehnika' %}"><strong>Кухонная техника</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'kompyuternaya-tehnika' %}"><strong>Компьютерная техника</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'drugaya-elektronika'%}"><strong>Другая электроника</strong></a>
         </div>
 
          <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-house')">

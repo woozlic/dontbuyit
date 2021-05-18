@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Items, Categories, SubCategories
-from .forms import SubCategoryChoiceField
+from .forms import SubCategoryChoiceField, PeriodChoiceField
 
 
 class SubCategoriesInline(admin.TabularInline):
@@ -10,9 +10,11 @@ class SubCategoriesInline(admin.TabularInline):
 @admin.register(Items)
 class ItemsAdmin(admin.ModelAdmin):
 
-    fields = ('user', 'title', 'text', 'image', 'subcategory', 'cost', 'period')
+    fields = ('user', 'title', 'text', 'image_1', 'image_2', 'image_3', 'subcategory', 'deposit', 'full_price',
+              'cost', 'period', 'category_slug', 'subcategory_slug')
 
-    list_display = ['user', 'slug', 'title', 'image', 'category', 'get_subcategory', 'cost', 'period', 'date']
+    list_display = ['user', 'slug', 'title', 'image_1', 'image_2', 'image_3', 'deposit', 'full_price', 'category',
+                    'get_subcategory', 'cost', 'period', 'date']
     list_filter = ['date']
 
     def get_subcategory(self, obj):
@@ -23,6 +25,11 @@ class ItemsAdmin(admin.ModelAdmin):
         if db_field.name == 'subcategory':
             return SubCategoryChoiceField(queryset=SubCategories.objects.all())
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    # def formfield_for_dbfield(self, db_field, request, **kwargs):
+    #     if db_field.name == 'period':
+    #         return PeriodChoiceField(queryset=)
+    #     return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     get_subcategory.short_description = 'Подкатегория'
     get_subcategory.admin_order_field = 'category__subcategory'

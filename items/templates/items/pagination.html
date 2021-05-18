@@ -1,35 +1,81 @@
 <ul class = "pagination">
-    <li class = "page-item">
-        {% if page.has_previous %}
-            {% if category == None %}
-                <a href = "{% url 'items:all_page' page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>
+{#    <li class = "page-item">#}
+{#        {% if page.has_previous %}#}
+{#            {% if category_slug == None %}#}
+{#                <a href = "{% url 'items:all_page' page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>#}
+{#            {% else %}#}
+{#                {% if subcategory_slug %}#}
+{#                    <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>#}
+{#                {% else %}#}
+{#                    <a href = "{% url 'items:category_page' category_slug page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#         {% endif %}#}
+{#    </li>#}
+{#    <li class = "page-item active">#}
+{#        {% if category_slug == None %}#}
+{#            <a href = "{% url 'items:all_page' page.number %}" class="page-link">{{ page.number }}</a>#}
+{#        {% else %}#}
+{#            {% if subcategory_slug %}#}
+{#                <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.number %}" class="page-link">{{ page.number }}</a>#}
+{#            {% else %}#}
+{#                <a href = "{% url 'items:category_page' category_slug page.number %}" class="page-link">{{ page.number }}</a>#}
+{#            {% endif %}#}
+{#        {% endif %}#}
+{#    </li>#}
+{#    <li class = "page-item">#}
+{#        {% if page.has_next %}#}
+{#            {% if category_slug == None %}#}
+{#                <a href = "{% url 'items:all_page' page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>#}
+{#            {% else %}#}
+{#                {% if subcategory_slug %}#}
+{#                    <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>#}
+{#                {% else %}#}
+{#                    <a href = "{% url 'items:category_page' category_slug page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>#}
+{#                {% endif %}#}
+{#            {% endif %}#}
+{#        {% endif %}#}
+{#    </li>#}
+    {% if page.number > 4 %}
+        <li class="page-item">
+            {% if category_slug == None %}
+                <a href = "{% url 'items:all_page' 1 %}" class="page-link"><<</a>
             {% else %}
-                <a href = "{% url 'items:category_page' category page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>
+                {% if subcategory_slug %}
+                    <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug 1 %}" class="page-link"><<</a>
+                {% else %}
+                    <a href = "{% url 'items:category_page' category_slug 1 %}" class="page-link"><<</a>
+                {% endif %}
             {% endif %}
-         {% endif %}
-    </li>
-    <li class = "page-item active">
-        {% if category == None %}
-            <a href = "{% url 'items:all_page' page.number %}" class="page-link">{{ page.number }}</a>
-        {% else %}
-            <a href = "{% url 'items:category_page' category page.number %}" class="page-link">{{ page.number }}</a>
+        </li>
+    {% endif %}
+
+    {% for n in page.paginator.page_range %}
+        {% if n > page.number|add:-4 and n < page.number|add:4 %}
+            <li class = "page-item {% if n == page.number %}active{% endif %}">
+                {% if category_slug == None %}
+                    <a href = "{% url 'items:all_page' n %}" class="page-link">{{ n }}</a>
+                {% else %}
+                    {% if subcategory_slug %}
+                        <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug n %}" class="page-link">{{ n }}</a>
+                    {% else %}
+                        <a href = "{% url 'items:category_page' category_slug n %}" class="page-link">{{ n }}</a>
+                    {% endif %}
+                {% endif %}
+            </li>
         {% endif %}
-    </li>
-    <li class = "page-item">
-        {% if page.has_next %}
-            {% if category == None %}
-                <a href = "{% url 'items:all_page' page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>
-            {% else %}
-                <a href = "{% url 'items:category_page' category page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>
-            {% endif %}
-        {% endif %}
-    </li>
+    {% endfor %}
+
     <li class = "page-item">
         {% if page.number != page.paginator.num_pages %}
-            {% if category == None %}
+            {% if category_slug == None %}
                 <a href = "{% url 'items:all_page' page.paginator.num_pages %}" class="page-link">>></a>
             {% else %}
-                <a href = "{% url 'items:category_page' category page.paginator.num_pages %}" class="page-link">>></a>
+                {% if subcategory_slug %}
+                    <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.paginator.num_pages %}" class="page-link">>></a>
+                {% else %}
+                    <a href = "{% url 'items:category_page' category_slug page.paginator.num_pages %}" class="page-link">>></a>
+                {% endif %}
             {% endif %}
         {% endif %}
     </li>

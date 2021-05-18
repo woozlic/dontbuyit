@@ -3,6 +3,7 @@
 
 {% block title %}{{ title }}{% endblock %}
 
+{% load russian_slugify %}
 
 {% block content %}
 <div class="col-lg-9">
@@ -39,10 +40,10 @@
               {% for item in items %}
               <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                  <a href="{% url 'items:item_detail' item.category item.slug item.id %}"><img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image.url }}" alt=""></a> <!-- 700x400 -->
+                  <a href="{% url 'items:show_item' item.category.category_slug item.subcategory.subcategory_slug item.slug item.id %}"><img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt=""></a> <!-- 700x400 -->
                   <div class="card-body">
                     <h4 class="card-title">
-                      <a href="{% url 'items:item_detail' item.category item.slug item.id %}">{{ item.title }}</a>
+                      <a href="{% url 'items:show_item' item.category.category_slug item.subcategory.subcategory_slug item.slug item.id %}">{{ item.title }}</a>
                     </h4>
                     <h5>{{ item.cost }} р.</h5>
                     <p class="card-text">{{ item.intro }}</p>

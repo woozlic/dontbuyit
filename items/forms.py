@@ -10,6 +10,11 @@ class SubCategoryChoiceField(ModelChoiceField):
         return f"{obj.category.category_name}: {obj.subcategory_name}"
 
 
+class PeriodChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f""
+
+
 class ItemsForm(ModelForm):
 
     class Meta:
@@ -17,11 +22,11 @@ class ItemsForm(ModelForm):
                       ('transport', 'Средства передвижения'), ('wear', 'Одежда, обувь'),
                       ('furniture', 'Мебель'), ('kids', 'Детские товары'), ('other', 'Прочее')]
 
-        periods = [('1 час', '1 час'), ('3 часа', '3 часа'), ('8 часов', '8 часов'), ('1 сутки', '1 сутки'),
-                   ('3 суток', '3 суток'), ('7 суток', '7 суток'), ('1 месяц', '1 месяц')]
+        periods = [('1 час', '1 час'), ('1 сутки', '1 сутки'), ('3 суток', '3 суток'), ('7 суток', '7 суток'),
+                   ('1 месяц', '1 месяц')]
 
         model = Items
-        fields = ['title', 'cost', 'category', 'text', 'image', 'period']
+        fields = ['title', 'cost', 'category', 'text', 'image_1', 'image_2', 'image_3', 'deposit', 'full_price', 'period']
 
         widgets = {
             'title': TextInput(attrs={

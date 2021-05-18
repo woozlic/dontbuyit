@@ -1,13 +1,15 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
+{% load russian_slugify %}
+
 {% block title %}{{ item.title }}{% endblock %}
 
 {% block content %}
     <div class="col-lg-9">
         <div class = "container">
             <div class = 'item-title'>
-                <a href="{% url 'items:item_detail' item.category item.slug item.id %}">
+                <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
                     <h3 class = "my-4">{{ item.title }}</h3>
                 </a>
                 <h3 class = "my-4">{{ item.cost }} р. / {{ item.period }}</h3>
@@ -22,8 +24,8 @@
                 </div>
             </div>
 
-            {% if item.image %}
-                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-fluid">
+            {% if item.image_1 %}
+                <img src="{{ item.image_1.url }}" alt="{{ item.title }}" class="img-fluid">
             {% endif %}
             <p class = "shadow-lg p-3 text-dark">{{ item.text }}</p><br>
             <button type="button" class="btn btn-primary btn-lg btn-block">Написать сообщение</button>

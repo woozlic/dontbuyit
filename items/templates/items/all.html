@@ -3,28 +3,19 @@
 
 {% block title %}Все товары{% endblock %}
 
+{% load russian_slugify %}
 
 {% block content %}
 <div class="col-lg-9">
         <h1 class="my-4">
-            {% if category == 'electronic' %}
-                 Электроника
-            {% elif category == 'instruments' %}
-                Инструменты
-            {% elif category == 'house' %}
-                Для дома
-            {% elif category == 'transport' %}
-                Средства передвижения
-            {% elif category == 'wear' %}
-                Одежда, обувь
-            {% elif category == 'furniture' %}
-                Мебель
-            {% elif category == 'kids' %}
-                Детские товары
-            {% elif category == 'other' %}
-                Прочее
+            {% if category_slug %}
+                <a href="{% url 'items:category' category_slug %}">{{ category_rus }}</a>
             {% else %}
-                Все товары
+                <a href="{% url 'items:all' %}">Все товары</a>
+            {% endif %}
+            {% if subcategory_slug %}
+                >
+                <a href="{% url 'items:subcategory' category_slug subcategory_slug %}">{{ subcategory_rus }}</a>
             {% endif %}
         </h1>
 
@@ -33,12 +24,12 @@
               {% for item in items %}
               <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                  {% if item.image %}
-                    <a href="{% url 'items:item_detail' item.category item.slug item.id %}"><img class="card-img-top" src="{{ item.image.url }}" alt=""></a> <!-- 700x400 -->
+                  {% if item.image_1 %}
+                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}"><img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt=""></a> <!-- 700x400 -->
                   {% endif %}
                   <div class="card-body">
                     <h4 class="card-title">
-                      <a href="{% url 'items:item_detail' item.category item.slug item.id %}">{{ item.title }}</a>
+                      <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
                     </h4>
                     <h5>{{ item.cost }} р. / {{ item.period }}</h5>
                   </div>

@@ -4,14 +4,19 @@
   "pk": 1,
   "fields": {
     "user": 1,
-    "slug": "televizor-ue65tu8500-samsung",
-    "title": "Телевизор UE65TU8500 Samsung",
-    "image": "items/2021/05/16/ы.png",
-    "category": 5,
-    "cost": 123.0,
-    "text": "123",
-    "date": "2021-05-16T08:00:55.253Z",
-    "period": "3 дня"
+    "slug": "kolonka-jbl-flip-4",
+    "title": "Колонка JBL Flip 4",
+    "image_1": "items/2021/05/17/jbl_flip_4.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 1000.0,
+    "full_price": 1500.0,
+    "category": 1,
+    "subcategory": 1,
+    "cost": 250.0,
+    "text": "Сдам от трех дней. Хорошая колонка",
+    "date": "2021-05-17T10:13:21.564Z",
+    "period": "1 сутки"
   }
 },
 {
@@ -19,14 +24,19 @@
   "pk": 2,
   "fields": {
     "user": 1,
-    "slug": "televizor-ue65tu8500-samsung",
-    "title": "Телевизор UE65TU8500 Samsung",
-    "image": "items/2021/05/16/ы_B5S6fxH.png",
-    "category": null,
-    "cost": 125.0,
-    "text": "",
-    "date": "2021-05-16T08:45:35.904Z",
-    "period": "3 дня"
+    "slug": "naushniki-jbl-t450bt",
+    "title": "Наушники JBL t450bt",
+    "image_1": "items/2021/05/17/naushniki_jbl_t450bt.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 1000.0,
+    "full_price": 1300.0,
+    "category": 1,
+    "subcategory": 1,
+    "cost": 300.0,
+    "text": "Качественные, пишите или звоните по телефону.",
+    "date": "2021-05-17T10:41:19.501Z",
+    "period": "1 сутки"
   }
 },
 {
@@ -34,14 +44,619 @@
   "pk": 3,
   "fields": {
     "user": 1,
-    "slug": "televizor-ue65tu8500-samsung",
-    "title": "Телевизор UE65TU8500 Samsung",
-    "image": "items/2021/05/16/ы_zXCxVSJ.png",
+    "slug": "ratsiya-motorolla",
+    "title": "Рация моторолла",
+    "image_1": "items/2021/05/17/рация_моторола.jpeg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 1000.0,
+    "full_price": 1250.0,
     "category": 1,
-    "cost": 123.0,
-    "text": "",
-    "date": "2021-05-16T10:13:23.616Z",
-    "period": "3 дня"
+    "subcategory": 1,
+    "cost": 270.0,
+    "text": "В комплекте 2 штуки",
+    "date": "2021-05-17T10:43:06.124Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "slug": "igra-assasins-creed-na-ps4",
+    "title": "Игра Assasin's Creed на PS4",
+    "image_1": "items/2021/05/17/assasins_creed_ps4.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 1500.0,
+    "full_price": 2000.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 600.0,
+    "text": "Сдам игру Assasin's Creed на PS4, минимум на неделю!",
+    "date": "2021-05-17T10:45:13.738Z",
+    "period": "7 суток"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "slug": "battlefield-4-xbox",
+    "title": "Battlefield 4 XBOX",
+    "image_1": "items/2021/05/17/battlefield.png",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 500.0,
+    "full_price": 1980.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 350.0,
+    "text": "Игра батлфилд на иксбокс, на любой срок.",
+    "date": "2021-05-17T10:46:21.562Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "slug": "igra-gta-5-na-xbox",
+    "title": "Игра гта 5 на XBOX",
+    "image_1": "items/2021/05/17/gta_xbox.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 450.0,
+    "full_price": 1600.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 200.0,
+    "text": "Сдам игру на xbox, очень интересная!",
+    "date": "2021-05-17T10:47:12.412Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "slug": "nintendo-switch",
+    "title": "Nintendo switch",
+    "image_1": "items/2021/05/17/nintendo-switch-32gb-neon-red.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 2000.0,
+    "full_price": 5000.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 400.0,
+    "text": "Нинтендо с играми:\r\n- GTA 4\r\n- Max Payne\r\n- Minecraft",
+    "date": "2021-05-17T10:50:44.520Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "slug": "playstation-vr",
+    "title": "Playstation VR",
+    "image_1": "items/2021/05/17/playstation_vr.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 10000.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 500.0,
+    "text": "VR без игр",
+    "date": "2021-05-17T10:52:10.578Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 9,
+  "fields": {
+    "user": 1,
+    "slug": "sdam-ps4",
+    "title": "Сдам PS4",
+    "image_1": "items/2021/05/17/ps4.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 17000.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 3000.0,
+    "text": "Сдам PS4 с несколькими играми, от трех суток",
+    "date": "2021-05-17T10:53:01.278Z",
+    "period": "3 суток"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 10,
+  "fields": {
+    "user": 1,
+    "slug": "xbox-one-x",
+    "title": "Xbox one x",
+    "image_1": "items/2021/05/17/xbox_one_x.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 2000.0,
+    "full_price": 20000.0,
+    "category": 1,
+    "subcategory": 2,
+    "cost": 1000.0,
+    "text": "Иксбокс и пару игр к нему, кому интересно, пишите",
+    "date": "2021-05-17T10:53:49.838Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 11,
+  "fields": {
+    "user": 1,
+    "slug": "blender-filips",
+    "title": "Блендер Филипс",
+    "image_1": "items/2021/05/17/blender_philips.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 1000.0,
+    "full_price": 2500.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 300.0,
+    "text": "Хороший блендер, перед тем как сдать обратно нужно будет вымыть!",
+    "date": "2021-05-17T10:54:54.861Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 12,
+  "fields": {
+    "user": 1,
+    "slug": "blender-mulineks",
+    "title": "Блендер Мулинекс",
+    "image_1": "items/2021/05/17/Блендер_погружной_MOULINEX_DD64K832_черный.jpeg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 300.0,
+    "full_price": 1500.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 300.0,
+    "text": "В наличии только 1. торопитесь",
+    "date": "2021-05-17T10:55:59.791Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 13,
+  "fields": {
+    "user": 1,
+    "slug": "blender",
+    "title": "Блендер",
+    "image_1": "items/2021/05/17/Весы_кухонные_HOMESTAR_HS3008.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 500.0,
+    "full_price": 1580.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 300.0,
+    "text": "Весы кухонные HOMESTAR HS3008",
+    "date": "2021-05-17T10:57:15.772Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 14,
+  "fields": {
+    "user": 1,
+    "slug": "kofemashina-krups-ea-810770",
+    "title": "Кофемашина KRUPS EA 810770",
+    "image_1": "items/2021/05/17/Кофемашина_KRUPS_EA_810770.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 500.0,
+    "full_price": 5000.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 500.0,
+    "text": "Кофемашина KRUPS EA 810770",
+    "date": "2021-05-17T10:57:42.789Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 15,
+  "fields": {
+    "user": 1,
+    "slug": "kuhonnyie-elektronnyie-vesyi-sf-400",
+    "title": "Кухонные электронные весы SF-400",
+    "image_1": "items/2021/05/17/Кухонные_электронные_весы_SF-400.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 2000.0,
+    "full_price": 5000.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 100.0,
+    "text": "Кухонные электронные весы SF-400",
+    "date": "2021-05-17T10:58:09.573Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 16,
+  "fields": {
+    "user": 1,
+    "slug": "myasorubka-gefu",
+    "title": "Мясорубка GEFU",
+    "image_1": "items/2021/05/17/Мясорубка_GEFU_Трансформа.jpeg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 500.0,
+    "full_price": 1000.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 200.0,
+    "text": "Мясорубка GEFU",
+    "date": "2021-05-17T10:58:43.827Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 17,
+  "fields": {
+    "user": 1,
+    "slug": "myasorubka-polaris-pmg-2033al-2000vt-chernyij",
+    "title": "Мясорубка Polaris PMG 2033AL 2000Вт черный",
+    "image_1": "items/2021/05/17/Мясорубка_Polaris_PMG_2033AL_2000Вт_черный.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 1200.0,
+    "full_price": 2500.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 500.0,
+    "text": "Мясорубка Polaris PMG 2033AL 2000Вт черный",
+    "date": "2021-05-17T10:59:09.939Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 18,
+  "fields": {
+    "user": 1,
+    "slug": "statsionarnyij-blender-kitfort-kt-1356-3-belyij",
+    "title": "Стационарный блендер Kitfort KT-1356-3, белый",
+    "image_1": "items/2021/05/17/Стационарный_блендер_Kitfort_KT-1356-3_белый.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 2000.0,
+    "full_price": 5000.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 300.0,
+    "text": "Стационарный блендер Kitfort KT-1356-3, белый",
+    "date": "2021-05-17T10:59:40.708Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 19,
+  "fields": {
+    "user": 1,
+    "slug": "hlebopechka-centek-ct-1415-white",
+    "title": "Хлебопечка CENTEK CT-1415 white",
+    "image_1": "items/2021/05/17/Хлебопечка_CENTEK_CT-1415_white.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 700.0,
+    "full_price": 6500.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 600.0,
+    "text": "Хлебопечка CENTEK CT-1415 white",
+    "date": "2021-05-17T11:00:08.672Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 20,
+  "fields": {
+    "user": 1,
+    "slug": "hlebopechka-midea-bm220q3ss",
+    "title": "Хлебопечка Midea BM220Q3SS",
+    "image_1": "items/2021/05/17/Хлебопечка_Midea_BM220Q3SS.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 10000.0,
+    "category": 1,
+    "subcategory": 3,
+    "cost": 900.0,
+    "text": "Хлебопечка Midea BM220Q3SS",
+    "date": "2021-05-17T11:00:35.298Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 21,
+  "fields": {
+    "user": 1,
+    "slug": "netbuk-asus-eee-pc-1015b-chernyij",
+    "title": "Нетбук ASUS Eee PC 1015B (черный)",
+    "image_1": "items/2021/05/17/Нетбук_ASUS_Eee_PC_1015B_черный.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 20000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 1000.0,
+    "text": "Нетбук ASUS Eee PC 1015B (черный)",
+    "date": "2021-05-17T11:01:18.399Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 22,
+  "fields": {
+    "user": 1,
+    "slug": "noutbuk",
+    "title": "Ноутбук",
+    "image_1": "items/2021/05/17/Ноутбук_Acer_Aspire_5_A514-52-57M8_NX.HLZER.003_Intel_Core.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 30000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 3000.0,
+    "text": "Ноутбук Acer Aspire 5 A514-52-57M8 NX.HLZER.003 (Intel Core",
+    "date": "2021-05-17T11:01:56.013Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 23,
+  "fields": {
+    "user": 1,
+    "slug": "noutbuk-aser",
+    "title": "Ноутбук Асер",
+    "image_1": "items/2021/05/17/Ноутбук_ACER_Swift_5_SF514-54T-72ML_NX.HHYER.005.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 6000.0,
+    "full_price": 30000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 800.0,
+    "text": "Ноутбук ACER Swift 5 SF514-54T-72ML (NX.HHYER.005)",
+    "date": "2021-05-17T11:02:28.896Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 24,
+  "fields": {
+    "user": 1,
+    "slug": "proektor-xiaomi-xgimi-g2-global",
+    "title": "Проектор xiaomi xgimi g2 global",
+    "image_1": "items/2021/05/17/proektor_xiaomi_xgimi_g2_global.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 3000.0,
+    "full_price": 4000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 300.0,
+    "text": "Проектор xiaomi xgimi g2 global",
+    "date": "2021-05-17T11:03:07.373Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 25,
+  "fields": {
+    "user": 1,
+    "slug": "smart-proektor-cinemood",
+    "title": "Smart Проектор cinemood",
+    "image_1": "items/2021/05/17/smart_proektor_cinemood.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 3000.0,
+    "full_price": 15000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 2000.0,
+    "text": "Smart Проектор cinemood",
+    "date": "2021-05-17T11:03:59.124Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 26,
+  "fields": {
+    "user": 1,
+    "slug": "vesy-kenwood-owds",
+    "title": "Vesy kenwood owds",
+    "image_1": "items/2021/05/17/vesy_kenwood_owds.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 200.0,
+    "full_price": 1000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 100.0,
+    "text": "Vesy kenwood owds",
+    "date": "2021-05-17T11:04:31.373Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 27,
+  "fields": {
+    "user": 1,
+    "slug": "printer-epson-l132-s-originalnoj-snpch-i-chernilami",
+    "title": "Принтер Epson L132 с оригинальной СНПЧ и чернилами",
+    "image_1": "items/2021/05/17/Принтер_Epson_L132_с_оригинальной_СНПЧ_и_чернилами.png",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 3000.0,
+    "full_price": 5000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 500.0,
+    "text": "Принтер Epson L132 с оригинальной СНПЧ и чернилами",
+    "date": "2021-05-17T11:05:01.855Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 28,
+  "fields": {
+    "user": 1,
+    "slug": "mfu-epson",
+    "title": "МФУ Epson",
+    "image_1": "items/2021/05/17/МФУ_Epson_L3150_цветной_принтер.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 500.0,
+    "full_price": 5000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 300.0,
+    "text": "МФУ Epson",
+    "date": "2021-05-17T11:05:40.201Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 29,
+  "fields": {
+    "user": 1,
+    "slug": "strujnoe-mfu-canon-pixma-mg3640s-white",
+    "title": "Струйное МФУ Canon PIXMA MG3640S White",
+    "image_1": "items/2021/05/17/Струйное_МФУ_Canon_PIXMA_MG3640S_White.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 4000.0,
+    "full_price": 6000.0,
+    "category": 1,
+    "subcategory": 4,
+    "cost": 1200.0,
+    "text": "Струйное МФУ Canon PIXMA MG3640S White",
+    "date": "2021-05-17T11:06:05.233Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 30,
+  "fields": {
+    "user": 1,
+    "slug": "nikon",
+    "title": "Nikon",
+    "image_1": "items/2021/05/17/Nikon_D5600_Kit_18-105mm_f3.5-5.6G_ED_VR.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 15000.0,
+    "category": 1,
+    "subcategory": 5,
+    "cost": 500.0,
+    "text": "Фотоаппарат",
+    "date": "2021-05-17T11:06:39.523Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 31,
+  "fields": {
+    "user": 1,
+    "slug": "tsifrovoj-fotoapparat-canon-powershot-sx540",
+    "title": "Цифровой фотоаппарат Canon PowerShot SX540",
+    "image_1": "items/2021/05/17/Цифровой_фотоаппарат_Canon_PowerShot_SX540.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 10000.0,
+    "category": 1,
+    "subcategory": 5,
+    "cost": 300.0,
+    "text": "Цифровой фотоаппарат Canon PowerShot SX540",
+    "date": "2021-05-17T11:07:12.002Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 32,
+  "fields": {
+    "user": 1,
+    "slug": "tsifrovoj-fotoapparat-canon-powershot-sx620-hs-krasnyij",
+    "title": "Цифровой фотоаппарат Canon PowerShot SX620 HS (красный)",
+    "image_1": "items/2021/05/17/Цифровой_фотоаппарат_Canon_PowerShot_SX620_HS_красный.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 7000.0,
+    "category": 1,
+    "subcategory": 5,
+    "cost": 1000.0,
+    "text": "Цифровой фотоаппарат Canon PowerShot SX620 HS (красный)",
+    "date": "2021-05-17T11:07:35.919Z",
+    "period": "1 сутки"
+  }
+},
+{
+  "model": "items.items",
+  "pk": 33,
+  "fields": {
+    "user": 1,
+    "slug": "panasonic",
+    "title": "Panasonic",
+    "image_1": "items/2021/05/17/Цифровой_фотоаппарат_PANASONIC.jpg",
+    "image_2": "",
+    "image_3": "",
+    "deposit": 5000.0,
+    "full_price": 10000.0,
+    "category": 1,
+    "subcategory": 5,
+    "cost": 1000.0,
+    "text": "Фотоаппарат",
+    "date": "2021-05-17T11:08:06.981Z",
+    "period": "1 сутки"
   }
 }
 ]
