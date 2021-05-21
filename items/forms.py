@@ -1,4 +1,4 @@
-from .models import Items
+from .models import Items, SubCategories
 from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form, Select, \
     ValidationError, ModelChoiceField
 
@@ -26,7 +26,7 @@ class ItemsForm(ModelForm):
                    ('1 месяц', '1 месяц')]
 
         model = Items
-        fields = ['title', 'cost', 'category', 'text', 'image_1', 'image_2', 'image_3', 'deposit', 'full_price', 'period']
+        fields = ['title', 'cost', 'category', 'subcategory', 'text', 'image_1', 'image_2', 'image_3', 'deposit', 'full_price', 'period']
 
         widgets = {
             'title': TextInput(attrs={
@@ -38,13 +38,29 @@ class ItemsForm(ModelForm):
                 'class': 'form-control',
                 'id': 'category',
             }),
+            'subcategory': Select(attrs={
+                'class': 'form-control',
+                'id': 'subcategory',
+            }),
             'period': Select(choices=periods, attrs={
                 'class': 'form-control',
                 'id': 'period',
             }),
-            'image': FileInput(attrs={
-                'style': 'display: none;',
-                'id': 'image',
+            'image_1': FileInput(attrs={
+                # 'style': 'display: none;',
+                'class': 'image-upload',
+                'id': 'image-1',
+                'onchange': 'changeImage(event, "img1")'
+            }),
+            'image_2': FileInput(attrs={
+                'class': 'image-upload',
+                'id': 'image-2',
+                'onchange': 'changeImage(event, "img2")',
+            }),
+            'image_3': FileInput(attrs={
+                'class': 'image-upload',
+                'id': 'image-3',
+                'onchange': 'changeImage(event, "img3")',
             }),
             'text': Textarea(attrs={
                 'class': 'form-control',
@@ -55,8 +71,38 @@ class ItemsForm(ModelForm):
                 'class': 'form-control',
                 'id': 'cost',
                 'placeholder': 'Стоимость в рублях'
-            })
+            }),
+            'deposit': NumberInput(attrs={
+                'class': 'form-control',
+                'id': 'deposit',
+                'placeholder': 'Залог в рублях'
+            }),
+            'full_price': NumberInput(attrs={
+                'class': 'form-control',
+                'id': 'full_price',
+                'placeholder': 'Цена новой вещи в рублях'
+            }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subcategory'].queryset = SubCategories.objects.none()
+        self.fields['category'].required = True
+        if 'category' in self.data:
+            try:
+                category = int(self.data.get('category'))
+                self.fields['subcategory'].queryset = SubCategories.objects.filter(category__id=category).order_by('subcategory_name')
+            except(ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('subcategory_name')
+
+    def clean_subcategory(self):
+        cd = self.cleaned_data
+        if cd['subcategory'] is None and cd['category'].category_name != 'Разное':
+            raise ValidationError('Пожалуйста, выберите Подкатегорию из списка')
+
+        return cd['subcategory']
 
     def clean_image(self):
         img_extensions = ('.jpg', '.jpeg', '.png')

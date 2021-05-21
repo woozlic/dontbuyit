@@ -25,11 +25,19 @@
               <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
                   {% if item.image_1 %}
-                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}"><img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt=""></a> <!-- 700x400 -->
+                      {% if item.subcategory %}
+                        <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}"><img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt=""></a> <!-- 700x400 -->
+                      {% else %}
+                        <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}"><img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt=""></a> <
+                      {% endif %}
                   {% endif %}
                   <div class="card-body">
                     <h4 class="card-title">
-                      <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                        {% if item.subcategory %}
+                            <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                        {% else %}
+                            <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                        {% endif %}
                     </h4>
                     <h5>{{ item.cost }} р. / {{ item.period }}</h5>
                   </div>

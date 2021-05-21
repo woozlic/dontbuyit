@@ -9,8 +9,12 @@
     <div class="col-lg-9">
         <div class = "container">
             <div class = 'item-title'>
-                <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
-                    <h3 class = "my-4">{{ item.title }}</h3>
+                {% if item.subcategory %}
+                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
+                {% else %}
+                     <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
+                {% endif %}
+                <h3 class = "my-4">{{ item.title }}</h3>
                 </a>
                 <h3 class = "my-4">{{ item.cost }} р. / {{ item.period }}</h3>
             </div>

@@ -20,6 +20,18 @@ def show_item(request, category, subcategory, slug, pk):
     return render(request, 'items/item_detail.html', context)
 
 
+def show_item_other(request, category, slug, pk):
+    item = get_object_or_404(Items, pk=pk)
+    context = {'item': item, 'aside': True}
+    return render(request, 'items/item_detail.html', context)
+
+
+def load_subcategories(request):
+    category = request.GET.get('category')
+    subcategories = SubCategories.objects.filter(category__id=category).order_by('subcategory_name')
+    return render(request, 'items/subcategories_drop_down.html', {'subcategories': subcategories})
+
+
 def show_page(request, category=None, subcategory=None, page_num=1):
     # print(category, page_num)
     items = Items.objects.all().order_by('-date')

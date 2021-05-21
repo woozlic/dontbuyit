@@ -13,7 +13,7 @@ class CategoriesManager(models.Manager):
 
 
 class Categories(models.Model):
-    category_name = models.CharField('Категория', max_length=80, unique=True)
+    category_name = models.CharField('Категория', max_length=80, unique=True, blank=False)
     category_slug = models.SlugField('Slug', blank=True)
 
     objects = CategoriesManager()
@@ -33,7 +33,7 @@ class Categories(models.Model):
 
 
 class SubCategories(models.Model):
-    subcategory_name = models.CharField('Подкатегория', max_length=80)
+    subcategory_name = models.CharField('Подкатегория', max_length=80, blank=False)
     subcategory_slug = models.SlugField('Slug', blank=True)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True, related_name='subcategory')
 
@@ -62,9 +62,9 @@ class Items(models.Model):
     full_price = models.FloatField("Полная цена вещи")
     # category = models.CharField("Категория", max_length=80, default="Прочее")
     # sub_category = models.CharField("Подкатегория", max_length=80, default="Другое")
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, blank=True, null=True)
     category_slug = models.SlugField(max_length=200, blank=True)
-    subcategory = models.ForeignKey(SubCategories, on_delete=models.CASCADE, null=True, blank=True,
+    subcategory = models.ForeignKey(SubCategories, on_delete=models.CASCADE, blank=True, null=True,
                                     verbose_name='Подкатегория')
     subcategory_slug = models.SlugField(max_length=200, blank=True)
     cost = models.FloatField("Цена")
@@ -82,9 +82,9 @@ class Items(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        elif not self.category_slug:
+        if not self.category_slug:
             self.category_slug = slugify(self.category.category_name)
-        elif not self.subcategory_slug:
+        if self.subcategory and not self.subcategory_slug:
             # print(self.subcategory, self.subcategory.subcategory_name)
             self.subcategory_slug = slugify(self.subcategory.subcategory_name)
             # print(self.subcategory_slug)
@@ -97,7 +97,8 @@ class Items(models.Model):
 
 @receiver(pre_save, sender=Items)
 def save_category_after_subcategory(sender, instance, **kwargs):
-    instance.category = instance.subcategory.category
+    if instance.category.category_name != 'Разное':
+        instance.category = instance.subcategory.category
 
 
 

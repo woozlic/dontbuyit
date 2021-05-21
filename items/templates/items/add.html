@@ -21,35 +21,85 @@
 
         {% endif %}
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" id="addForm" data-subcategories-url="{% url 'items:ajax_load_subcategories' %}">
             <div class="form-group">
                 {% csrf_token %}
-                <div>
+                <div class="label-add">
                     <label for="title">Название товара:</label>
                     {{ form.title }}
                 </div>
-                <div>
-                    <label for="image" class="btn btn-success" id="label-image">Загрузить фотографию:</label><br>
-                    {{ form.image }}
+
+                <div class="images-container">
+                    <div class="images-upload">
+                        <label for="image-1" id="label-image-1">
+                            <img class="image-input" id="img1" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg">
+                        </label><br>
+                        {{ form.image_1 }}
+                    </div>
+                    <div class="images-upload">
+                        <label for="image-2" id="label-image-2">
+                            <img class="image-input" id="img2" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg">
+                        </label><br>
+                        {{ form.image_2 }}
+                    </div>
+                    <div class="images-upload">
+                        <label for="image-3" id="label-image-3">
+                            <img class="image-input" id="img3" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg">
+                        </label><br>
+                        {{ form.image_3 }}
+                    </div>
                 </div>
-                <div>
+                <div class="label-add">
                     <label for="category">Категория:</label>
                     {{ form.category }}
                 </div>
-                <div>
+                <div class="label-add">
+                    <label for="subcategory">Подкатегория:</label>
+                    {{ form.subcategory }}
+                </div>
+                <div class="label-add">
                     <label for="text">Текст:</label>
                     {{ form.text }}
                 </div>
-                <div>
+                <div class="label-add">
                     <label for="cost">Стоимость:</label>
                     {{ form.cost }}
                 </div>
-                <div>
-                    <label for="period">На какой период вы сдаете товар за указанную стоимость:</label>
+                <div class="label-add">
+                    <label for="period">На какой период вы сдаете товар за эту стоимость:</label>
                     {{ form.period }}
+                </div>
+                <div class="label-add">
+                    <label for="deposit">Какой залог должен оставить арендатор:</label>
+                    {{ form.deposit }}
+                </div>
+                <div class="label-add">
+                    <label for="full_price">Сколько примерно стоит такая же новая вещь:</label>
+                    {{ form.full_price }}
                 </div>
                 <button type = "submit" class = "btn btn-success" id="button-submit">Добавить товар</button>
             </div>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#category").change(function () {
+          var url = $("#addForm").attr("data-subcategories-url");  // get the url of the `load_cities` view
+          var category = $(this).val();  // get the selected country ID from the HTML input
+          console.log(url, category);
+
+          $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+              'category': category       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+              $("#subcategory").html(data);  // replace the contents of the city input with the data that came from the server
+            }
+          });
+
+        });
+
+    </script>
+    <script src="{% static 'items/js/add.js' %}"></script>
 {% endblock %}

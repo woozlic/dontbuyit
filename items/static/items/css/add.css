@@ -14,3 +14,37 @@ label {
 #button-submit {
     margin-top: 10px;
 }
+.images-upload>input {
+    display: none;
+}
+.image-input {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    cursor: pointer;
+}
+.image-input-active {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    height: 120px;
+}
+.images-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.label-add {
+    margin-top: 10px;
+}
+
+/*.closeDelete {*/
+/*    font-size: 1.5em;*/
+/*    cursor: pointer;*/
+/*    position: absolute;*/
+/*    margin-bottom: 30px;*/
+/*    margin-left: 100px;*/
+/*}*/
