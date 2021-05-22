@@ -9,7 +9,7 @@
 {% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-    <div class="col-lg-12">
+    <div class="col-lg-12" id="dashboard">
         <div class="profile">
             <div class="col-lg-3 avatar list-group-item">
                 <img src="{{request.user.profile.image.url }}" class="avatar-img" />

@@ -2,6 +2,11 @@
     display: flex;
 }
 
+#dashboard {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .avatar-img {
     vertical-align: middle;
     margin: 0 auto;

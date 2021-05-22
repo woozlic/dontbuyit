@@ -29,53 +29,61 @@
   {% block styles %}{% endblock %}
 
 </head>
-<style>
-body {
-    padding-top: 56px;
-}
-</style>
 <body>
-<br>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'main:index' %}">Непокупайэто</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <nav class="navbar navbar-light bg-dark">
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="Поиск">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Найти</button>
-          </form>
-        </nav>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'main:index' %}">Главная
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/gps">Ваш город <i class="fas fa-city"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'items:add' %}">Сдать в аренду <i class="fas fa-plus-square"></i></a>
-          </li>
-          <li class="nav-item">
-            {% if request.user.is_authenticated %}
-              <a class="nav-link" href="{% url 'account:dashboard' %}">Мой профиль <i class="fas fa-user"></i></a>
-            {% else %}
-              <a class="nav-link" href="{% url 'account:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
-            {% endif %}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container d-flex justify-content-between">
+              <a class="navbar-brand" href="{% url 'main:index' %}"><img src="{% static 'main/images/logo.png' %}"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="search">
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+                    </form>
+                </div>
+
+              {% with request.resolver_match.url_name as url_name %}
+              <div class="align-right">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
+                      <a class="nav-link" href="{% url 'main:index' %}">Главная <i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'add' %}active{% endif %}" href="{% url 'items:add' %}">Сдать в аренду <i class="fas fa-plus-square"></i></a>
+                  </li>
+                  {% if request.user.is_authenticated %}
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if url_name == 'dashboard' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Мой профиль
+                          <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="{% url 'account:dashboard' %}">Перейти в профиль</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item"  href="{% url 'account:logout' %}">Выйти из профиля</a>
+                        </div>
+                      </li>
+                  {% else %}
+                    <li class="nav-item {% if url_name == 'login' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'account:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                  {% endif %}
+                </ul>
+                </div>
+              {% endwith %}
+
+              </div>
+          </div>
+</nav>
+</header>
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" id="main">
 
     <div class="row">
 

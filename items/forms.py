@@ -104,10 +104,28 @@ class ItemsForm(ModelForm):
 
         return cd['subcategory']
 
-    def clean_image(self):
+    def clean_image_1(self):
         img_extensions = ('.jpg', '.jpeg', '.png')
         cd = self.cleaned_data
-        ext = os.path.splitext(cd['image'].name)[1]
+        ext = os.path.splitext(cd['image_1'].name)[1]
         if ext not in img_extensions:
             raise ValidationError('Изображение должно быть формата .jpg, .jpeg, или .png')
-        return cd['image']
+        return cd['image_1']
+
+    def clean_image_2(self):
+        img_extensions = ('.jpg', '.jpeg', '.png')
+        cd = self.cleaned_data
+        if cd['image_2']:
+            ext = os.path.splitext(cd['image_2'].name)[1]
+            if ext not in img_extensions:
+                raise ValidationError('Изображение должно быть формата .jpg, .jpeg, или .png')
+        return cd['image_2']
+
+    def clean_image_3(self):
+        img_extensions = ('.jpg', '.jpeg', '.png')
+        cd = self.cleaned_data
+        if cd['image_3']:
+            ext = os.path.splitext(cd['image_3'].name)[1]
+            if ext not in img_extensions:
+                raise ValidationError('Изображение должно быть формата .jpg, .jpeg, или .png')
+        return cd['image_3']

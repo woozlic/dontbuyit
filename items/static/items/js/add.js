@@ -8,10 +8,6 @@ let changeImage = function (event, targetImage) {
     let image2 = document.getElementById('image-2');
     let image3 = document.getElementById('image-3');
 
-    let temp1 = image1.files;
-    let temp2 = image2.files;
-    let temp3 = image3.files;
-
     console.log(image1.files, image2.files, image3.files);
 
     closeDelete = document.createElement('span');
@@ -21,17 +17,16 @@ let changeImage = function (event, targetImage) {
         if (img1.className==='image-input'){
             img1.src = URL.createObjectURL(event.target.files[0]);
             img1.className = 'image-input-active';
-            document.getElementById('image-1').files=document.getElementById('image-3').files;
-            document.getElementById('image-form-3').value = '';
-            // clearFileInput('image-3');
+            document.getElementById('image-1').files=document.getElementById('image-3').cloneNode().files
+            console.log(image1.files, image2.files, image3.files);
+            clearFileInput(image3);
         }
         else if (img2.className==='image-input'){
             img2.src = URL.createObjectURL(event.target.files[0]);
             img2.className = 'image-input-active';
             img2.innerHTML = '<span class="deleteClose">&times;</span>'
-            image2.files=image3.files;
-            // event.target.value = null;
-            // clearFileInput('image-2');
+            document.getElementById('image-2').files=document.getElementById('image-3').cloneNode().files
+            clearFileInput(image3);
         }
         else {
             img3.src = URL.createObjectURL(event.target.files[0]);
@@ -43,9 +38,8 @@ let changeImage = function (event, targetImage) {
         if (img1.className==='image-input'){
             img1.src = URL.createObjectURL(event.target.files[0]);
             img1.className = 'image-input-active';
-            image1.files=image2.files;
-            // event.target.value = null;
-            // clearFileInput('image-2');
+            document.getElementById('image-1').files=document.getElementById('image-2').cloneNode().files
+            clearFileInput(image2);
         }
         else {
             img2.src = URL.createObjectURL(event.target.files[0]);
@@ -59,18 +53,18 @@ let changeImage = function (event, targetImage) {
     console.log(image1.files, image2.files, image3.files);
 }
 
-function clearFileInput(id)
+function clearFileInput(f)
 {
-    var oldInput = document.getElementById(id);
-
-    var newInput = document.createElement("input");
-
-    newInput.type = "file";
-    newInput.id = oldInput.id;
-    newInput.name = oldInput.name;
-    newInput.className = oldInput.className;
-    newInput.style.cssText = oldInput.style.cssText;
-    // TODO: copy any other relevant attributes
-
-    oldInput.parentNode.replaceChild(newInput, oldInput);
+    if(f.value){
+        try{
+            f.value = ''; //for IE11, latest Chrome/Firefox/Opera...
+        }catch(err){
+        }
+        if(f.value){ //for IE5 ~ IE10
+            var form = document.createElement('form'), ref = f.nextSibling;
+            form.appendChild(f);
+            form.reset();
+            ref.parentNode.insertBefore(f,ref);
+        }
+    }
 }

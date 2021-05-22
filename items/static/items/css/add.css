@@ -17,30 +17,46 @@ label {
 .images-upload>input {
     display: none;
 }
+
+.images-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
 .image-input {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 120px;
+    height: 100px;
+    width: 100px;
     cursor: pointer;
+    background: white;
+    box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
 }
 .image-input-active {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
-    height: 120px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
 }
-.images-container {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .label-add {
     margin-top: 10px;
 }
 
+#label-subcategory-invisible {
+    display: none;
+}
+
+#label-subcategory-visible {
+    display: block;
+}
 /*.closeDelete {*/
 /*    font-size: 1.5em;*/
 /*    cursor: pointer;*/

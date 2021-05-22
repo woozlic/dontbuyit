@@ -13,6 +13,7 @@
         {% if form.errors %}
             {% for field in form %}
                 {% if field.errors %}
+                    {{ field.name }}
                     {% for error in field.errors %}
                         <div class="alert alert-danger">{{ error|escape }}</div>
                     {% endfor %}
@@ -28,23 +29,25 @@
                     <label for="title">Название товара:</label>
                     {{ form.title }}
                 </div>
-
-                <div class="images-container">
+                <div class="label-add">
+                    <label>Фотографии товара:</label>
+                </div>
+                <div class="images-container row">
                     <div class="images-upload">
                         <label for="image-1" id="label-image-1">
-                            <img class="image-input" id="img1" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg">
+                            <img class="image-input" id="img1" src="{% static 'items/images/upload.png' %}">
                         </label><br>
                         {{ form.image_1 }}
                     </div>
                     <div class="images-upload">
                         <label for="image-2" id="label-image-2">
-                            <img class="image-input" id="img2" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg">
+                            <img class="image-input" id="img2" src="{% static 'items/images/upload.png' %}">
                         </label><br>
                         {{ form.image_2 }}
                     </div>
                     <div class="images-upload">
                         <label for="image-3" id="label-image-3">
-                            <img class="image-input" id="img3" src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047545.jpg">
+                            <img class="image-input" id="img3" src="{% static 'items/images/upload.png' %}">
                         </label><br>
                         {{ form.image_3 }}
                     </div>
@@ -53,7 +56,7 @@
                     <label for="category">Категория:</label>
                     {{ form.category }}
                 </div>
-                <div class="label-add">
+                <div class="label-add" id="label-subcategory-invisible">
                     <label for="subcategory">Подкатегория:</label>
                     {{ form.subcategory }}
                 </div>
@@ -66,7 +69,7 @@
                     {{ form.cost }}
                 </div>
                 <div class="label-add">
-                    <label for="period">На какой период вы сдаете товар за эту стоимость:</label>
+                    <label for="period">Длительность аренды:</label>
                     {{ form.period }}
                 </div>
                 <div class="label-add">
@@ -84,8 +87,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $("#category").change(function () {
-          var url = $("#addForm").attr("data-subcategories-url");  // get the url of the `load_cities` view
-          var category = $(this).val();  // get the selected country ID from the HTML input
+          let url = $("#addForm").attr("data-subcategories-url");  // get the url of the `load_cities` view
+          let category = $(this).val();  // get the selected country ID from the HTML input
           console.log(url, category);
 
           $.ajax({                       // initialize an AJAX request
@@ -95,6 +98,7 @@
             },
             success: function (data) {   // `data` is the return of the `load_cities` view function
               $("#subcategory").html(data);  // replace the contents of the city input with the data that came from the server
+              $("#label-subcategory-invisible").attr("id", "label-subcategory-visible");
             }
           });
 
