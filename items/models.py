@@ -3,8 +3,10 @@ from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from pytils.translit import slugify
 
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
+
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 class CategoriesManager(models.Manager):
@@ -80,6 +82,8 @@ class Items(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        if not self.category and self.subcategory:
+            self.category = self.subcategory.category
         if not self.slug:
             self.slug = slugify(self.title)
         if not self.category_slug:
@@ -88,17 +92,14 @@ class Items(models.Model):
             # print(self.subcategory, self.subcategory.subcategory_name)
             self.subcategory_slug = slugify(self.subcategory.subcategory_name)
             # print(self.subcategory_slug)
-        super().save(*args, **kwargs)
+        super(Items, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
 
-@receiver(pre_save, sender=Items)
-def save_category_after_subcategory(sender, instance, **kwargs):
-    if instance.category.category_name != 'Разное':
-        instance.category = instance.subcategory.category
+
 
 
 

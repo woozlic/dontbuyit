@@ -7,6 +7,7 @@ urlpatterns = [
     path('add/', views.add_item, name='add'),
 
     path('', views.show_page, name='all'),
+    path('search/', views.post_search, name='post_search'),
     path('<int:page_num>/', views.show_page, name='all_page'),
     path('<slug:category>/', views.show_page, name='category'),
     path('<slug:category>/<int:page_num>/', views.show_page, name='category_page'),

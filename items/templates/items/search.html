@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
-{% block title %}Все товары{% endblock %}
+{% block title %}Поиск{% endblock %}
 
 {% block styles %}
     <link href="{% static 'items/css/all.css' %}" rel="stylesheet" type="text/css" />
@@ -11,18 +11,7 @@
 
 {% block content %}
 <div class="col-lg-9">
-        <h1 class="my-4">
-            {% if category_slug %}
-                <a href="{% url 'items:category' category_slug %}">{{ category_rus }}</a>
-            {% else %}
-                <a href="{% url 'items:all' %}">Все товары</a>
-            {% endif %}
-            {% if subcategory_slug %}
-                >
-                <a href="{% url 'items:subcategory' category_slug subcategory_slug %}">{{ subcategory_rus }}</a>
-            {% endif %}
-        </h1>
-
+{% if query %}<h1>Поиск по запросу "{{ query }}"</h1> {% endif %}
         <div class="row">
           {% if items %}
               {% for item in items %}
@@ -62,7 +51,7 @@
               </div>
               {% endfor %}
           {% else %}
-              <p>Товары куда-то подевались. Надеемся, это ненадолго.</p>
+              <p>К сожалению, ничего не удалось найти по этому запросу.</p>
           {% endif %}
 
 

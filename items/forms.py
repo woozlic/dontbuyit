@@ -1,8 +1,17 @@
 from .models import Items, SubCategories
 from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form, Select, \
     ValidationError, ModelChoiceField
+from django import forms
 
 import os
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(widget=TextInput(attrs={
+        'class': 'form-control mr-sm-2',
+        'placeholder': 'Поиск',
+        'type': 'search',
+    }))
 
 
 class SubCategoryChoiceField(ModelChoiceField):

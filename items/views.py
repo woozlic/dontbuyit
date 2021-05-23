@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Items, Categories, SubCategories
-from .forms import ItemsForm
+from .forms import ItemsForm, SearchForm
 from django.views.generic import DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.contrib.postgres.search import SearchVector
 from django.contrib import messages
 import pytils.translit
 
@@ -30,6 +31,21 @@ def load_subcategories(request):
     category = request.GET.get('category')
     subcategories = SubCategories.objects.filter(category__id=category).order_by('subcategory_name')
     return render(request, 'items/subcategories_drop_down.html', {'subcategories': subcategories})
+
+
+def post_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Items.objects.annotate(
+                search=SearchVector('title', 'text'),
+            ).filter(search=query)
+    context = {'form': form, 'query': query, 'items': results, 'aside':True}
+    return render(request, 'items/search.html', context=context)
 
 
 def show_page(request, category=None, subcategory=None, page_num=1):

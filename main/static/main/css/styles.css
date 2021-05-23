@@ -8,11 +8,7 @@
 body {
     background: #fbf5f3;
 }
-.card-img-top {
-    width: 250px;
-    height: 150px;
-    image-rendering: -webkit-optimize-contrast;
-}
+
 
 .img-fluid {
     image-rendering: -webkit-optimize-contrast;
@@ -90,7 +86,7 @@ body {
    height: 100%;
    width: 250px;
    margin-top: 5px;
-    margin-left: 3px;
+   margin-left: 3px;
    /* probably not needed anymore, but doesn't hurt */
    -o-object-fit: contain;
    object-fit: contain;
