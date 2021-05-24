@@ -55,6 +55,8 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'social_core.backends.vk.VKOAuth2',
                            ]
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -71,6 +73,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'mathfilters',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +108,7 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'dontbuyit.wsgi.application'
+ASGI_APPLICATION = "dontbuyit.asgi.application"
 
 
 DATABASES = {
