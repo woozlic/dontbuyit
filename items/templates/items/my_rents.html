@@ -11,11 +11,6 @@
 
 {% block content %}
 <div class="col-lg-9">
-{% if query %}
-    <h1 class="my-4">Поиск по запросу "{{ query }}"</h1>
-{% else %}
-    <h1 class="my-4">Поиск по запросу ""</h1>
-{% endif %}
 {% if items %}
     <h3 class="my-4">Найдено {{ items.count }} товаров</h3>
 {% else %}

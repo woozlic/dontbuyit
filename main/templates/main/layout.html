@@ -54,6 +54,11 @@
                   <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
                       <a class="nav-link" href="{% url 'main:index' %}">Главная <i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
                   </li>
+                  {% if request.user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'items:my_rents' %}">Мои аренды <i class="fas fa-sync" aria-hidden="true"></i></a>
+                      </li>
+                  {% endif %}
                   <li class="nav-item">
                     <a class="nav-link {% if url_name == 'add' %}active{% endif %}" href="{% url 'items:add' %}">Сдать в аренду <i class="fas fa-plus-square"></i></a>
                   </li>

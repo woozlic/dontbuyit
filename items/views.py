@@ -4,7 +4,7 @@ from .forms import ItemsForm, SearchForm
 from django.views.generic import DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank ,TrigramSimilarity
 from django.contrib import messages
 import pytils.translit
 
@@ -33,6 +33,10 @@ def load_subcategories(request):
     return render(request, 'items/subcategories_drop_down.html', {'subcategories': subcategories})
 
 
+def my_rents(request):
+    return render(request, 'items/my_rents.html', {})
+
+
 def post_search(request):
     form = SearchForm()
     query = None
@@ -41,9 +45,12 @@ def post_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
+            search_vector = SearchVector('title', weight='A') +\
+                SearchVector('text', weight='B')
+            search_query = SearchQuery(query)
             results = Items.objects.annotate(
-                search=SearchVector('title', 'text'),
-            ).filter(search=query)
+                similarity=TrigramSimilarity('title', query)
+            ).filter(similarity__gt=0.1).order_by('-similarity')
     context = {'form': form, 'query': query, 'items': results, 'aside':True}
     return render(request, 'items/search.html', context=context)
 
