@@ -40,7 +40,7 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = VK_API_SECRET
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost', '192.168.0.197']
 
 LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGIN_URL = 'account:login'
@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'mathfilters',
     'channels',
     'chat',
+    'django_private_chat2.apps.DjangoPrivateChat2Config',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ ROOT_URLCONF = 'dontbuyit.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/django_private_chat')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -106,9 +107,22 @@ TEMPLATES = [
     },
 ]
 
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 5002
+CHAT_WS_SERVER_PROTOCOL = 'ws'
+
 
 WSGI_APPLICATION = 'dontbuyit.wsgi.application'
 ASGI_APPLICATION = "dontbuyit.asgi.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 DATABASES = {
@@ -165,6 +179,7 @@ STATICFILES_DIRS = (
     'main/static',
     'account/static',
     'items/static',
+    'static/django_private_chat/static'
     # os.path.join(BASE_DIR, 'account/static'),
 )
 

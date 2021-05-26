@@ -1,0 +1,117 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% load russian_slugify %}
+
+{% block styles %}
+    <link href="{% static 'items/css/all.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'items/css/item_detail.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block content %}
+    <div class="col-lg-9">
+        <div>
+            <div>
+            <h1 class="my-4">
+                {% if item.category_slug and item.category %}
+                    <a href="{% url 'items:category' item.category_slug %}">{{ item.category }}</a>
+                {% else %}
+                    <a href="{% url 'items:all' %}">Все товары</a>
+                {% endif %}
+                {% if item.subcategory_slug and item.subcategory %}
+                    >
+                    <a href="{% url 'items:subcategory' item.category_slug item.subcategory_slug %}">{{ item.subcategory }}</a>
+                    >
+                {% endif %}
+
+                {% if item.subcategory %}
+                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
+                        {{ item.title }}
+                    </a>
+                {% else %}
+                     <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
+                        {{ item.title }}
+                     </a>
+                {% endif %}
+            </h1>
+
+            </div>
+            <div class="card">
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="false">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                {% if item.image_1 %}
+                    <div class="carousel-item active">
+                        <img class="d-block w-100 item-img" src="{{ item.image_1.url }}" alt="{{ item.title }}">
+                    </div>
+                {% endif %}
+                {% if item.image_2 %}
+                    <div class="carousel-item">
+                        <img class="d-block w-100 item-img" src="{{ item.image_2.url }}" alt="{{ item.title }}">
+                    </div>
+                {% endif %}
+                {% if item.image_3 %}
+                    <div class="carousel-item">
+                        <img class="d-block w-100 item-img" src="{{ item.image_3.url }}" alt="{{ item.title }}">
+                    </div>
+                {% endif %}
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Назад</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Вперед</span>
+              </a>
+            </div>
+
+{#                <div class="card-sl">#}
+{#                    {% if item.image_1 %}#}
+{#                        <div class="card-image">#}
+{#                            <img src="{{ item.image_1.url }}" alt="{{ item.title }}" class="card-img-top">#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{#                </div>#}
+
+                <div class="card-body">
+                    <div class="card-text">
+                        <p>Описание:</p>
+                        <p class="h3">{{ item.text }}</p>
+                    </div>
+                    <div class="card-text">
+                        <p>Цена/срок аренды:</p>
+                        <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
+                    </div>
+                    <div class="card-text">
+                        <p>Залог:</p>
+                        <p class="h3">{{ item.deposit }} р.</p>
+                    </div>
+                    <div class="card-text">
+                        <p>Сколько примерно стоит такая же новая вещь:</p>
+                        <p class="h3">{{ item.full_price }} р.</p>
+                    </div>
+
+                    <div class="card-text">
+                        <p>Опубликовано: {{ item.date }}</p>
+                        <p>Арендодатель:</p>
+                        <p class="h3">
+                            {{ item.user.profile.rating }}<i class="fas fa-star checked"></i>
+                            <a href="{% url 'account:user_detail' item.user.username %}">{{ item.user.first_name }}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top: 10px">Написать сообщение</button>
+            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-bottom: 10px">Узнать номер телефона</button>
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock %}

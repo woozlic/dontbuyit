@@ -26,6 +26,9 @@
   <!-- icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
+  {% block css %}
+  {% endblock %}
+
   {% block styles %}{% endblock %}
 
 </head>
@@ -56,7 +59,7 @@
                   </li>
                   {% if request.user.is_authenticated %}
                       <li class="nav-item">
-                        <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'items:my_rents' %}">Мои аренды <i class="fas fa-sync" aria-hidden="true"></i></a>
+                        <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'chat_index' %}">Мои сообщения <i class="fas fa-envelope" aria-hidden="true"></i></a>
                       </li>
                   {% endif %}
                   <li class="nav-item">
@@ -122,6 +125,11 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'main/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
+  {% block javascript %}
+  {% endblock %}
+
+  {% block extra_js %}
+  {% endblock %}
 
   <script src="{% static 'main/js/aside.js' %}"></script>
 </body>

@@ -3,10 +3,8 @@
 {% load static %}
 
 {% block styles %}
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="{% static 'account/css/login.css' %}" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 {% endblock %}
 
 {% block title %}Вход в личный кабинет{% endblock %}
@@ -33,7 +31,7 @@
                         {{ field }}
                     </div>
                 {% endfor %}
-              <input type="submit" class="fadeIn fourth" value="Войти">
+              <input type="submit" class="fadeIn fourth" id="enter" value="Войти">
             </form>
 
             <!-- Remind Passowrd -->
@@ -45,4 +43,9 @@
             </div>
         </div>
     {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}

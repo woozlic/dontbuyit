@@ -21,6 +21,12 @@ def show_item(request, category, subcategory, slug, pk):
     return render(request, 'items/item_detail.html', context)
 
 
+def edit_item(request, category, subcategory, slug, pk):
+    item = get_object_or_404(Items, pk=pk)
+    context = {'item': item, 'aside': True}
+    return render(request, 'items/edit_item.html', context)
+
+
 def show_item_other(request, category, slug, pk):
     item = get_object_or_404(Items, pk=pk)
     context = {'item': item, 'aside': True}
@@ -34,7 +40,23 @@ def load_subcategories(request):
 
 
 def my_rents(request):
-    return render(request, 'items/my_rents.html', {})
+    rents = Items.objects.filter(user=request.user).order_by('-date')
+    count = len(rents)
+    rents = rents[:3]
+    context = {
+        'items': rents,
+        'count': count
+    }
+    return render(request, 'items/my_rents.html', context)
+
+def all_rents(request):
+    rents = Items.objects.filter(user=request.user).order_by('-date')
+    count = len(rents)
+    context = {
+        'items': rents,
+        'count': count
+    }
+    return render(request, 'items/all_rents.html', context)
 
 
 def post_search(request):

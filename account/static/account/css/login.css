@@ -79,7 +79,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+#enter {
   background-color: #56baed;
   border: none;
   color: white;
@@ -96,11 +96,11 @@ input[type=button], input[type=submit], input[type=reset]  {
   margin: 5px 20px 40px 20px;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+#enter:hover  {
   background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+#enter:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);

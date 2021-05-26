@@ -1,17 +1,170 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
-<body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Чат с пользователем{% endblock %}
+
+{% block styles %}
+    <link href="{% static 'chat/css/room.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <div class="row rounded-lg overflow-hidden shadow" id="chat_app">
+            <!-- Users box-->
+            <div class="col-5 px-0">
+              <div class="bg-white">
+                <div class="bg-gray px-4 py-2 bg-light">
+                  <p class="h5 mb-0 py-1">Сообщения</p>
+                </div>
+                <div class="messages-box">
+                  <div class="list-group rounded-0" id="conversations">
+
+{#                      {% for user_room in request.user.rooms.all %}#}
+{#                          {% with user_room.users.all as users %}#}
+{#                              <a href="" class="list-group-item list-group-item-action active text-white rounded-0">#}
+{#                                  <div class="media"><img src="#}
+{#                                        {% for user in user_room.users.all %}#}
+{#                                            {% if user != request.user %}#}
+{#                                                {{ user.profile.image.url }}#}
+{#                                            {% endif %}#}
+{#                                        {% endfor %}" alt="user" width="50" class="rounded-circle">#}
+{#                                    <div class="media-body ml-4">#}
+{#                                      <div class="d-flex align-items-center justify-content-between mb-1">#}
+{#                                        <h6 class="mb-0" id="sender_name">#}
+{#                                            {% for user in user_room.users.all %}#}
+{#                                                {% if user != request.user %}#}
+{#                                                    {{ user.first_name }}#}
+{#                                                {% endif %}#}
+{#                                            {% endfor %}#}
+{#                                        </h6><small class="small font-weight-bold">25 Dec</small>#}
+{#                                      </div>#}
+{#                                      <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>#}
+{#                                    </div>#}
+{#                                  </div>#}
+{#                              </a>#}
+{#                          {% endwith %}#}
+{#                      {% endfor %}#}
+{##}
+{#                    <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">#}
+{#                      <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">#}
+{#                        <div class="media-body ml-4">#}
+{#                          <div class="d-flex align-items-center justify-content-between mb-1">#}
+{#                            <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">14 Dec</small>#}
+{#                          </div>#}
+{#                          <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </a>#}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Chat Box-->
+            <div class="col-7 px-0">
+              <div class="px-4 py-5 chat-box bg-white" id="chat-box">
+                  <!-- existed messages -->
+                  {% for message in chat_messages %}
+                      {% if message.user == request.user %}
+                      <div class="media w-50 ml-auto mb-3">
+                        <div class="media-body">
+                            <div class="bg-primary rounded py-2 px-3 mb-2">
+                                <p class="text-small mb-0 text-white" id="chat-log">
+                                    {{ message.message }}
+                                </p>
+                            </div>
+                            <p class="small text-muted">
+                                {{ message.timestamp }}
+                            </p>
+                        </div>
+                      </div>
+                      {% else %}
+                          <div class="media w-50 mb-3"><img src="{{ message.user.profile.image.url }}" alt="user" width="50" class="rounded-circle">
+                            <div class="media-body">
+                                <div class="bg-light rounded py-2 px-3 mb-2">
+                                    <p class="text-small mb-0 text-muted" id="chat-log">
+                                        {{ message.message }}
+                                    </p>
+                                </div>
+                                <p class="small text-muted">
+                                    {{ message.timestamp }}
+                                </p>
+                            </div>
+                          </div>
+                      {% endif %}
+                  {% endfor %}
+              </div>
+
+              <!-- Typing area -->
+              <div class="bg-light">
+                <div class="input-group">
+                  <input type="text" id="chat-message-input" placeholder="Введите сообщение" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                  <div class="input-group-append">
+                    <button id="chat-message-submit" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                  </div>
+                </div>
+                {{ rooms|json_script:"rooms" }}
+                {{ room_name|json_script:"room-name" }}
+              </div>
+
+            </div>
+          </div>
+
+
+{#            <textarea id="chat-log" cols="100" rows="20"></textarea><br>#}
+
+    </div>
+{% endblock %}
+{% block extra_js %}
     <script>
+        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        let rooms = JSON.parse(document.getElementById('rooms').textContent);
+        rooms = JSON.parse(rooms);
+        let rooms_ = '{{ request.user.rooms }}';
+        for(let i of rooms_){
+            console.log(i);
+        }
+        const $conversations = $('#conversations');
+        for (let room of rooms){
+            let ids = room['fields']['label'].split('_');
+            let id_1 = ids[0];
+            let id_2 = ids[1];
+            let url = '';
+            {#let url = "{% url 'room' first=1 second=2 %}".replace(/1/, td_1)#}
+            {#let url = '{% url 'room' "'+foo+'" "'+bar+'" %}#}
+            const users = room['fields']['users'];
+            const user_1 = users[0];
+            const user_2 = users[1];
+            let me = '';
+            if (user_1 === '{{ request.user.username }}'){
+                me = user_1;
+            }
+            else{
+                me = user_2;
+            }
+            console.log(users);
+            $conversations.append(
+                '<a class="list-group-item list-group-item-action list-group-item-light rounded-0" id="'+room['fields']['label']+'">' +
+                  '<div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">' +
+                    '<div class="media-body ml-4">' +
+                      '<div class="d-flex align-items-center justify-content-between mb-1">' +
+                        '<h6 class="mb-0">' +
+                            me +
+                            {#'{% for user in users %}' +#}
+                            {#    '{% for u in user %}' +#}
+                            {#        '{% if u != request.user.username %}' +#}
+                            {#            '{{ u }}' +#}
+                            {#        '{% endif %}' +#}
+                            {#    '{% endfor %}' +#}
+                            {#'{% endfor %}' +#}
+                        '</h6><small class="small font-weight-bold">14 Dec</small>' +
+                      '</div>' +
+                      '<p class="font-italic text-muted mb-0 text-small"></p>' +
+                    '</div>' +
+                  '</div>' +
+                '</a>'
+            )
+        }
 
         const chatSocket = new WebSocket(
             'ws://'
@@ -23,11 +176,46 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
-        };
+            const message = data.message;
+            const dateOptions = {hour: 'numeric', minute: 'numeric', day: 'numeric', month: 'long'};
+            const datetime = new Date(data['datetime']).toLocaleString("ru", dateOptions);
 
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
+            const isMe = data.user === '{{ request.user }}';
+            const image_url = data.image_url;
+            let $chat = $('#chat-box');
+            if(isMe) {
+                $chat.append(
+                    '<div class="media w-50 ml-auto mb-3">' +
+                        '<div class="media-body">' +
+                            '<div class="bg-primary rounded py-2 px-3 mb-2">' +
+                                '<p class="text-small mb-0 text-white" id="chat-log">' +
+                                    message +
+                                '</p>' +
+                            '</div>' +
+                            '<p class="small text-muted">' +
+                                datetime +
+                            '</p>' +
+                        '</div>' +
+                    '</div>'
+                );
+            }
+            else {
+                $chat.append(
+                    '<div class="media w-50 mb-3"><img src="' + image_url + '" alt="user" width="50" class="rounded-circle">' +
+                        '<div class="media-body ml-3">' +
+                            '<div class="bg-light rounded py-2 px-3 mb-2">' +
+                                '<p class="text-small mb-0 text-muted" id="chat-log">' +
+                                     message +
+                                '</p>' +
+                            '</div>' +
+                            '<p class="small text-muted">' +
+                                datetime +
+                            '</p>' +
+                        '</div>' +
+                    '</div>'
+                );
+            }
+            $chat.scrollTop($chat[0].scrollHeight);
         };
 
         document.querySelector('#chat-message-input').focus();
@@ -35,6 +223,10 @@
             if (e.keyCode === 13) {  // enter, return
                 document.querySelector('#chat-message-submit').click();
             }
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
         };
 
         document.querySelector('#chat-message-submit').onclick = function(e) {
@@ -46,5 +238,4 @@
             messageInputDom.value = '';
         };
     </script>
-</body>
-</html>
+{% endblock %}

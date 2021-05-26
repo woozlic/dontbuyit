@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %}
 {% load static %}
 
-{% block title %}Поиск{% endblock %}
+{% block title %}Мои аренды{% endblock %}
 
 {% block styles %}
     <link href="{% static 'items/css/all.css' %}" rel="stylesheet" type="text/css" />
@@ -10,11 +10,12 @@
 {% load russian_slugify %}
 
 {% block content %}
-<div class="col-lg-9">
+<div class="col-lg-12">
 {% if items %}
-    <h3 class="my-4">Найдено {{ items.count }} товаров</h3>
+    <h3 class="my-4">Вы выставили {{ count }} объявлений об аренде</h3>
+    <a href="{% url 'items:all_rents' %}"><button class="btn btn-success margin-auto" style="margin-bottom: 15px;">Посмотреть все</button></a>
 {% else %}
-    <h3 class="my-4">К сожалению, по вашему запросу ничего не нашлось</h3>
+    <h3 class="my-4">У вас еще нет объявлений об аренде</h3>
 {% endif %}
         <div class="row">
           {% if items %}
@@ -50,7 +51,7 @@
                       <div>{{ item.user.profile.rating }}<i class="fas fa-star checked"></i></div>
                       <a href="{% url 'account:user_detail' item.user.username %}">{{ item.user.first_name }}</a>
                   </div>
-                <a href="#" class="card-button"> Арендовать</a>
+                <a href="{% url 'items:edit_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}" class="card-button"> Редактировать</a>
                 </div>
               </div>
               {% endfor %}
