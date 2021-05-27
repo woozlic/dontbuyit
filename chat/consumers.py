@@ -11,7 +11,11 @@ from django.shortcuts import get_object_or_404
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.user = self.scope['user']
-        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        self.room_name = ''
+        try:
+            self.room_name = self.scope['url_route']['kwargs']['room_name']
+        except KeyError:
+            pass
         self.room_group_name = 'chat_%s' % self.room_name
 
         # Join room group
@@ -32,7 +36,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def get_image(self):
         profile = Profile.objects.get(user=self.user)
-        print(profile, profile.image.url)
         return profile.image.url
 
     @database_sync_to_async

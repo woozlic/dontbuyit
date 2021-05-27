@@ -59,7 +59,7 @@
                   </li>
                   {% if request.user.is_authenticated %}
                       <li class="nav-item">
-                        <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'chat_index' %}">Мои сообщения <i class="fas fa-envelope" aria-hidden="true"></i></a>
+                        <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'chat_index' %}">Cообщения <i class="fas fa-envelope" aria-hidden="true"></i></a>
                       </li>
                   {% endif %}
                   <li class="nav-item">
@@ -68,7 +68,7 @@
                   {% if request.user.is_authenticated %}
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle {% if url_name == 'dashboard' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Мой профиль
+                          Профиль
                           <i class="fas fa-user"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -115,7 +115,7 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="footer py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Непокупайэто.рф - сайт, где вы можете безопасно и недорого взять или сдать товар в аренду.</p>
     </div>

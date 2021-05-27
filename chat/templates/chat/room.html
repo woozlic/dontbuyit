@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="col-lg-12">
-        <div class="row rounded-lg overflow-hidden shadow" id="chat_app">
+        <div class="row rounded-lg overflow-hidden shadow-lg" id="chat_app">
             <!-- Users box-->
             <div class="col-5 px-0">
               <div class="bg-white">
@@ -18,42 +18,18 @@
                 <div class="messages-box">
                   <div class="list-group rounded-0" id="conversations">
 
-{#                      {% for user_room in request.user.rooms.all %}#}
-{#                          {% with user_room.users.all as users %}#}
-{#                              <a href="" class="list-group-item list-group-item-action active text-white rounded-0">#}
-{#                                  <div class="media"><img src="#}
-{#                                        {% for user in user_room.users.all %}#}
-{#                                            {% if user != request.user %}#}
-{#                                                {{ user.profile.image.url }}#}
-{#                                            {% endif %}#}
-{#                                        {% endfor %}" alt="user" width="50" class="rounded-circle">#}
-{#                                    <div class="media-body ml-4">#}
-{#                                      <div class="d-flex align-items-center justify-content-between mb-1">#}
-{#                                        <h6 class="mb-0" id="sender_name">#}
-{#                                            {% for user in user_room.users.all %}#}
-{#                                                {% if user != request.user %}#}
-{#                                                    {{ user.first_name }}#}
-{#                                                {% endif %}#}
-{#                                            {% endfor %}#}
-{#                                        </h6><small class="small font-weight-bold">25 Dec</small>#}
-{#                                      </div>#}
-{#                                      <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>#}
-{#                                    </div>#}
-{#                                  </div>#}
-{#                              </a>#}
-{#                          {% endwith %}#}
-{#                      {% endfor %}#}
-{##}
-{#                    <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0">#}
-{#                      <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">#}
-{#                        <div class="media-body ml-4">#}
-{#                          <div class="d-flex align-items-center justify-content-between mb-1">#}
-{#                            <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">14 Dec</small>#}
-{#                          </div>#}
-{#                          <p class="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </a>#}
+                  {% for dialog in dialogs_info %}
+                    <a href="{% url 'room' dialog.dialog_me dialog.dialog_other %}" class="list-group-item list-group-item-action rounded-0 {% if dialog.dialog_label == room_name %}active text-white{% else %}list-group-item-light{% endif %}">
+                      <div class="media"><img src="{{ dialog.dialog_image_url }}" alt="user" width="50" class="rounded-circle">
+                        <div class="media-body ml-4">
+                          <div class="d-flex align-items-center justify-content-between mb-1">
+                            <h6 class="mb-0">{{ dialog.dialog_user_first_name }}</h6><small class="small font-weight-bold">{{ dialog.dialog_message_timestamp }}</small>
+                          </div>
+                          <p class="font-italic {% if dialog.dialog_label == room_name %}{% else %}text-muted{% endif %} mb-0 text-small" id="{{ dialog.dialog_label }}">{{ dialog.dialog_message }}</p>
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
 
                   </div>
                 </div>
@@ -102,7 +78,6 @@
                     <button id="chat-message-submit" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                   </div>
                 </div>
-                {{ rooms|json_script:"rooms" }}
                 {{ room_name|json_script:"room-name" }}
               </div>
 
@@ -118,61 +93,24 @@
     <script>
         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-        let rooms = JSON.parse(document.getElementById('rooms').textContent);
-        rooms = JSON.parse(rooms);
-        let rooms_ = '{{ request.user.rooms }}';
-        for(let i of rooms_){
-            console.log(i);
-        }
-        const $conversations = $('#conversations');
-        for (let room of rooms){
-            let ids = room['fields']['label'].split('_');
-            let id_1 = ids[0];
-            let id_2 = ids[1];
-            let url = '';
-            {#let url = "{% url 'room' first=1 second=2 %}".replace(/1/, td_1)#}
-            {#let url = '{% url 'room' "'+foo+'" "'+bar+'" %}#}
-            const users = room['fields']['users'];
-            const user_1 = users[0];
-            const user_2 = users[1];
-            let me = '';
-            if (user_1 === '{{ request.user.username }}'){
-                me = user_1;
-            }
-            else{
-                me = user_2;
-            }
-            console.log(users);
-            $conversations.append(
-                '<a class="list-group-item list-group-item-action list-group-item-light rounded-0" id="'+room['fields']['label']+'">' +
-                  '<div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">' +
-                    '<div class="media-body ml-4">' +
-                      '<div class="d-flex align-items-center justify-content-between mb-1">' +
-                        '<h6 class="mb-0">' +
-                            me +
-                            {#'{% for user in users %}' +#}
-                            {#    '{% for u in user %}' +#}
-                            {#        '{% if u != request.user.username %}' +#}
-                            {#            '{{ u }}' +#}
-                            {#        '{% endif %}' +#}
-                            {#    '{% endfor %}' +#}
-                            {#'{% endfor %}' +#}
-                        '</h6><small class="small font-weight-bold">14 Dec</small>' +
-                      '</div>' +
-                      '<p class="font-italic text-muted mb-0 text-small"></p>' +
-                    '</div>' +
-                  '</div>' +
-                '</a>'
+
+        let chatSocket;
+        if (roomName) {
+            chatSocket = new WebSocket(
+                'ws://'
+                + window.location.host
+                + '/ws/chat/'
+                + roomName
+                + '/'
             )
         }
-
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/chat/'
-            + roomName
-            + '/'
-        );
+        else {
+            chatSocket = new WebSocket(
+                'ws://'
+                + window.location.host
+                + '/ws/chat/'
+            )
+        }
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
@@ -180,6 +118,8 @@
             const dateOptions = {hour: 'numeric', minute: 'numeric', day: 'numeric', month: 'long'};
             const datetime = new Date(data['datetime']).toLocaleString("ru", dateOptions);
 
+            console.log(`p#${roomName}`);
+            console.log(message);
             const isMe = data.user === '{{ request.user }}';
             const image_url = data.image_url;
             let $chat = $('#chat-box');
@@ -215,6 +155,7 @@
                     '</div>'
                 );
             }
+            document.getElementById(`${roomName}`).textContent = message;
             $chat.scrollTop($chat[0].scrollHeight);
         };
 

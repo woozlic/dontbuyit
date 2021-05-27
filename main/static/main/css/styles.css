@@ -92,3 +92,26 @@ body {
    object-fit: contain;
    image-rendering: -webkit-optimize-contrast;
 }
+
+.container {
+}
+
+footer {
+    position: fixed;
+    height: 0px;
+    bottom: 0;
+    width: 100%;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    text-align: center;
+}
+.logout_title {
+    margin-top: 20px;
+}
+.logout_text {
+    margin-bottom: 20px;
+}

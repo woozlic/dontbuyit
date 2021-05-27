@@ -14,6 +14,36 @@ def chat_index(request):
 def room(request, first=None, second=None):
     me = first
     other = second
+
+    dialogs_info = []
+    rooms = request.user.rooms.all()
+
+    for user_room in rooms:
+        for user in user_room.users.all():
+            if user != request.user:
+                dialog_user = user
+
+        me = request.user.pk
+        other = dialog_user.pk
+        dialog_label = user_room.label
+        dialog_room = Room.objects.get(label=dialog_label)
+        dialog_message_instance = dialog_room.messages.all().last()
+        if dialog_message_instance:
+            dialog_message = dialog_message_instance.message
+            dialog_message_timestamp = dialog_message_instance.timestamp
+        else:
+            dialog_message = ''
+            dialog_message_timestamp = ''
+        dialogs_info.append({
+            'dialog_image_url': dialog_user.profile.image.url,
+            'dialog_message': dialog_message[:50],
+            'dialog_message_timestamp': dialog_message_timestamp,
+            'dialog_user_first_name': dialog_user.first_name,
+            'dialog_label': dialog_label,
+            'dialog_me': me,
+            'dialog_other': other,
+        })
+
     try:
         first_user = User.objects.get(pk=int(first))
         second_user = User.objects.get(pk=int(second))
@@ -46,7 +76,7 @@ def room(request, first=None, second=None):
 
             chat_messages = reversed(chat_room.messages.order_by('-timestamp')[:50])
 
-            rooms = serializers.serialize('json', me.rooms.all(), use_natural_foreign_keys=True)
+            # user.profile.image, last_message, last_message.timestamp, user.first_name
 
             context = {
                 'room_name': room_name,
@@ -55,7 +85,11 @@ def room(request, first=None, second=None):
                 'chat_messages': chat_messages,
                 'me': me,
                 'other': other,
+                'dialogs_info': dialogs_info,
             }
             return render(request, 'chat/room.html', context)
     except TypeError:
-        return render(request, 'chat/room.html', {})
+        context = {
+            'dialogs_info': dialogs_info,
+        }
+        return render(request, 'chat/room.html', context)
