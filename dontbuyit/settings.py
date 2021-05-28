@@ -75,7 +75,6 @@ INSTALLED_APPS = [
     'mathfilters',
     'channels',
     'chat',
-    'django_private_chat2.apps.DjangoPrivateChat2Config',
 ]
 
 MIDDLEWARE = [
