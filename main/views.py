@@ -1,16 +1,16 @@
 from django.shortcuts import render, HttpResponse
 from items.models import Items
 
-# Create your views here.
 
 def index(request):
     items = Items.objects.all().order_by('-date')[:3]
     context = {
-        'title': 'Непокупай.рф',
+        'title': 'Непокупайэто',
         'aside': True,
         'items': items
     }
     return render(request, 'main/newindex.html', context)
+
 
 def catalog(request):
     context = {

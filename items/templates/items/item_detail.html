@@ -80,20 +80,35 @@
 
                 <div class="card-body">
                     <div class="card-text">
+                        {% if item.subcategory %}
+                            <h1>
+                                <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
+                                    {{ item.title }}
+                                </a>
+                            </h1>
+                        {% else %}
+                            <h1>
+                                 <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
+                                    {{ item.title }}
+                                 </a>
+                            </h1>
+                        {% endif %}
+                    </div>
+                    <div class="card-text">
                         <p>Описание:</p>
                         <p class="h3">{{ item.text }}</p>
                     </div>
                     <div class="card-text">
                         <p>Цена/срок аренды:</p>
-                        <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
+                        <p class="h3">{{ item.cost|floatformat }} р. / {{ item.period }}</p>
                     </div>
                     <div class="card-text">
                         <p>Залог:</p>
-                        <p class="h3">{{ item.deposit }} р.</p>
+                        <p class="h3">{{ item.deposit|floatformat }} р.</p>
                     </div>
                     <div class="card-text">
                         <p>Сколько примерно стоит такая же новая вещь:</p>
-                        <p class="h3">{{ item.full_price }} р.</p>
+                        <p class="h3">{{ item.full_price|floatformat }} р.</p>
                     </div>
 
                     <div class="card-text">

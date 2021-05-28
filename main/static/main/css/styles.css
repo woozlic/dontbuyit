@@ -108,3 +108,11 @@ body {
     margin-bottom: 20px;
     list-style-type: none;
 }
+
+.carousel_slide {
+    object-fit: contain;
+    width: 100%;
+}
+img {
+    image-rendering: -webkit-optimize-contrast;
+}

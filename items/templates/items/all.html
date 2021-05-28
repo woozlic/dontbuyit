@@ -64,7 +64,7 @@
                     {% endif %}
                 </div>
                   <div class="card-text text-center">
-                    <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
+                    <p class="h3">{{ item.cost|floatformat }} р. / {{ item.period }}</p>
                   </div>
                   <div class="card-footer">
                       <div>{{ item.user.profile.rating }}<i class="fas fa-star checked"></i></div>
