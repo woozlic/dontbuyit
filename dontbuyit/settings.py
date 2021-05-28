@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from configuration_settings import keys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,11 +25,11 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 # настройки для вконтакте
-VK_APP_ID = keys['VK_APP_ID']
+VK_APP_ID = os.environ.get('VK_APP_ID', '')
 VKONTAKTE_APP_ID = VK_APP_ID
 SOCIAL_AUTH_VK_OAUTH2_KEY = VK_APP_ID
 
-VK_API_SECRET = keys['VK_API_SECRET']
+VK_API_SECRET = os.environ.get('VK_API_SECRET', '')
 VKONTAKTE_APP_SECRET = VK_API_SECRET
 SOCIAL_AUTH_VK_OAUTH2_SECRET = VK_API_SECRET
 
@@ -41,7 +40,7 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = VK_API_SECRET
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost', '192.168.0.197']
+ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost', '192.168.0.197', 'stark-dawn-16125.herokuapp.com']
 
 LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGIN_URL = 'account:login'
@@ -132,7 +131,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dontbuyit',
         'USER': 'postgres',
-        'PASSWORD': keys['DB_PASSWORD'],
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
     }
 }
 
