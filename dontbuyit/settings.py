@@ -179,8 +179,6 @@ STATICFILES_DIRS = (
     'main/static',
     'account/static',
     'items/static',
-    'static/django_private_chat/static'
-    # os.path.join(BASE_DIR, 'account/static'),
 )
 
 MEDIA_URL = '/media/'
