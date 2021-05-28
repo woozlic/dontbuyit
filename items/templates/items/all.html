@@ -10,18 +10,31 @@
 {% load russian_slugify %}
 
 {% block content %}
-<div class="col-lg-9">
-        <h1 class="my-4">
-            {% if category_slug %}
-                <a href="{% url 'items:category' category_slug %}">{{ category_rus }}</a>
-            {% else %}
-                <a href="{% url 'items:all' %}">Все товары</a>
-            {% endif %}
-            {% if subcategory_slug %}
-                >
-                <a href="{% url 'items:subcategory' category_slug subcategory_slug %}">{{ subcategory_rus }}</a>
-            {% endif %}
-        </h1>
+    <div class="col-lg-9">
+{#        <h1 class="my-4">#}
+{#            {% if category_slug %}#}
+{#                <a href="{% url 'items:category' category_slug %}">{{ category_rus }}</a>#}
+{#            {% else %}#}
+{#                <a href="{% url 'items:all' %}">Все товары</a>#}
+{#            {% endif %}#}
+{#            {% if subcategory_slug %}#}
+{#                >#}
+{#                <a href="{% url 'items:subcategory' category_slug subcategory_slug %}">{{ subcategory_rus }}</a>#}
+{#            {% endif %}#}
+{#        </h1>#}
+
+        <nav aria-label="breadcrumb" class="main-breadcrumb" style="margin-top: 30px;">
+            <ol class="breadcrumb">
+                {% if category_slug %}
+                  <li class="breadcrumb-item"><a href="{% url 'items:category' category_slug %}">{{ category_rus }}</a></li>
+                    {% else %}
+                  <li class="breadcrumb-item active"><a href="{% url 'items:all' %}">Все товары</a></li>
+                {% endif %}
+                {% if subcategory_slug %}
+                  <li class="breadcrumb-item active"><a href="{% url 'items:subcategory' category_slug subcategory_slug %}">{{ subcategory_rus }}</a></li>
+                {% endif %}
+            </ol>
+        </nav>
 
         <div class="row">
           {% if items %}
@@ -44,11 +57,11 @@
                       {% endif %}
                   {% endif %}
                 <div class="card-heading">
-                        {% if item.subcategory %}
-                            <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
-                        {% else %}
-                            <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
-                        {% endif %}
+                    {% if item.subcategory %}
+                        <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                    {% else %}
+                        <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                    {% endif %}
                 </div>
                   <div class="card-text text-center">
                     <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
@@ -69,6 +82,6 @@
         </div>
         <!-- /.row -->
         {% include 'items/pagination.html' with page=items %}
-      </div>
+    </div>
 
 {% endblock %}

@@ -14,9 +14,16 @@
     width: 150px;
     height: 150px;
     margin-bottom: 10px;
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .avatar {
     display: flex;
     flex-flow: column;
+}
+
+#upload_photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
 }

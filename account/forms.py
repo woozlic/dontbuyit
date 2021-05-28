@@ -2,6 +2,7 @@ from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, Form, 
     Select, ImageField, FileInput
 from django.contrib.auth.models import User
 from .models import Profile
+import re
 
 
 class UserRegistrationForm(ModelForm):
@@ -43,11 +44,29 @@ class UserRegistrationForm(ModelForm):
             }),
         }
 
-    def clean_second_password(self):
-        cd = self.cleaned_data
-        if cd['password'] != cd['password_repeat']:
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_repeat = cleaned_data.get('password_repeat')
+        username = cleaned_data.get('username')
+
+        if re.fullmatch(r'[A-Za-z0-9@_#$%\-^&+=]{6,}', username):
+            pass
+        else:
+            raise ValidationError('Логин должен состоять из латинских букв, цифр и символов @_#$%-^&+= и иметь длину '
+                                  'минимум 6 символов')
+
+        if len(password) < 6 or len(password) > 18:
+            raise ValidationError('Пароль должен иметь длину от 6 до 18 символов')
+
+        if password != password_repeat:
             raise ValidationError('Пароли не совпадают!')
-        return cd['password_repeat']
+
+        if re.fullmatch(r'[A-Za-z0-9@#$%^&+=]{6,}', password):
+            pass
+        else:
+            raise ValidationError('Пароль должен состоять из латинских букв, цифр и символов @#$%^&+= и иметь длину '
+                                  'не меньше 6 и не больше 18 символов')
 
 
 class UserForm(ModelForm):
@@ -70,12 +89,24 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('gender',)
-        genders = [('мужской', 'мужской'), ('женский', 'женский')]
+        fields = ('gender', 'phone_number')
+        genders = [('мужской', 'мужской'), ('мужской', 'мужской')]
 
         widgets = {
-            'gender': Select(choices=genders, attrs={'class': 'form-control'})
+            'gender': Select(choices=genders, attrs={'class': 'form-control'}),
+            'phone_number': TextInput(attrs={'class': 'form-control'})
         }
+
+    def clean_phone_number(self):
+        cd = self.cleaned_data
+        phone_number = cd['phone_number']
+        if len(phone_number) != 10:
+            raise ValidationError('Телефон должен состоять из 10 цифр')
+        elif str(phone_number)[0] != '9':
+            raise ValidationError('Телефон должен начинаться с 9')
+        elif User.objects.filter(profile__phone_number=str(phone_number)).exists():
+            raise ValidationError('Такой номер телефона уже зарегистрирован')
+        return phone_number
 
 
 class LoginForm(Form):
@@ -93,7 +124,5 @@ class LoginForm(Form):
 class DashboardForm(Form):
 
     image = ImageField(widget=FileInput(attrs={
-        'style': 'display: none;',
-        'class': 'btn btn-dark',
-        'id': 'file',
+        'id': 'upload_photo'
     }))

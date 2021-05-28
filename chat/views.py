@@ -12,6 +12,10 @@ def chat_index(request):
 
 @login_required
 def room(request, first=None, second=None):
+
+    if first == second == request.user.pk:
+        return redirect('chat_index')
+
     me = first
     other = second
 
@@ -88,7 +92,7 @@ def room(request, first=None, second=None):
                 'dialogs_info': dialogs_info,
             }
             return render(request, 'chat/room.html', context)
-    except TypeError:
+    except (TypeError, ValueError) as e:
         context = {
             'dialogs_info': dialogs_info,
         }

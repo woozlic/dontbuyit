@@ -5,31 +5,73 @@
 {% load static %}
 
 {% block content %}
+    {% if request.user.is_authenticated %}
+    {% else %}
     <h1 class="col-lg-12 my-4 text-center">Регистрация нового пользователя</h1>
+    {% endif %}
     <div class="col-lg-6 content">
         {% if request.user.is_authenticated %}
-            <p class = "alert-info my-4">Вы уже вошли</p>
+            <p class = "alert alert-info my-4">Вы уже вошли</p>
             <a href="{% url 'account:logout' %}" class="btn-link">Выйти из аккаунта</a>
         {% else %}
-            {% if user_form.errors %}
-                <p class="alert alert-danger">{{ user_form.errors }}</p>
-            {% endif %}
+
+        {% if user_form.non_field_errors %}
+            {% for user_non_field_error in user_form.non_field_errors %}
+                <p class="alert alert-danger">{{ user_non_field_error|escape }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% if profile_form.non_field_errors %}
+            {% for profile_non_field_error in profile_form.non_field_errors %}
+                <p class="alert alert-danger">{{ profile_non_field_error|escape }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% if user_form.errors %}
+            {% for user_field in user_form %}
+                {% for user_error in user_field.errors %}
+                    <p class="alert alert-danger">{{ user_error|escape }}</p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        {% if profile_form.errors %}
+            {% for profile_field in profile_form %}
+                {% for profile_error in profile_field.errors %}
+                    <p class="alert alert-danger">{{ profile_error|escape }}</p>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
 
             <form action="{% url 'account:register' %}" method="post">
                 <div class="form-group">
                     {% csrf_token %}
                     <label for="formGroupEmailInput">Введите адрес электронной почты:</label>
                     {{ user_form.email }}
+                    <label for="formGroupFirstnameInput">Введите ваше имя:</label>
+                    {{ user_form.first_name }}
+                    <label for="gender">Выберите пол:</label>
+                    {{ profile_form.gender }}
+
+                    <label for="phone_number">Введите номер телефона (телефон должен начинаться с 9):</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">+7</div>
+                        </div>
+                        {{ profile_form.phone_number }}
+                    </div>
+
                     <label for="formGroupUsernameInput">Введите ваш логин:</label>
                     {{ user_form.username }}
                     <label for="formGroupPasswordInput">Введите ваш пароль:</label>
                     {{ user_form.password }}
                     <label for="formGroupPasswordRepeatInput">Повторите ваш пароль:</label>
                     {{ user_form.password_repeat }}
-                    <br>
-                    <input type="submit" class="btn btn-success" value="Зарегистрироваться">
+                    <input type="submit" class="btn btn-success" value="Зарегистрироваться" style="margin-top: 10px;">
                 </div>
             </form>
+        <div style="margin-bottom: 20px;"></div>
         {% endif %}
     </div>
+
 {% endblock %}

@@ -6,6 +6,7 @@
 {% block styles %}
     <link href="{% static 'items/css/all.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'items/css/item_detail.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'account/css/phone_number.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block title %}{{ item.title }}{% endblock %}
@@ -14,28 +15,32 @@
     <div class="col-lg-9">
         <div>
             <div>
-            <h1 class="my-4">
-                {% if item.category_slug and item.category %}
-                    <a href="{% url 'items:category' item.category_slug %}">{{ item.category }}</a>
-                {% else %}
-                    <a href="{% url 'items:all' %}">Все товары</a>
-                {% endif %}
-                {% if item.subcategory_slug and item.subcategory %}
-                    >
-                    <a href="{% url 'items:subcategory' item.category_slug item.subcategory_slug %}">{{ item.subcategory }}</a>
-                    >
-                {% endif %}
+            <nav aria-label="breadcrumb" class="main-breadcrumb" style="margin-top: 30px;">
+                <ol class="breadcrumb">
+                    {% if item.category_slug and item.category %}
+                      <li class="breadcrumb-item"><a href="{% url 'items:category' item.category_slug %}">{{ item.category }}</a></li>
+                        {% else %}
+                      <li class="breadcrumb-item active"><a href="{% url 'items:all' %}">Все товары</a></li>
+                    {% endif %}
+                    {% if item.subcategory_slug and item.subcategory %}
+                      <li class="breadcrumb-item"><a href="{% url 'items:subcategory' item.category_slug item.subcategory_slug %}">{{ item.subcategory }}</a></li>
+                    {% endif %}
 
-                {% if item.subcategory %}
-                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
-                        {{ item.title }}
-                    </a>
-                {% else %}
-                     <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
-                        {{ item.title }}
-                     </a>
-                {% endif %}
-            </h1>
+                    {% if item.subcategory %}
+                        <li class="breadcrumb-item active">
+                            <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
+                                {{ item.title }}
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="breadcrumb-item active">
+                             <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
+                                {{ item.title }}
+                             </a>
+                        </li>
+                    {% endif %}
+                </ol>
+            </nav>
 
             </div>
             <div class="card">
@@ -73,14 +78,6 @@
               </a>
             </div>
 
-{#                <div class="card-sl">#}
-{#                    {% if item.image_1 %}#}
-{#                        <div class="card-image">#}
-{#                            <img src="{{ item.image_1.url }}" alt="{{ item.title }}" class="card-img-top">#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{#                </div>#}
-
                 <div class="card-body">
                     <div class="card-text">
                         <p>Описание:</p>
@@ -108,10 +105,26 @@
                         </p>
                     </div>
                 </div>
+            <div class="">
+                <ul class="row">
+                    <li class="col" style="list-style-type: none;">
+                        <a href="{% url 'room' request.user.pk item.user.pk %}">
+                            <button class="btn btn-primary">
+                                <h6 class="mb-0"><i class="fas fa-envelope"></i> Написать сообщение</h6>
+                            </button>
+                        </a>
+                    </li>
+                    <li class="col" style="list-style-type: none;">
+                        {% include 'account/phone_number.html' %}
+                    </li>
+                </ul>
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top: 10px">Написать сообщение</button>
-            <button type="button" class="btn btn-success btn-lg btn-block" style="margin-bottom: 10px">Узнать номер телефона</button>
+            </div>
+
         </div>
         <!-- /.row -->
     </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'account/js/phone_number.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% if messages %}
-    <div class="col-lg-12">
-    <ul class="list-group">
+    <div class="col-lg-12" style="margin-top: 15px;">
+    <ul class="list-group" style="margin-bottom: 15px;">
         {% for message in messages %}
             <li class="list-group-item popup-message {{ message.tags }}">{{ message|safe }}</li>
         {% endfor %}

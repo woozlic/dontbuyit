@@ -4,7 +4,7 @@ from items.models import Items
 # Create your views here.
 
 def index(request):
-    items = Items.objects.all().order_by('date')[:3]
+    items = Items.objects.all().order_by('-date')[:3]
     context = {
         'title': 'Непокупай.рф',
         'aside': True,

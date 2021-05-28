@@ -1,0 +1,29 @@
+{% load static %}
+
+
+  <button class="btn btn-primary" data-toggle="modal" data-target="#phoneModal">
+    <h6 class="mb-0"><i class="fas fa-phone"></i> Узнать номер телефона</h6>
+  </button>
+  <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Телефон пользователя {{ user.first_name }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body content">
+              <input class="form-control" type="text" value="+7{{ user.profile.phone_number }}" id="phoneInput">
+          </div>
+            <div class="modal-footer">
+              <div class="tooltipPhone">
+                <button type="button" class="btn btn-primary" onclick="copyPhone()" onmouseout="outPhone()">
+                    <span class="tooltiptext" id="myTooltip">Скопировать телефон</span>
+                    Скопировать
+                </button>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>

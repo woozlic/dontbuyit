@@ -3,30 +3,77 @@
 {% load static %}
 
 {% block styles %}
-    <link href="{% static 'account/css/user_detail.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'account/css/dashboard.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'account/css/phone_number.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block title %}Профиль {{ user.username }}{% endblock %}
 
 {% block content %}
-    <div class="content">
-        <div class="col-lg-12">
-            <h2>Профиль пользователя {{ user.first_name }}</h2>
-            <div class="profile">
-                <div class="avatar list-group-item">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar-img" />
+    <div class="col-lg-12" id="dashboard">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{ user.profile.image.url }}" class="avatar-img" width="150">
+                    <div class="mt-3">
+                      <h4>{{ user.first_name }}</h4>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
 
-                <ul class = "list-group">
-                    <li class="list-group-item data">Никнейм: {{ user.username }}</li>
-                    <li class="list-group-item data">Имя: {{ user.first_name }}</li>
-                    <li class="list-group-item data">Отзывов: 5</li>
-                    <li class="list-group-item data">Пол: {{ user.profile.gender }}</li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <a href="{% url 'room' request.user.pk user.pk %}">
+                            <h6 class="mb-0"><i class="fas fa-envelope"></i> Написать сообщение</h6>
+                          </a>
+                      </li>
+
+                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          {% include 'account/phone_number.html' %}
+                      </li>
+
                 </ul>
-
+              </div>
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-block" id="first-button">Написать сообщение</button>
-            <button type="button" class="btn btn-success btn-lg btn-block">Узнать номер телефона</button>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Имя</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user.first_name }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Электронная почта</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user.email }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Пол</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.profile.gender }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
     </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'account/js/phone_number.js' %}"></script>
 {% endblock %}

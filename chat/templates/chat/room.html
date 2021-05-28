@@ -19,16 +19,18 @@
                   <div class="list-group rounded-0" id="conversations">
 
                   {% for dialog in dialogs_info %}
-                    <a href="{% url 'room' dialog.dialog_me dialog.dialog_other %}" class="list-group-item list-group-item-action rounded-0 {% if dialog.dialog_label == room_name %}active text-white{% else %}list-group-item-light{% endif %}">
-                      <div class="media"><img src="{{ dialog.dialog_image_url }}" alt="user" width="50" class="rounded-circle">
-                        <div class="media-body ml-4">
-                          <div class="d-flex align-items-center justify-content-between mb-1">
-                            <h6 class="mb-0">{{ dialog.dialog_user_first_name }}</h6><small class="small font-weight-bold">{{ dialog.dialog_message_timestamp }}</small>
+                      {% if dialog.dialog_message %}
+                        <a href="{% url 'room' dialog.dialog_me dialog.dialog_other %}" class="list-group-item list-group-item-action rounded-0 {% if dialog.dialog_label == room_name %}active text-white{% else %}list-group-item-light{% endif %}">
+                          <div class="media"><img src="{{ dialog.dialog_image_url }}" alt="user" width="50" class="rounded-circle">
+                            <div class="media-body ml-4">
+                              <div class="d-flex align-items-center justify-content-between mb-1">
+                                <h6 class="mb-0">{{ dialog.dialog_user_first_name }}</h6><small class="small font-weight-bold">{{ dialog.dialog_message_timestamp }}</small>
+                              </div>
+                              <p class="font-italic {% if dialog.dialog_label == room_name %}{% else %}text-muted{% endif %} mb-0 text-small" id="{{ dialog.dialog_label }}">{{ dialog.dialog_message }}</p>
+                            </div>
                           </div>
-                          <p class="font-italic {% if dialog.dialog_label == room_name %}{% else %}text-muted{% endif %} mb-0 text-small" id="{{ dialog.dialog_label }}">{{ dialog.dialog_message }}</p>
-                        </div>
-                      </div>
-                    </a>
+                        </a>
+                      {% endif %}
                   {% endfor %}
 
                   </div>
@@ -37,7 +39,15 @@
             </div>
             <!-- Chat Box-->
             <div class="col-7 px-0">
+
+            {% if other %}
+                <div class="bg-gray px-4 py-2 bg-light">
+                    <a href="{% url 'account:user_detail' other.username %}"><p class="h5 mb-0 py-1">{{ other.first_name }}</p></a>Был в сети: {{ other.last_login }}
+                </div>
+            {% endif %}
+
               <div class="px-4 py-5 chat-box bg-white" id="chat-box">
+
                   <!-- existed messages -->
                   {% for message in chat_messages %}
                       {% if message.user == request.user %}
@@ -118,8 +128,6 @@
             const dateOptions = {hour: 'numeric', minute: 'numeric', day: 'numeric', month: 'long'};
             const datetime = new Date(data['datetime']).toLocaleString("ru", dateOptions);
 
-            console.log(`p#${roomName}`);
-            console.log(message);
             const isMe = data.user === '{{ request.user }}';
             const image_url = data.image_url;
             let $chat = $('#chat-box');

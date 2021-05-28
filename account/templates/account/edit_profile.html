@@ -3,7 +3,7 @@
 {% block title %}Личный кабинет{% endblock %}
 
 {% block content %}
-        <div class="col-lg-12">
+        <div class="col-lg-6 content" style="margin-top: 15px;">
             <h2>Ваш профиль</h2>
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
@@ -12,6 +12,15 @@
                     {{ user_form.first_name }}
                     <label>Ваш адрес электронной почты:</label>
                     {{ user_form.email }}
+
+                    <label for="phone_number">Введите номер телефона (телефон должен начинаться с 9):</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">+7</div>
+                        </div>
+                        {{ profile_form.phone_number }}
+                    </div>
+
                     <label>Ваш пол</label>
                     {{ profile_form.gender }}
                     <br>
