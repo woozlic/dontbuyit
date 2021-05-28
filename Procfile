@@ -1,0 +1,1 @@
+web: gunicorn dontbuyit.wsgi --log-file -
