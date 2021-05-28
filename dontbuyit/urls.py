@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from django_private_chat2 import urls as django_private_chat2_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +27,4 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path('chat/', include('chat.urls')),
-    path('messages/', include('django_private_chat2.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
