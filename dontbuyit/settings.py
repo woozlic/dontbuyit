@@ -83,10 +83,6 @@ TEMPLATES = [
     },
 ]
 
-CHAT_WS_SERVER_HOST = 'localhost'
-CHAT_WS_SERVER_PORT = 5002
-CHAT_WS_SERVER_PROTOCOL = 'ws'
-
 
 WSGI_APPLICATION = 'dontbuyit.wsgi.application'
 ASGI_APPLICATION = "dontbuyit.asgi.application"
@@ -95,7 +91,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('127.0.0.1', 6379), ('https://stark-dawn-16125.herokuapp.com', 6379)],
         },
     },
 }
