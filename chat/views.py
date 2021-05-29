@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from chat.models import Room
 from django.contrib.auth.models import User
-from django.core import serializers
 
 
 @login_required
@@ -79,8 +78,6 @@ def room(request, first=None, second=None):
                 other = first_user
 
             chat_messages = reversed(chat_room.messages.order_by('-timestamp')[:50])
-
-            # user.profile.image, last_message, last_message.timestamp, user.first_name
 
             context = {
                 'room_name': room_name,
