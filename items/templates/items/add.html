@@ -7,7 +7,6 @@
 
 {% block title %}{{ title }}{% endblock %}
 
-
 {% block content %}
     <div class = "col-lg-6 content">
         {% if form.errors %}
@@ -101,9 +100,7 @@
               $("#label-subcategory-invisible").attr("id", "label-subcategory-visible");
             }
           });
-
         });
-
     </script>
     <script src="{% static 'items/js/add.js' %}"></script>
 {% endblock %}

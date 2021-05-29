@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Items, Categories, SubCategories
 from .forms import ItemsForm, SearchForm
 from django.views.generic import DetailView
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank ,TrigramSimilarity
-from django.contrib import messages
-import pytils.translit
+from django.contrib.postgres.search import SearchVector, SearchQuery, TrigramSimilarity
+
 
 class ItemDetailView(DetailView):
     model = Items
@@ -107,16 +106,12 @@ def show_page(request, category=None, subcategory=None, page_num=1):
 
 def show_all(request):
     items = Items.objects.all().order_by('-date')
-    # paginator = Paginator(items, 6)
-    # try:
-    #     items = paginator.page()
     context = {'items': items, 'aside': True}
     return render(request, "items/all.html", context)
 
 
 @login_required
 def add_item(request):
-    error = ""
     if request.method == "POST":
         form = ItemsForm(request.POST, request.FILES)
         if form.is_valid():

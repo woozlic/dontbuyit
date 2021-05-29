@@ -11,17 +11,6 @@
 
 {% block content %}
     <div class="col-lg-9">
-{#        <h1 class="my-4">#}
-{#            {% if category_slug %}#}
-{#                <a href="{% url 'items:category' category_slug %}">{{ category_rus }}</a>#}
-{#            {% else %}#}
-{#                <a href="{% url 'items:all' %}">Все товары</a>#}
-{#            {% endif %}#}
-{#            {% if subcategory_slug %}#}
-{#                >#}
-{#                <a href="{% url 'items:subcategory' category_slug subcategory_slug %}">{{ subcategory_rus }}</a>#}
-{#            {% endif %}#}
-{#        </h1>#}
 
         <nav aria-label="breadcrumb" class="main-breadcrumb" style="margin-top: 30px;">
             <ol class="breadcrumb">
@@ -78,9 +67,7 @@
               <p>Товары куда-то подевались. Надеемся, это ненадолго.</p>
           {% endif %}
 
-
         </div>
-        <!-- /.row -->
         {% include 'items/pagination.html' with page=items %}
     </div>
 

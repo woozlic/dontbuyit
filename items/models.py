@@ -2,9 +2,6 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from pytils.translit import slugify
-
-
-
 import logging
 logger = logging.getLogger(__name__)
 
@@ -62,8 +59,6 @@ class Items(models.Model):
     image_3 = models.ImageField(upload_to="items/%Y/%m/%d", verbose_name='Фотография товара 3', null=True, blank=True)
     deposit = models.FloatField("Залог")
     full_price = models.FloatField("Полная цена вещи")
-    # category = models.CharField("Категория", max_length=80, default="Прочее")
-    # sub_category = models.CharField("Подкатегория", max_length=80, default="Другое")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, blank=True, null=True)
     category_slug = models.SlugField(max_length=200, blank=True)
     subcategory = models.ForeignKey(SubCategories, on_delete=models.CASCADE, blank=True, null=True,
@@ -89,9 +84,7 @@ class Items(models.Model):
         if not self.category_slug:
             self.category_slug = slugify(self.category.category_name)
         if self.subcategory and not self.subcategory_slug:
-            # print(self.subcategory, self.subcategory.subcategory_name)
             self.subcategory_slug = slugify(self.subcategory.subcategory_name)
-            # print(self.subcategory_slug)
         super(Items, self).save(*args, **kwargs)
 
     class Meta:

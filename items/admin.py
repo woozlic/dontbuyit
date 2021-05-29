@@ -18,18 +18,12 @@ class ItemsAdmin(admin.ModelAdmin):
     list_filter = ['date']
 
     def get_subcategory(self, obj):
-        # return ', '.join([sub.subcategory_name for sub in obj.category.subcategory.all()])
         return obj.subcategory
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'subcategory':
             return SubCategoryChoiceField(queryset=SubCategories.objects.all())
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
-
-    # def formfield_for_dbfield(self, db_field, request, **kwargs):
-    #     if db_field.name == 'period':
-    #         return PeriodChoiceField(queryset=)
-    #     return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     get_subcategory.short_description = 'Подкатегория'
     get_subcategory.admin_order_field = 'category__subcategory'

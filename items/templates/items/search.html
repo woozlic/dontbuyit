@@ -21,52 +21,48 @@
 {% else %}
     <h3 class="my-4">К сожалению, по вашему запросу ничего не нашлось</h3>
 {% endif %}
-        <div class="row">
-          {% if items %}
-              {% for item in items %}
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card-sl">
-                  {% if item.image_1 %}
-                      {% if item.subcategory %}
-                        <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
-                         <div class="card-image">
-                            <img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt="">
-                         </div>
-                        </a> <!-- 700x400 -->
-                      {% else %}
-                        <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
-                         <div class="card-image">
-                            <img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt="">
-                         </div>
-                        </a> <
-                      {% endif %}
+    <div class="row">
+      {% if items %}
+          {% for item in items %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card-sl">
+              {% if item.image_1 %}
+                  {% if item.subcategory %}
+                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">
+                     <div class="card-image">
+                        <img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt="">
+                     </div>
+                    </a> <!-- 700x400 -->
+                  {% else %}
+                    <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">
+                     <div class="card-image">
+                        <img class="card-img-top" src="{{ MEDIA_ROOT }}{{ item.image_1.url }}" alt="">
+                     </div>
+                    </a> <
                   {% endif %}
-                <div class="card-heading">
-                        {% if item.subcategory %}
-                            <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
-                        {% else %}
-                            <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
-                        {% endif %}
-                </div>
-                  <div class="card-text text-center">
-                    <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
-                  </div>
-                  <div class="card-footer">
-                      <div>{{ item.user.profile.rating }}<i class="fas fa-star checked"></i></div>
-                      <a href="{% url 'account:user_detail' item.user.username %}">{{ item.user.first_name }}</a>
-                  </div>
-                <a href="#" class="card-button"> Арендовать</a>
-                </div>
+              {% endif %}
+            <div class="card-heading">
+                {% if item.subcategory %}
+                    <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                {% else %}
+                    <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                {% endif %}
+            </div>
+              <div class="card-text text-center">
+                <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
               </div>
-              {% endfor %}
-{#          {% else %}#}
-{#              <p class="my-4">К сожалению, ничего не удалось найти по этому запросу.</p>#}
-          {% endif %}
+              <div class="card-footer">
+                  <div>{{ item.user.profile.rating }}<i class="fas fa-star checked"></i></div>
+                  <a href="{% url 'account:user_detail' item.user.username %}">{{ item.user.first_name }}</a>
+              </div>
+            <a href="#" class="card-button"> Арендовать</a>
+            </div>
+          </div>
+          {% endfor %}
+      {% endif %}
 
-
-        </div>
-        <!-- /.row -->
-        {% include 'items/pagination.html' with page=items %}
-      </div>
+    </div>
+    {% include 'items/pagination.html' with page=items %}
+  </div>
 
 {% endblock %}

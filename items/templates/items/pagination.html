@@ -1,41 +1,5 @@
 <ul class = "pagination">
-{#    <li class = "page-item">#}
-{#        {% if page.has_previous %}#}
-{#            {% if category_slug == None %}#}
-{#                <a href = "{% url 'items:all_page' page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>#}
-{#            {% else %}#}
-{#                {% if subcategory_slug %}#}
-{#                    <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>#}
-{#                {% else %}#}
-{#                    <a href = "{% url 'items:category_page' category_slug page.previous_page_number %}" class="page-link">{{ page.previous_page_number }}</a>#}
-{#                {% endif %}#}
-{#            {% endif %}#}
-{#         {% endif %}#}
-{#    </li>#}
-{#    <li class = "page-item active">#}
-{#        {% if category_slug == None %}#}
-{#            <a href = "{% url 'items:all_page' page.number %}" class="page-link">{{ page.number }}</a>#}
-{#        {% else %}#}
-{#            {% if subcategory_slug %}#}
-{#                <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.number %}" class="page-link">{{ page.number }}</a>#}
-{#            {% else %}#}
-{#                <a href = "{% url 'items:category_page' category_slug page.number %}" class="page-link">{{ page.number }}</a>#}
-{#            {% endif %}#}
-{#        {% endif %}#}
-{#    </li>#}
-{#    <li class = "page-item">#}
-{#        {% if page.has_next %}#}
-{#            {% if category_slug == None %}#}
-{#                <a href = "{% url 'items:all_page' page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>#}
-{#            {% else %}#}
-{#                {% if subcategory_slug %}#}
-{#                    <a href = "{% url 'items:subcategory_page' category_slug subcategory_slug page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>#}
-{#                {% else %}#}
-{#                    <a href = "{% url 'items:category_page' category_slug page.next_page_number %}" class="page-link">{{ page.next_page_number }}</a>#}
-{#                {% endif %}#}
-{#            {% endif %}#}
-{#        {% endif %}#}
-{#    </li>#}
+
     {% if page.number > 4 %}
         <li class="page-item">
             {% if category_slug == None %}

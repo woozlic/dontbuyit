@@ -37,11 +37,11 @@
                       {% endif %}
                   {% endif %}
                 <div class="card-heading">
-                        {% if item.subcategory %}
-                            <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
-                        {% else %}
-                            <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
-                        {% endif %}
+                    {% if item.subcategory %}
+                        <a href="{% url 'items:show_item' item.category.category_name|russian_slugify item.subcategory.subcategory_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                    {% else %}
+                        <a href="{% url 'items:show_item_other' item.category.category_name|russian_slugify item.slug item.id %}">{{ item.title }}</a>
+                    {% endif %}
                 </div>
                   <div class="card-text text-center">
                     <p class="h3">{{ item.cost }} р. / {{ item.period }}</p>
@@ -54,13 +54,9 @@
                 </div>
               </div>
               {% endfor %}
-{#          {% else %}#}
-{#              <p class="my-4">К сожалению, ничего не удалось найти по этому запросу.</p>#}
           {% endif %}
 
-
         </div>
-        <!-- /.row -->
         {% include 'items/pagination.html' with page=items %}
       </div>
 
