@@ -103,7 +103,7 @@
     <script>
         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-        let ws_scheme = window.location.protocol == 'https' ? "wss" : 'ws';
+        let ws_scheme = window.location.protocol == 'https:' ? "wss" : 'ws';
 
         let chatSocket;
         if (roomName) {
