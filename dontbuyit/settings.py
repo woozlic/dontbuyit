@@ -85,16 +85,6 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'dontbuyit.wsgi.application'
-ASGI_APPLICATION = "dontbuyit.routing.application"
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [os.environ.get('REDIS_URL', ('127.0.0.1', 6379))],
-        },
-    },
-}
 
 DATABASES = {
     'default': {
@@ -145,3 +135,14 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+ASGI_APPLICATION = "dontbuyit.routing.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL', ('127.0.0.1', 6379))],
+        },
+    },
+}
