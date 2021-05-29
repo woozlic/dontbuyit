@@ -85,7 +85,7 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'dontbuyit.wsgi.application'
-ASGI_APPLICATION = "dontbuyit.asgi.application"
+ASGI_APPLICATION = "dontbuyit.routing.application"
 
 CHANNEL_LAYERS = {
     'default': {
