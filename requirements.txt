@@ -99,7 +99,6 @@ SQLAlchemy-Utils==0.36.8
 sqlparse==0.4.1
 swagger-ui-bundle==0.0.8
 Twisted==21.2.0
-twisted-iocpsupport==1.0.1
 txaio==21.2.1
 typing-extensions==3.7.4.3
 tzlocal==2.1
