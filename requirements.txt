@@ -12,8 +12,8 @@ Automat==20.2.0
 blessings==1.7
 certifi==2020.12.5
 cffi==1.14.5
-channels==2.4.0
-channels-redis==3.0.1
+channels==3.0.3
+channels-redis==3.2.0
 chardet==3.0.4
 click==7.1.2
 clickclick==20.10.2
@@ -22,7 +22,7 @@ constantly==15.1.0
 convertapi==1.4.0
 cryptography==3.4.7
 cycler==0.10.0
-daphne==2.5.0
+daphne==3.0.2
 decorator==4.4.2
 defusedxml==0.7.1
 dj-database-url==0.5.0
@@ -98,6 +98,8 @@ SQLAlchemy==1.3.23
 SQLAlchemy-Utils==0.36.8
 sqlparse==0.4.1
 swagger-ui-bundle==0.0.8
+Twisted==21.2.0
+twisted-iocpsupport==1.0.1
 txaio==21.2.1
 typing-extensions==3.7.4.3
 tzlocal==2.1
