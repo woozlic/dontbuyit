@@ -26,7 +26,6 @@ def auth_register(request):
                 new_user.set_password(user_form.cleaned_data['password'])
                 new_user.save()
                 gender = profile_form.cleaned_data['gender']
-
                 phone_number = profile_form.cleaned_data['phone_number']
                 new_user.profile.gender = gender
                 new_user.profile.phone_number = phone_number
@@ -49,7 +48,6 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             messages.success(request, 'Данные профиля были обновлены!')
-            # return redirect('account:dashboard')
         else:
             messages.error(request, 'Не удалось сохранить данные профиля.')
     else:

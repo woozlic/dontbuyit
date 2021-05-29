@@ -5,6 +5,7 @@ class EmailAuthBackend(object):
     """
     Аутентификация через эл. почту
     """
+
     def authenticate(self, request, username=None, password=None):
         try:
             user = User.objects.get(email=username)

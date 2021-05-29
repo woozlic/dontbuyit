@@ -6,7 +6,6 @@ APScheduler==3.6.3
 asgiref==3.3.1
 async-timeout==3.0.1
 attrs==20.3.0
-autobahn==21.3.1
 Automat==20.2.0
 channels==3.0.1
 channels-redis==2.4.2
@@ -53,7 +52,6 @@ multidict==5.1.0
 mutagen==1.45.1
 mysql-connector-python==8.0.22
 mysqlclient==2.0.3
-numpy==1.20.0
 oauthlib==3.1.0
 openapi-spec-validator==0.2.9
 pafy==0.5.5
@@ -96,3 +94,4 @@ Werkzeug==1.0.1
 whitenoise==5.2.0
 yarl==1.6.3
 zope.interface==5.4.0
+django-extensions==3.1.3

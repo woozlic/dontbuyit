@@ -78,7 +78,6 @@ class UserForm(ModelForm):
             'first_name': TextInput(attrs={
                 'class': 'form-control',
             }),
-
             'email': EmailInput(attrs={
                 'class': 'form-control',
             }),
