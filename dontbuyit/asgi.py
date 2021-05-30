@@ -11,15 +11,15 @@ import chat.routing
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dontbuyit.settings")
-channel_layer = get_channel_layer()
+# channel_layer = get_channel_layer()
 
-# application = get_default_application()
+application = get_default_application()
 
-application = ProtocolTypeRouter({
-  "http": get_asgi_application(),
-  "websocket": AuthMiddlewareStack(
-        URLRouter(
-            chat.routing.websocket_urlpatterns
-        )
-    ),
-})
+# application = ProtocolTypeRouter({
+#   "http": get_asgi_application(),
+#   "websocket": AuthMiddlewareStack(
+#         URLRouter(
+#             chat.routing.websocket_urlpatterns
+#         )
+#     ),
+# })

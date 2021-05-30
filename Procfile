@@ -1,2 +1,2 @@
-web: daphne dontbuyit.asgi:channel_layer --port $PORT --bind 0.0.0.0 -v2
-worker: python manage.py runworker channels --settings=dontbuyit.settings -v2
+web: daphne dontbuyit.asgi:application --port $PORT --bind 0.0.0.0 -v2
+chatworker: python manage.py runworker --settings=dontbuyit.settings -v2
