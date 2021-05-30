@@ -21,7 +21,7 @@
                   {% for dialog in dialogs_info %}
                       {% if dialog.dialog_message %}
                         <a href="{% url 'room' dialog.dialog_me dialog.dialog_other %}" class="list-group-item list-group-item-action rounded-0 {% if dialog.dialog_label == room_name %}active text-white{% else %}list-group-item-light{% endif %}">
-                          <div class="media"><img src="{{ dialog.dialog_image_url }}" alt="user" width="50" class="rounded-circle">
+                          <div class="media"><img src="{{ dialog.dialog_image_url }}" alt="user" width="50" height="50" class="rounded-circle">
                             <div class="media-body ml-4">
                               <div class="d-flex align-items-center justify-content-between mb-1">
                                 <h6 class="mb-0">{{ dialog.dialog_user_first_name }}</h6><small class="small font-weight-bold">{{ dialog.dialog_message_timestamp }}</small>
@@ -64,7 +64,7 @@
                         </div>
                       </div>
                       {% else %}
-                          <div class="media w-50 mb-3"><img src="{{ message.user.profile.image.url }}" alt="user" width="50" class="rounded-circle">
+                          <div class="media w-50 mb-3"><img src="{{ message.user.profile.image.url }}" alt="user" height="50" width="50" class="rounded-circle">
                             <div class="media-body">
                                 <div class="bg-light rounded py-2 px-3 mb-2">
                                     <p class="text-small mb-0 text-muted" id="chat-log">
@@ -90,13 +90,8 @@
                 </div>
                 {{ room_name|json_script:"room-name" }}
               </div>
-
             </div>
           </div>
-
-
-{#            <textarea id="chat-log" cols="100" rows="20"></textarea><br>#}
-
     </div>
 {% endblock %}
 {% block extra_js %}
@@ -150,7 +145,7 @@
             }
             else {
                 $chat.append(
-                    '<div class="media w-50 mb-3"><img src="' + image_url + '" alt="user" width="50" class="rounded-circle">' +
+                    '<div class="media w-50 mb-3"><img src="' + image_url + '" alt="user" width="50" height="50" class="rounded-circle">' +
                         '<div class="media-body ml-3">' +
                             '<div class="bg-light rounded py-2 px-3 mb-2">' +
                                 '<p class="text-small mb-0 text-muted" id="chat-log">' +

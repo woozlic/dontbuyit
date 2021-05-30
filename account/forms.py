@@ -123,5 +123,7 @@ class LoginForm(Form):
 class DashboardForm(Form):
 
     image = ImageField(widget=FileInput(attrs={
-        'id': 'upload_photo'
+        'style': 'display: none;',
+        'class': 'btn btn-dark',
+        'id': 'file'
     }))

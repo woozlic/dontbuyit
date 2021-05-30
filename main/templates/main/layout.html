@@ -3,137 +3,100 @@
 <html lang="ru">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>{% block title %}{% endblock %}</title>
-
-  <link rel="shortcut icon" href="{% static 'main/images/favicon.png' %}" type="image/png">
-
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'main/css/shop-homepage.css' %}" rel="stylesheet">
-
-  <!-- Styles.css -->
-  <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
-
-  <!-- Left side -->
-  <link rel="stylesheet" href="{% static 'main/css/aside.css' %}">
-
-  <!-- icons -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
-  {% block css %}
-  {% endblock %}
-
-  {% block styles %}{% endblock %}
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'main/images/favicon.png' %}" type="image/png">
+    <link href="{% static 'main/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/shop-homepage.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/aside.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    {% block css %}{% endblock %}
+    {% block styles %}{% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
-  <!-- Navigation -->
-  <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container d-flex justify-content-between">
-              <a class="navbar-brand" href="{% url 'main:index' %}"><img src="{% static 'main/images/logo.png' %}"></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="{% url 'main:index' %}"><img src="{% static 'main/images/logo.png' %}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="search">
+                <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'items:post_search' %}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" name="query">
+                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Найти">
+                </form>
+            </div>
 
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="search">
-                    <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'items:post_search' %}">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" name="query">
-                      <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Найти">
-                    </form>
-                </div>
-
-              {% with request.resolver_match.url_name as url_name %}
-              <div class="align-right">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
-                      <a class="nav-link" href="{% url 'main:index' %}">Главная <i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
-                  </li>
-                  {% if request.user.is_authenticated %}
-                      <li class="nav-item">
-                        <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'chat_index' %}">Cообщения <i class="fas fa-envelope" aria-hidden="true"></i></a>
-                      </li>
-                  {% endif %}
+            {% with request.resolver_match.url_name as url_name %}
+            <div class="align-right">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
+                  <a class="nav-link" href="{% url 'main:index' %}">Главная <i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
+                </li>
+                {% if request.user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link {% if url_name == 'add' %}active{% endif %}" href="{% url 'items:add' %}">Сдать в аренду <i class="fas fa-plus-square"></i></a>
+                      <a class="nav-link {% if url_name == 'my_rents' %}active{% endif %}" href="{% url 'chat_index' %}">Cообщения <i class="fas fa-envelope" aria-hidden="true"></i></a>
                   </li>
-                  {% if request.user.is_authenticated %}
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if url_name == 'dashboard' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link {% if url_name == 'add' %}active{% endif %}" href="{% url 'items:add' %}">Сдать в аренду <i class="fas fa-plus-square"></i></a>
+                </li>
+                {% if request.user.is_authenticated %}
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle {% if url_name == 'dashboard' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Профиль
                           <i class="fas fa-user"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'account:dashboard' %}">Перейти в профиль</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item"  href="{% url 'account:logout' %}">Выйти из профиля</a>
-                        </div>
-                      </li>
-                  {% else %}
-                    <li class="nav-item {% if url_name == 'login' %}active{% endif %}">
-                        <a class="nav-link" href="{% url 'account:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                  {% endif %}
+                      </div>
+                  </li>
+                {% else %}
+                  <li class="nav-item {% if url_name == 'login' %}active{% endif %}">
+                      <a class="nav-link" href="{% url 'account:login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
+                  </li>
+                {% endif %}
                 </ul>
-                </div>
-              {% endwith %}
+            </div>
+            {% endwith %}
+            </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container" id="main">
+        <div class="row">
+        {% if aside == True %}
+            {% include "aside.html" %}
+        {% endif %}
 
-              </div>
-          </div>
-</nav>
-</header>
-  <!-- Page Content -->
-  <div class="container" id="main">
+            {% include "account/notifications.html" %}
 
-    <div class="row">
-
-
-
-    {% if aside == True %}
-        {% include "aside.html" %}
-    {% endif %}
-      <!-- /.col-lg-3 -->
-        {% include "account/notifications.html" %}
-      {% block content %}
-
-
-      {% endblock %}
-      <!-- /.col-lg-9 -->
-
+            {% block content %}{% endblock %}
+        </div>
     </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+    <footer class="mt-auto py-5 bg-dark">
+        <div class="container">
+          <p class="m-0 text-center text-white">Непокупайэто - сайт, где вы можете безопасно и недорого взять или сдать товар в аренду.</p>
+        </div>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="mt-auto py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Непокупайэто - сайт, где вы можете безопасно и недорого взять или сдать товар в аренду.</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+    <script src="{% static 'main/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'main/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
-  {% block javascript %}
-  {% endblock %}
+    {% block javascript %}{% endblock %}
+    {% block extra_js %}{% endblock %}
 
-  {% block extra_js %}
-  {% endblock %}
-
-  <script src="{% static 'main/js/aside.js' %}"></script>
+    <script src="{% static 'main/js/aside.js' %}"></script>
 </body>
 
 </html>

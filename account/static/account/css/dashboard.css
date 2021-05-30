@@ -20,6 +20,7 @@
 .avatar {
     display: flex;
     flex-flow: column;
+    object-fit: cover;
 }
 
 #upload_photo {

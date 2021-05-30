@@ -136,7 +136,7 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-ASGI_APPLICATION = "dontbuyit.routing.application"
+ASGI_APPLICATION = "dontbuyit.asgi.application"
 
 CHANNEL_LAYERS = {
     'default': {

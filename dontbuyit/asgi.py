@@ -1,7 +1,5 @@
-import django
 import os
 from channels.routing import get_default_application
-django.setup()
 
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
@@ -9,7 +7,6 @@ from django.core.asgi import get_asgi_application
 from channels.layers import get_channel_layer
 import chat.routing
 
-channel_layer = get_channel_layer()
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dontbuyit.settings")
 
 # application = get_default_application()

@@ -46,6 +46,7 @@ def room(request, first=None, second=None):
             'dialog_me': me,
             'dialog_other': other,
         })
+    dialogs_info = sorted(dialogs_info, key=lambda x: x['dialog_message_timestamp'], reverse=True)
 
     try:
         first_user = User.objects.get(pk=int(first))
