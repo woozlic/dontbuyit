@@ -9,7 +9,9 @@ from django.core.asgi import get_asgi_application
 from channels.layers import get_channel_layer
 import chat.routing
 
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dontbuyit.settings")
+channel_layer = get_channel_layer()
 
 # application = get_default_application()
 

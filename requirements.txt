@@ -4,6 +4,7 @@ alembic==1.5.7
 aniso8601==9.0.0
 APScheduler==3.6.3
 asgiref==3.3.4
+asgi-redis==1.4.3
 async-timeout==3.0.1
 attrs==20.3.0
 autobahn==21.2.1
