@@ -1,4 +1,6 @@
 import os
+import django
+django.setup()
 from channels.routing import get_default_application
 
 from channels.auth import AuthMiddlewareStack
