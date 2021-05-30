@@ -17,7 +17,7 @@ VK_API_SECRET = os.environ.get('VK_API_SECRET', '')
 VKONTAKTE_APP_SECRET = VK_API_SECRET
 SOCIAL_AUTH_VK_OAUTH2_SECRET = VK_API_SECRET
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost', '192.168.0.197', 'stark-dawn-16125.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'nepokupai.ru', 'localhost', '192.168.0.197', '.herokuapp.com']
 
 LOGIN_REDIRECT_URL = 'account:dashboard'
 LOGIN_URL = 'account:login'
@@ -132,6 +132,21 @@ STATICFILES_DIRS = (
     'account/static',
     'items/static',
 )
+
+import os
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ.get('REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {
+                "ssl_cert_reqs": None
+            },
+        }
+    }
+}
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

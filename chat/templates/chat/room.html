@@ -99,7 +99,6 @@
         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
         let ws_scheme = window.location.protocol == 'https:' ? "wss" : 'ws';
-
         let chatSocket;
         if (roomName) {
             chatSocket = new WebSocket(
@@ -123,7 +122,6 @@
             const message = data.message;
             const dateOptions = {hour: 'numeric', minute: 'numeric', day: 'numeric', month: 'long'};
             const datetime = new Date(data['datetime']).toLocaleString("ru", dateOptions);
-
             const isMe = data.user === '{{ request.user }}';
             const image_url = data.image_url;
             let $chat = $('#chat-box');
