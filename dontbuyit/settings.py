@@ -133,8 +133,6 @@ STATICFILES_DIRS = (
     'items/static',
 )
 
-import os
-
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
