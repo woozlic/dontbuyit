@@ -133,20 +133,10 @@ STATICFILES_DIRS = (
     'items/static',
 )
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": os.environ.get('REDIS_URL'),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-ASGI_APPLICATION = "dontbuyit.asgi.application"
+ASGI_APPLICATION = "dontbuyit.routing.application"
 
 CHANNEL_LAYERS = {
     'default': {
@@ -155,4 +145,14 @@ CHANNEL_LAYERS = {
             "hosts": [os.environ.get('MY_REDIS_URL', ('127.0.0.1', 6379))],
         },
     },
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ.get('REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
 }
