@@ -36,7 +36,6 @@ pyOpenSSL==19.1.0
 pytils==0.3
 pytz==2020.5
 PyYAML==5.4.1
-pytz==2020.1
 service-identity==18.1.0
 six==1.15.0
 social-auth-app-django==4.0.0
