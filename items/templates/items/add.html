@@ -18,9 +18,7 @@
                     {% endfor %}
                 {% endif %}
             {% endfor %}
-
         {% endif %}
-
         <form method="post" enctype="multipart/form-data" id="addForm" data-subcategories-url="{% url 'items:ajax_load_subcategories' %}">
             <div class="form-group">
                 {% csrf_token %}
@@ -86,17 +84,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $("#category").change(function () {
-          let url = $("#addForm").attr("data-subcategories-url");  // get the url of the `load_cities` view
-          let category = $(this).val();  // get the selected country ID from the HTML input
-          console.log(url, category);
-
-          $.ajax({                       // initialize an AJAX request
-            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+          let url = $("#addForm").attr("data-subcategories-url");
+          let category = $(this).val();
+          $.ajax({
+            url: url,
             data: {
-              'category': category       // add the country id to the GET parameters
+              'category': category
             },
-            success: function (data) {   // `data` is the return of the `load_cities` view function
-              $("#subcategory").html(data);  // replace the contents of the city input with the data that came from the server
+            success: function (data) {
+              $("#subcategory").html(data);
               $("#label-subcategory-invisible").attr("id", "label-subcategory-visible");
             }
           });
