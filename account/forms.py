@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, EmailInput, PasswordInput, Form, CharField, ValidationError, \
-    Select, ImageField, FileInput
+    Select, ImageField, FileInput, BooleanField, CheckboxInput
 from django.contrib.auth.models import User
 from .models import Profile
 import re
@@ -17,6 +17,12 @@ class UserRegistrationForm(ModelForm):
                 'placeholder': 'Повторите пароль',
                 'id': 'formGroupPasswordRepeatInput',
             }))
+    
+    agreement = BooleanField(required=True, help_text='Я согласен с пользовательским соглашением',
+                             widget=CheckboxInput(attrs={
+                                'class': 'form-check-input',
+                                'id': 'agreement'
+                            }))
 
     class Meta:
         model = User

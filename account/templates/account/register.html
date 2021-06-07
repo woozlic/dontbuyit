@@ -67,6 +67,12 @@
                     {{ user_form.password }}
                     <label for="formGroupPasswordRepeatInput">Повторите ваш пароль:</label>
                     {{ user_form.password_repeat }}
+{#                    <label for="agreement"><strong style="color: red">*</strong> Я согласен с Пользовательским соглашением этого сайта</label><br/>#}
+                    <div class="form-check">
+                        {{ user_form.agreement }}
+                        <div class="form-check-label">Я согласен с  <a href="{% static 'main/Пользовательское соглашение Непокупайэто.pdf' %}">Пользовательским соглашением</a> этого сайта<strong style="color: red">*</strong></div>
+
+                    </div>
                     <input type="submit" class="btn btn-success" value="Зарегистрироваться" style="margin-top: 10px;">
                 </div>
             </form>
