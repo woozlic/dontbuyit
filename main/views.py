@@ -15,6 +15,6 @@ def index(request):
 def catalog(request):
     context = {
         'title': 'Категории товаров',
-        'aside': True
+        'aside': False
     }
     return render(request, 'main/catalog.html', context)

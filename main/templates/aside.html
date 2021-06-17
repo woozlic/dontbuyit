@@ -21,11 +21,11 @@
             Недвижимость
         </a>
         <div class="dropdown-shift" id="dropdown-house">
-            <a class="list-group-item" href="#"><strong>Квартиры</strong></a>
-            <a class="list-group-item" href="#"><strong>Дома</strong></a>
-            <a class="list-group-item" href="#"><strong>Гаражи</strong></a>
-            <a class="list-group-item" href="#"><strong>Коммерческая недвижимость</strong></a>
-            <a class="list-group-item" href="#"><strong>Другая недвижимость</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'kvartiryi' %}"><strong>Квартиры</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'doma' %}"><strong>Дома</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'garazhi' %}"><strong>Гаражи</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'kommercheskaya-nedvizhimost' %}"><strong>Коммерческая недвижимость</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'drugaya-nedvizhimost' %}"><strong>Другая недвижимость</strong></a>
         </div>
 
         <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-transport')">
@@ -33,10 +33,10 @@
             Средства передвижения
         </a>
         <div class="dropdown-shift" id="dropdown-transport">
-            <a class="list-group-item" href="#"><strong>Электросамокаты</strong></a>
-            <a class="list-group-item" href="#"><strong>Мототехника</strong></a>
-            <a class="list-group-item" href="#"><strong>Велосипеды</strong></a>
-            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'elektrosamokatyi' %}"><strong>Электросамокаты</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'mototehnika' %}"><strong>Мототехника</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'velosipedyi' %}"><strong>Велосипеды</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'drugoe' %}"><strong>Другое</strong></a>
         </div>
 
         <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-instruments')">
@@ -44,10 +44,10 @@
             Инструменты
         </a>
         <div class="dropdown-shift" id="dropdown-instruments">
-            <a class="list-group-item" href="#"><strong>Инструменты для автомобилей</strong></a>
-            <a class="list-group-item" href="#"><strong>Электроинструменты</strong></a>
-            <a class="list-group-item" href="#"><strong>Ручные инструменты</strong></a>
-            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'instrumentyi-dlya-avtomobilej' %}"><strong>Инструменты для автомобилей</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'elektroinstrumentyi' %}"><strong>Электроинструменты</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'ruchnyie-instrumentyi' %}"><strong>Ручные инструменты</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'drugoe' %}"><strong>Другое</strong></a>
         </div>
 
         <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-wear')">
@@ -55,12 +55,12 @@
             Одежда, обувь
         </a>
         <div class="dropdown-shift" id="dropdown-wear">
-            <a class="list-group-item" href="#"><strong>Женская одежда</strong></a>
-            <a class="list-group-item" href="#"><strong>Мужская одежда</strong></a>
-            <a class="list-group-item" href="#"><strong>Детская одежда</strong></a>
-            <a class="list-group-item" href="#"><strong>Костюмы</strong></a>
-            <a class="list-group-item" href="#"><strong>Обувь</strong></a>
-            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'zhenskaya-odezhda' %}"><strong>Женская одежда</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'muzhskaya-odezhda' %}"><strong>Мужская одежда</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'detskaya-odezhda' %}"><strong>Детская одежда</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'kostyumyi' %}"><strong>Костюмы</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'obuv' %}"><strong>Обувь</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'drugoe' %}"><strong>Другое</strong></a>
         </div>
 
         <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-furniture')">
@@ -68,10 +68,10 @@
             Мебель
         </a>
         <div class="dropdown-shift" id="dropdown-furniture">
-            <a class="list-group-item" href="#"><strong>Столы</strong></a>
-            <a class="list-group-item" href="#"><strong>Стулья, табуреты и кресла</strong></a>
-            <a class="list-group-item" href="#"><strong>Гамаки</strong></a>
-            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'stolyi' %}"><strong>Столы</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'stulya-taburetyi-i-kresla' %}"><strong>Стулья, табуреты и кресла</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'gamaki' %}"><strong>Гамаки</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'drugaya-mebel' %}"><strong>Другое</strong></a>
         </div>
 
         <a class="list-group-item" type="button" onclick="toggle_visibility('dropdown-kids')">
@@ -79,15 +79,15 @@
             Детские товары
         </a>
         <div class="dropdown-shift" id="dropdown-kids">
-            <a class="list-group-item" href="#"><strong>Автокресла</strong></a>
-            <a class="list-group-item" href="#"><strong>Коляски и переноски</strong></a>
-            <a class="list-group-item" href="#"><strong>Детская мебель</strong></a>
-            <a class="list-group-item" href="#"><strong>Игрушки</strong></a>
-            <a class="list-group-item" href="#"><strong>Детская одежда</strong></a>
-            <a class="list-group-item" href="#"><strong>Другое</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'avtokresla' %}"><strong>Автокресла</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'kolyaski-i-perenoski' %}"><strong>Коляски и переноски</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'detskaya-mebel' %}"><strong>Детская мебель</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'igrushki' %}"><strong>Игрушки</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'detskaya-odezhda' %}"><strong>Детская одежда</strong></a>
+            <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'drugoe' %}"><strong>Другое</strong></a>
         </div>
 
-        <a class="list-group-item" type="button">
+        <a class="list-group-item" type="button" href="{% url 'items:category' 'raznoe' %}">
             <i class="fas fa-align-justify"></i>
             Разное
         </a>

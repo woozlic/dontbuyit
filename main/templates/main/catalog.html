@@ -5,9 +5,89 @@
 {% endblock %}
 {% include "main/aside.html" %}
 {% block content %}
-    <div class="col-lg-9">
+    <div class="col-lg-12">
         <h1 class="my-4">
             Все категории
         </h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Электроника</li>
+                    <a class="list-group-item" href="{% url 'items:category' 'elektronika' %}"><strong>Вся электроника</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'audio-video-tehnika' %}"><strong>Аудио, видео</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'igryi-pristavki-programmyi' %}"><strong>Игры, приставки, программы</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'kuhonnaya-tehnika' %}"><strong>Кухонная техника</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'kompyuternaya-tehnika' %}"><strong>Компьютерная техника</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'elektronika' 'drugaya-elektronika'%}"><strong>Другая электроника</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Недвижимость</li>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'kvartiryi' %}"><strong>Квартиры</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'doma' %}"><strong>Дома</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'garazhi' %}"><strong>Гаражи</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'kommercheskaya-nedvizhimost' %}"><strong>Коммерческая недвижимость</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'nedvizhimost' 'drugaya-nedvizhimost' %}"><strong>Другая недвижимость</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Средства передвижения</li>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'elektrosamokatyi' %}"><strong>Электросамокаты</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'mototehnika' %}"><strong>Мототехника</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'velosipedyi' %}"><strong>Велосипеды</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'sredstva-peredvizheniya' 'drugoe' %}"><strong>Другое</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Инструменты</li>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'instrumentyi-dlya-avtomobilej' %}"><strong>Инструменты для автомобилей</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'elektroinstrumentyi' %}"><strong>Электроинструменты</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'ruchnyie-instrumentyi' %}"><strong>Ручные инструменты</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'instrumentyi' 'drugoe' %}"><strong>Другое</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Одежда, обувь</li>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'zhenskaya-odezhda' %}"><strong>Женская одежда</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'muzhskaya-odezhda' %}"><strong>Мужская одежда</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'detskaya-odezhda' %}"><strong>Детская одежда</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'kostyumyi' %}"><strong>Костюмы</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'obuv' %}"><strong>Обувь</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'odezhda-obuv' 'drugoe' %}"><strong>Другое</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Мебель</li>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'stolyi' %}"><strong>Столы</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'stulya-taburetyi-i-kresla' %}"><strong>Стулья, табуреты и кресла</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'gamaki' %}"><strong>Гамаки</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'mebel' 'drugaya-mebel' %}"><strong>Другое</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Детские товары</li>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'avtokresla' %}"><strong>Автокресла</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'kolyaski-i-perenoski' %}"><strong>Коляски и переноски</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'detskaya-mebel' %}"><strong>Детская мебель</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'igrushki' %}"><strong>Игрушки</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'detskaya-odezhda' %}"><strong>Детская одежда</strong></a>
+                    <a class="list-group-item" href="{% url 'items:subcategory' 'detskie-tovaryi' 'drugoe' %}"><strong>Другое</strong></a>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">
+                        Разное
+                    </li>
+                    <a class="list-group-item" href="{% url 'items:category' 'raznoe' %}"><strong>Разное</strong></a>
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}
