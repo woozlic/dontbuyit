@@ -74,22 +74,25 @@ class ItemsForm(ModelForm):
             'text': Textarea(attrs={
                 'class': 'form-control',
                 'id': 'text',
-                'placeholder': 'Полное описание товара'
+                'placeholder': 'Полное описание товара',
             }),
             'cost': NumberInput(attrs={
                 'class': 'form-control',
                 'id': 'cost',
-                'placeholder': 'Стоимость в рублях'
+                'placeholder': 'Стоимость в рублях',
+                'value': '1000'
             }),
             'deposit': NumberInput(attrs={
                 'class': 'form-control',
                 'id': 'deposit',
-                'placeholder': 'Залог в рублях'
+                'placeholder': 'Залог в рублях',
+                'value': '5000'
             }),
             'full_price': NumberInput(attrs={
                 'class': 'form-control',
                 'id': 'full_price',
-                'placeholder': 'Цена новой вещи в рублях'
+                'placeholder': 'Цена новой вещи в рублях',
+                'value': '10000'
             }),
         }
 
@@ -97,6 +100,7 @@ class ItemsForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['subcategory'].queryset = SubCategories.objects.none()
         self.fields['category'].required = True
+        self.fields['text'].initial = 'Это объявление не является настоящим и было создано для тестирования сервиса. Спасибо за понимание'  # added for test
         if 'category' in self.data:
             try:
                 category = int(self.data.get('category'))
