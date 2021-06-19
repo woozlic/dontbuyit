@@ -1,6 +1,6 @@
 from .models import Items, SubCategories
 from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form, Select, \
-    ValidationError, ModelChoiceField
+    ValidationError, ModelChoiceField, CharField
 from django import forms
 
 import os
@@ -19,12 +19,25 @@ class SubCategoryChoiceField(ModelChoiceField):
         return f"{obj.category.category_name}: {obj.subcategory_name}"
 
 
+class ForgetfulSelect(Select):
+    """
+    Custom widget for Select that doesn't remember old values
+    """
+    def get_context(self, name, value, attrs):
+        # value = None
+        return super().get_context(name, value, attrs)
+
+
 class PeriodChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return f""
 
 
 class ItemsForm(ModelForm):
+    subcategory = CharField(widget=Select(attrs={
+        'class': 'form-control',
+        'id': 'subcategory',
+    }))
 
     class Meta:
         categories = [('electronic', 'Электроника'), ('instruments', 'Инструменты'), ('house', 'Для дома'),
@@ -35,6 +48,7 @@ class ItemsForm(ModelForm):
                    ('1 месяц', '1 месяц')]
 
         model = Items
+
         fields = ['title', 'cost', 'category', 'subcategory', 'text', 'image_1', 'image_2', 'image_3', 'deposit', 'full_price', 'period']
 
         widgets = {
@@ -46,10 +60,6 @@ class ItemsForm(ModelForm):
             'category': Select(choices=categories, attrs={
                 'class': 'form-control',
                 'id': 'category',
-            }),
-            'subcategory': Select(attrs={
-                'class': 'form-control',
-                'id': 'subcategory',
             }),
             'period': Select(choices=periods, attrs={
                 'class': 'form-control',
@@ -97,25 +107,34 @@ class ItemsForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(ItemsForm, self).__init__(*args, **kwargs)
         self.fields['subcategory'].queryset = SubCategories.objects.none()
         self.fields['category'].required = True
         self.fields['text'].initial = 'Это объявление не является настоящим и было создано для тестирования сервиса. Спасибо за понимание'  # added for test
         if 'category' in self.data:
             try:
-                category = int(self.data.get('category'))
-                self.fields['subcategory'].queryset = SubCategories.objects.filter(category__id=category).order_by('subcategory_name')
-            except(ValueError, TypeError):
-                pass
+                category_id = int(self.data.get('category'))
+                subs = SubCategories.objects.filter(category_id=category_id).order_by('subcategory_name')
+                self.fields['subcategory'].queryset = subs
+                print(self.fields['subcategory'].queryset)
+                # self.fields['subcategory'].choices = [(sub.subcategory_name, sub.subcategory_name) for sub in subs]
+            except(ValueError, TypeError) as err:
+                print(err)
         elif self.instance.pk:
             self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('subcategory_name')
 
     def clean_subcategory(self):
         cd = self.cleaned_data
-        if cd['subcategory'] is None and cd['category'].category_name != 'Разное':
+        subcategory = cd['subcategory']
+        category = cd['category']
+        try:
+            subcategory = SubCategories.objects.get(subcategory_name=subcategory)
+        except SubCategories.DoesNotExist:
+            subcategory = None
+        if subcategory is None and category.category_name != 'Разное':
             raise ValidationError('Пожалуйста, выберите Подкатегорию из списка')
 
-        return cd['subcategory']
+        return subcategory
 
     def clean_image_1(self):
         img_extensions = ('.jpg', '.jpeg', '.png')

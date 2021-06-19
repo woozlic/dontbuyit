@@ -48,6 +48,7 @@ def my_rents(request):
     }
     return render(request, 'items/my_rents.html', context)
 
+
 def all_rents(request):
     rents = Items.objects.filter(user=request.user).order_by('-date')
     count = len(rents)
@@ -117,6 +118,8 @@ def add_item(request):
         if form.is_valid():
             form.save()
             return redirect('main:index')
+        else:
+            print(form.errors)
     else:
         form = ItemsForm
     context = {"aside": False, "form": form}

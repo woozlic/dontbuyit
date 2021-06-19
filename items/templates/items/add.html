@@ -9,27 +9,29 @@
 
 {% block content %}
     <div class = "col-lg-6 content">
-        {% if form.errors %}
-            {% for field in form %}
-                {% if field.errors %}
-                    {{ field.name }}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger">{{ error|escape }}</div>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
         <form method="post" enctype="multipart/form-data" id="addForm" data-subcategories-url="{% url 'items:ajax_load_subcategories' %}">
             <div class="form-group">
                 {% csrf_token %}
                 <div class="label-add">
                     <label for="title">Название товара:</label>
+                    {% for error in form.title.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.title }}
                 </div>
                 <div class="label-add">
                     <label>Фотографии товара:</label>
                 </div>
                 <div class="images-container row">
+                    {% for error in form.image_1.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
+                    {% for error in form.image_2.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
+                    {% for error in form.image_3.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     <div class="images-upload">
                         <label for="image-1" id="label-image-1">
                             <img class="image-input" id="img1" src="{% static 'items/images/upload.png' %}">
@@ -51,30 +53,51 @@
                 </div>
                 <div class="label-add">
                     <label for="category">Категория:</label>
+                    {% for error in form.category.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.category }}
                 </div>
                 <div class="label-add" id="label-subcategory-invisible">
                     <label for="subcategory">Подкатегория:</label>
+                    {% for error in form.subcategory.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.subcategory }}
                 </div>
                 <div class="label-add">
                     <label for="text">Текст:</label>
+                    {% for error in form.text.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.text }}
                 </div>
                 <div class="label-add">
                     <label for="cost">Стоимость:</label>
+                    {% for error in form.cost.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.cost }}
                 </div>
                 <div class="label-add">
                     <label for="period">Длительность аренды:</label>
+                    {% for error in form.period.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.period }}
                 </div>
                 <div class="label-add">
                     <label for="deposit">Какой залог должен оставить арендатор:</label>
+                    {% for error in form.deposit.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.deposit }}
                 </div>
                 <div class="label-add">
                     <label for="full_price">Сколько примерно стоит такая же новая вещь:</label>
+                    {% for error in form.full_price.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ form.full_price }}
                 </div>
                 <button type = "submit" class = "btn btn-success" id="button-submit">Добавить товар</button>

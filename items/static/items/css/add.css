@@ -51,16 +51,9 @@ label {
 }
 
 #label-subcategory-invisible {
-    display: none;
+    display: block;
 }
 
 #label-subcategory-visible {
     display: block;
 }
-/*.closeDelete {*/
-/*    font-size: 1.5em;*/
-/*    cursor: pointer;*/
-/*    position: absolute;*/
-/*    margin-bottom: 30px;*/
-/*    margin-left: 100px;*/
-/*}*/
