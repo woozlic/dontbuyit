@@ -1,3 +1,4 @@
+from .wsgi import *
 import os
 import django
 
