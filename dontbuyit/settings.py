@@ -39,7 +39,7 @@ LOGOUT_URL = 'account:logout'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'auth.User'
 
@@ -166,8 +166,8 @@ CHANNEL_LAYERS = {
 
 django_heroku.settings(locals())
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'YOUR_CLOUD_NAME',
-    'API_KEY': 'YOUR_API_KEY',
-    'API_SECRET': 'YOUR_API_SECRET',
+    'CLOUD_NAME': 'hachlwujp',
+    'API_KEY': '452667663499374',
+    'API_SECRET': 'yfuXVpBjauAJaR4prsRP6k9Qh0Y',
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
