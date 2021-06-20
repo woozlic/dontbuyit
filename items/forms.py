@@ -123,11 +123,58 @@ class ItemsForm(ModelForm):
         elif self.instance.pk:
             self.fields['subcategory'].queryset = self.instance.category.subcategory_set.order_by('subcategory_name')
 
-    def clean_subcategory(self):
+    def clean_title(self):
+        cd = self.cleaned_data
+        if len(str(cd['title'])) > 50:
+            raise ValidationError('Заголовок должен быть менее 50 символов')
+        if len(str(cd['title'])) < 8:
+            raise ValidationError('Заголовок должен быть больше 8 символов')
+        return cd['title']
+
+    def clean_cost(self):
         cd = self.cleaned_data
         try:
-            subcategory = SubCategories.objects.filter(category__category_name=cd['category']).get(subcategory_name=cd['subcategory'])
-            # subcategory = SubCategories.objects.get(subcategory_name=cd['subcategory'])
+            float(cd['cost'])
+        except ValueError:
+            raise ValidationError('Цена должна быть числом')
+        if int(cd['cost']) > 100000000:
+            raise ValidationError('Кажется, это слишком большая цена')
+        if int(cd['cost']) < 0:
+            raise ValidationError('Пожалуйста, укажите цену не меньше нуля')
+        return cd['cost']
+
+    def clean_deposit(self):
+        cd = self.cleaned_data
+        try:
+            float(cd['deposit'])
+        except ValueError:
+            raise ValidationError('Цена должна быть числом')
+        if int(cd['deposit']) > 100000000:
+            raise ValidationError('Кажется, это слишком большая цена')
+        if int(cd['deposit']) < 0:
+            raise ValidationError('Пожалуйста, укажите цену не меньше нуля')
+        return cd['deposit']
+
+    def clean_full_price(self):
+        cd = self.cleaned_data
+        try:
+            float(cd['full_price'])
+        except ValueError:
+            raise ValidationError('Цена должна быть числом')
+        if int(cd['full_price']) > 100000000:
+            raise ValidationError('Кажется, это слишком большая цена')
+        if int(cd['full_price']) < 0:
+            raise ValidationError('Пожалуйста, укажите цену не меньше нуля')
+        return cd['full_price']
+
+    def clean_subcategory(self):
+        cd = self.cleaned_data
+
+        try:
+            if 'category' in cd:
+                subcategory = SubCategories.objects.filter(category__category_name=cd['category']).get(subcategory_name=cd['subcategory'])
+            else:
+                raise ValidationError('Пожалуйста, выберите Подкатегорию из списка')
         except SubCategories.DoesNotExist:
             subcategory = None
         if 'category' in cd and subcategory is None and cd['category'].category_name != 'Разное':
