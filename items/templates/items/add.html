@@ -22,7 +22,6 @@
                 <div class="label-add">
                     <label>Фотографии товара:</label>
                 </div>
-                <div class="images-container row">
                     {% for error in form.image_1.errors %}
                         <div class="alert alert-danger">{{ error|escape }}</div>
                     {% endfor %}
@@ -32,6 +31,8 @@
                     {% for error in form.image_3.errors %}
                         <div class="alert alert-danger">{{ error|escape }}</div>
                     {% endfor %}
+                <div class="images-container row">
+
                     <div class="images-upload">
                         <label for="image-1" id="label-image-1">
                             <img class="image-input" id="img1" src="{% static 'items/images/upload.png' %}">

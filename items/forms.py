@@ -110,14 +110,14 @@ class ItemsForm(ModelForm):
         super(ItemsForm, self).__init__(*args, **kwargs)
         self.fields['subcategory'].queryset = SubCategories.objects.none()
         self.fields['category'].required = True
+        self.fields['subcategory'].required = False
+        self.fields['image_1'].required = False
         self.fields['text'].initial = 'Это объявление не является настоящим и было создано для тестирования сервиса. Спасибо за понимание'  # added for test
         if 'category' in self.data:
             try:
                 category_id = int(self.data.get('category'))
                 subs = SubCategories.objects.filter(category_id=category_id).order_by('subcategory_name')
                 self.fields['subcategory'].queryset = subs
-                print(self.fields['subcategory'].queryset)
-                # self.fields['subcategory'].choices = [(sub.subcategory_name, sub.subcategory_name) for sub in subs]
             except(ValueError, TypeError) as err:
                 print(err)
         elif self.instance.pk:
@@ -125,13 +125,11 @@ class ItemsForm(ModelForm):
 
     def clean_subcategory(self):
         cd = self.cleaned_data
-        subcategory = cd['subcategory']
-        category = cd['category']
         try:
-            subcategory = SubCategories.objects.get(subcategory_name=subcategory)
+            subcategory = SubCategories.objects.get(subcategory_name=cd['subcategory'])
         except SubCategories.DoesNotExist:
             subcategory = None
-        if subcategory is None and category.category_name != 'Разное':
+        if 'category' in cd and subcategory is None and cd['category'].category_name != 'Разное':
             raise ValidationError('Пожалуйста, выберите Подкатегорию из списка')
 
         return subcategory
@@ -139,6 +137,8 @@ class ItemsForm(ModelForm):
     def clean_image_1(self):
         img_extensions = ('.jpg', '.jpeg', '.png')
         cd = self.cleaned_data
+        if not cd['image_1']:
+            raise ValidationError('Загрузите как минимум одно изображение')
         ext = os.path.splitext(cd['image_1'].name)[1]
         if ext not in img_extensions:
             raise ValidationError('Изображение должно быть формата .jpg, .jpeg, или .png')

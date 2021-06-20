@@ -119,7 +119,9 @@ def add_item(request):
             form.save()
             return redirect('main:index')
         else:
-            print(form.errors)
+            form = ItemsForm(request.POST.copy())
+            form.data['category'] = ''
+            form.data['subcategory'] = ''
     else:
         form = ItemsForm
     context = {"aside": False, "form": form}
