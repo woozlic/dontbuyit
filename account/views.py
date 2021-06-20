@@ -63,9 +63,10 @@ def dashboard(request):
         form = DashboardForm(request.POST, request.FILES)
         if form.is_valid():
             user_profile = Profile.objects.get(pk=request.user.profile.pk)
-            old_image_path = user_profile.image.path
-            if os.path.exists(old_image_path) and user_profile.image.name != 'avatars/default.png':
-                os.remove(old_image_path)
+            # used to remove file from storage and doesn't need no more
+            # old_image_path = user_profile.image.path
+            # if os.path.exists(old_image_path) and user_profile.image.name != 'avatars/default.png':
+            #     os.remove(old_image_path)
 
             new_image = request.FILES['image']
             user_profile.image = new_image
