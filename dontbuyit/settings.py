@@ -43,7 +43,7 @@ LOGOUT_URL = 'account:logout'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-STATICFILES_STORAGE = 'dontbuyit.storage.WhiteNoiseStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'auth.User'
 
