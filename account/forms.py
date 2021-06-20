@@ -50,11 +50,24 @@ class UserRegistrationForm(ModelForm):
             }),
         }
 
+    def __init__(self, *args, **kwargs):
+        super(UserRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['email'].required = True
+        self.fields['first_name'].required = True
+
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         password_repeat = cleaned_data.get('password_repeat')
         username = cleaned_data.get('username')
+        first_name = cleaned_data.get('first_name')
+
+        if len(first_name) < 2 or len(first_name) > 20:
+            raise ValidationError('Имя должно содержать от 2 до 20 символов')
+        if re.fullmatch(r'[A-Za-zА-Яа-я]{2,}', first_name):
+            pass
+        else:
+            raise ValidationError('Имя должно содержать только буквы русского или английского алфавита')
 
         if re.fullmatch(r'[A-Za-z0-9@_#$%\-^&+=]{6,}', username):
             pass
@@ -102,14 +115,23 @@ class ProfileForm(ModelForm):
             'phone_number': TextInput(attrs={'class': 'form-control'})
         }
 
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        self.fields['phone_number'].required = True
+        self.fields['gender'].required = True
+
     def clean_phone_number(self):
         cd = self.cleaned_data
         phone_number = cd['phone_number']
+        try:
+            int(phone_number)
+        except ValueError:
+            raise ValidationError('Телефон должен состоять из 10 цифр и начинаться с цифры 9')
         if len(phone_number) != 10:
             raise ValidationError('Телефон должен состоять из 10 цифр')
-        elif str(phone_number)[0] != '9':
+        if str(phone_number)[0] != '9':
             raise ValidationError('Телефон должен начинаться с 9')
-        elif User.objects.filter(profile__phone_number=str(phone_number)).exists():
+        if User.objects.filter(profile__phone_number=str(phone_number)).exists():
             raise ValidationError('Такой номер телефона уже зарегистрирован')
         return phone_number
 

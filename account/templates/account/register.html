@@ -27,33 +27,29 @@
             {% endfor %}
         {% endif %}
 
-        {% if user_form.errors %}
-            {% for user_field in user_form %}
-                {% for user_error in user_field.errors %}
-                    <p class="alert alert-danger">{{ user_error|escape }}</p>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
-
-        {% if profile_form.errors %}
-            {% for profile_field in profile_form %}
-                {% for profile_error in profile_field.errors %}
-                    <p class="alert alert-danger">{{ profile_error|escape }}</p>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
-
             <form action="{% url 'account:register' %}" method="post">
                 <div class="form-group">
                     {% csrf_token %}
                     <label for="formGroupEmailInput">Введите адрес электронной почты:</label>
+                    {% for error in user_form.email.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ user_form.email }}
                     <label for="formGroupFirstnameInput">Введите ваше имя:</label>
+                    {% for error in user_form.first_name.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ user_form.first_name }}
                     <label for="gender">Выберите пол:</label>
+                    {% for error in profile_form.gender.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ profile_form.gender }}
 
                     <label for="phone_number">Введите номер телефона (телефон должен начинаться с 9):</label>
+                    {% for error in profile_form.phone_number.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     <div class="input-group">
                         <div class="input-group-prepend">
                           <div class="input-group-text">+7</div>
@@ -62,10 +58,19 @@
                     </div>
 
                     <label for="formGroupUsernameInput">Введите ваш логин:</label>
+                    {% for error in user_form.username.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ user_form.username }}
                     <label for="formGroupPasswordInput">Введите ваш пароль:</label>
+                    {% for error in user_form.password.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ user_form.password }}
                     <label for="formGroupPasswordRepeatInput">Повторите ваш пароль:</label>
+                    {% for error in user_form.password_repeat.errors %}
+                        <div class="alert alert-danger">{{ error|escape }}</div>
+                    {% endfor %}
                     {{ user_form.password_repeat }}
 {#                    <label for="agreement"><strong style="color: red">*</strong> Я согласен с Пользовательским соглашением этого сайта</label><br/>#}
                     <div class="form-check">
