@@ -53,6 +53,7 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            ]
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'channels',
     'chat',
     'main',
