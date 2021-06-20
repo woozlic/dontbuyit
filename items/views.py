@@ -97,7 +97,8 @@ def show_page(request, category=None, subcategory=None, page_num=1):
     else:
         category_rus = ''
     if subcategory:
-        subcategory_rus = get_object_or_404(SubCategories, subcategory_slug=subcategory)
+        subcategory_rus = SubCategories.objects.filter(category__category_name=category_rus).get(subcategory_slug=subcategory)
+        # subcategory_rus = get_object_or_404(SubCategories, subcategory_slug=subcategory)
     else:
         subcategory_rus = ''
     context = {'items': items, 'aside': True, 'category_slug': category, 'subcategory_slug': subcategory,

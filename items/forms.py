@@ -1,4 +1,4 @@
-from .models import Items, SubCategories
+from .models import Items, SubCategories, Categories
 from django.forms import ModelForm, TextInput, Textarea, NumberInput, ImageField, FileInput, Form, Select, \
     ValidationError, ModelChoiceField, CharField
 from django import forms
@@ -126,7 +126,8 @@ class ItemsForm(ModelForm):
     def clean_subcategory(self):
         cd = self.cleaned_data
         try:
-            subcategory = SubCategories.objects.get(subcategory_name=cd['subcategory'])
+            subcategory = SubCategories.objects.filter(category__category_name=cd['category']).get(subcategory_name=cd['subcategory'])
+            # subcategory = SubCategories.objects.get(subcategory_name=cd['subcategory'])
         except SubCategories.DoesNotExist:
             subcategory = None
         if 'category' in cd and subcategory is None and cd['category'].category_name != 'Разное':
