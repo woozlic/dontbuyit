@@ -1,6 +1,9 @@
 import os
 import dj_database_url
 import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 CACHES = {
     "default": {
@@ -165,9 +168,9 @@ CHANNEL_LAYERS = {
 }
 
 django_heroku.settings(locals())
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hachlwujp',
-    'API_KEY': '452667663499374',
-    'API_SECRET': 'yfuXVpBjauAJaR4prsRP6k9Qh0Y',
-}
+cloudinary.config(
+  cloud_name="hachlwujp",
+  api_key=os.environ.get('cloudinary_api_key', ''),
+  api_secret=os.environ.get('cloudinary_api_secret', '')
+)
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
