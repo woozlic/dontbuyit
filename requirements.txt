@@ -21,6 +21,8 @@ constantly==15.1.0
 convertapi==1.4.0
 cryptography==3.4.7
 cycler==0.10.0
+cloudinary==1.17.0
+django-cloudinary-storage==0.2.3
 daphne==3.0.2
 decorator==4.4.2
 defusedxml==0.7.1

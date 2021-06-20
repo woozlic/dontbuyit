@@ -61,10 +61,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django_extensions',
     'mathfilters',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +165,9 @@ CHANNEL_LAYERS = {
 }
 
 django_heroku.settings(locals())
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'YOUR_CLOUD_NAME',
+    'API_KEY': 'YOUR_API_KEY',
+    'API_SECRET': 'YOUR_API_SECRET',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
